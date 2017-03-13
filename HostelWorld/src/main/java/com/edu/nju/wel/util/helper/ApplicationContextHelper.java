@@ -1,4 +1,4 @@
-package com.edu.nju.wel.util;
+package com.edu.nju.wel.util.helper;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
