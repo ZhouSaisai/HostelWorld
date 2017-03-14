@@ -28,4 +28,9 @@ public class UserController {
         return view;
     }
 
+    @RequestMapping(value = "/personZone")
+    public String personZOne(HttpServletRequest request, HttpServletResponse response){
+        return "personZone";
+    }
+
 }
