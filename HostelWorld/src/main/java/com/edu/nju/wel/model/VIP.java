@@ -17,7 +17,7 @@ public class VIP implements Serializable{
     private int vId;
     //姓名-初始为null
     private String name;
-    //密码-6~16位
+    //密码-6~20位
     private String password;
     //7位识别码
     @Column(nullable = false,unique=true,length=7)

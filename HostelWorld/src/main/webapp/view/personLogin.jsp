@@ -20,15 +20,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img src="../img/common/logo.png"></a>
+                <a class="navbar-brand" href="/HotelWorld/welcome"><img src="../img/common/logo.png"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">首页</a></li>
+                    <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
                     <li><a href="#">预定客栈</a></li>
-                    <li><a href="#">我的订单</a></li>
+                    <li><a href="#">我的预定</a></li>
+                    <li><a href="#">我的消费分析</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -60,14 +61,14 @@
                     <div class="login-wrapper">
                         <form class="form-login">
                             <div class="input-wrapper">
-                                <input type="text" name="username" id="username-login" placeholder="用户名/会员卡号">
+                                <input type="text" name="usercode" id="usercode-login" placeholder="会员卡号">
                             </div>
 
                             <div class="input-wrapper">
                                 <input type="password" name="password" id="password-login" placeholder="密码">
                                 <a onclick="forgetPwd()" data-href="/forgetPwd" class="tip">忘记密码</a>
                             </div>
-                            <input type="button" class="button btn-block submit-login" value="登录" onclick="login()">
+                            <input type="button" class="button btn-block submit-login" value="登录" onclick="login('person')">
 
                             <div class="clearfix-wrapper">
                                 <div class="errorField" id="error-login"></div>
@@ -93,9 +94,9 @@
                                     <input type="password" name="passwordTel" id="password-register" placeholder="密码（6-20位，建议字母数字和符号的组合）">
                                 </div>
                                 <div class="input-wrapper">
-                                    <input type="text" name="passwordAgain" id="password-register-a" placeholder="请再次输入密码">
+                                    <input type="password" name="passwordAgain" id="password-register-a" placeholder="请再次输入密码">
                                 </div>
-                                <input type="button" class="button btn-block submit-register" value="注册" onclick="register()">
+                                <input type="button" class="button btn-block submit-register" value="注册" onclick="register('person')">
                                 <div class="clearfix-wrapper">
                                     <div class="errorField" id="error-register"></div>
                                     <div class="input-wrapper checkbox-wrapper">
@@ -112,11 +113,11 @@
         <footer class="footer-fixed-bottom global-footer">
             <div class="copyright">
                 <p style="text-align: center;">
-                    <span>© 2017 <a href="" target="_blank">HostelWorld</a></span>
-                    <a class="icp" href="" target="_blank">苏ICP备110120130号</a>
+                    <span>© 2017 <a href="#" target="_blank">HostelWorld</a></span>
+                    <a class="icp" href="#" target="_blank">苏ICP备110120130号</a>
                     <span>联系方式：110120130</span>
                     <span>HostelWorld Beta</span>
-                    <a href="" target="_blank" class="agreement">zhouss.wel@foxmail.com</a>
+                    <a href="#" target="_blank" class="agreement">zhouss.wel@foxmail.com</a>
                 </p>
             </div>
         </footer>

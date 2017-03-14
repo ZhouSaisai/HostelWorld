@@ -12,8 +12,6 @@ import java.util.List;
  */
 @Service("UserService")
 public class UserServiceImpl implements UserService {
-
-
     public List<User> find() {
         return DAOManager.userDao.find();
     }

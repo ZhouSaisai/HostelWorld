@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    $("body").on("focus()","input",function(){
 
-    })
 });
 
 function tab(i){
@@ -16,11 +14,11 @@ function tab(i){
         $("#switch-content .login").css("display","none");
     }
 }
-function login(){
-    var username = $("#username-login").val();
+function login(type){
+    var usercode = $("#usercode-login").val();
     var password = $("#password-login").val();
 
-    if(username==""){
+    if(usercode==""){
         $("#error-login").text("账号不能为空！");
         setTimeout("$('#error-login').text('');",1000);
         return false;
@@ -34,31 +32,38 @@ function login(){
         setTimeout("$('#error-login').text('');",1000);
         return false;
     }
-    // $.ajax({
-    //     type: "post",
-    //     async: true,
-    //     url: "/HotelWorld/ask_login",
-    //     data: {
-    //         "username": username,
-    //         "password": password,
-    //     },
-    //     success: function (result) {
-    //         if (result == "success") {
-    //             alert('提交成功');
-    //         } else {
-    //             alert(result);
-    //         }
-    //     },
-    //     error: function () {
-    //          $("#error-login").text("出故障了请稍候再试");
-    //     }
-    // })
+    if(type!="person"&&type!="hotel"){
+        $("#error-login").text("参数错误！");
+        setTimeout("$('#error-login').text('');",1000);
+        return false;
+    }
+
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/ask_login",
+        data: {
+            "usercode": usercode,
+            "password": password,
+            "type":type
+        },
+        success: function (result) {
+            if (result != "-1") {
+                alert('提交成功');
+            } else {
+                alert(result);
+            }
+        },
+        error: function () {
+             $("#error-login").text("出故障了请稍候再试");
+        }
+    });
 
     return true;
 
 }
 
-function register() {
+function register(type) {
     var username = $("#username-register").val();
     var password = $("#password-register").val();
     var passwordA = $("#password-register-a").val();
@@ -80,7 +85,33 @@ function register() {
         setTimeout("$('#error-register').text('');",1000);
         return false;
     }
-
+    if(type!="person"&&type!="hotel"){
+        $("#error-login").text("参数错误！");
+        setTimeout("$('#error-register').text('');",1000);
+        return false;
+    }
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/ask_register",
+        data: {
+            "username": username,
+            "password": password,
+            "type":type
+        },
+        success: function (result) {
+            if (result != "-1") {
+                window.location.href = "/HotelWorld/person_zone?id="+result;
+            } else {
+                setTimeout(function() {
+                    $('#error-register').text(result);
+                },1000);
+            }
+        },
+        error: function () {
+            setTimeout("$('#error-register').text('出故障了请稍候再试')",1000);
+        }
+    });
     return true;
 }
 
