@@ -11,7 +11,7 @@
     <link href="../css/login.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-color navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -26,39 +26,16 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">股票 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">策略</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">板块 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="#">预定客栈</a></li>
+                    <li><a href="#">我的订单</a></li>
                 </ul>
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
+
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </li>
+                    <li class="active"><a href="#">登录</a></li>
+                    <li><a href="#">注册</a></li>
+                    <li><a href="#">个人空间</a></li>
+                    <li><a href="#">注销</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -67,8 +44,8 @@
         <div class="row" id="logReg">
             <div class="row">
                 <div class="top-wrapper">
-                    <img src="../img/common/login-lg.png">
-                    <p>您私人的云端量化研究与交易平台</p>
+                    <img src="../img/common/login-md.png">
+                    <p>您私人的在外居家客栈平台</p>
                 </div>
             </div>
             <div class="row">
@@ -83,7 +60,7 @@
                     <div class="login-wrapper">
                         <form class="form-login">
                             <div class="input-wrapper">
-                                <input type="text" name="username" id="username-login" placeholder="用户名">
+                                <input type="text" name="username" id="username-login" placeholder="用户名/会员卡号">
                             </div>
 
                             <div class="input-wrapper">
@@ -135,11 +112,11 @@
         <footer class="footer-fixed-bottom global-footer">
             <div class="copyright">
                 <p style="text-align: center;">
-                    <span>© 2017 <a href="" target="_blank">AnyQuant</a></span>
+                    <span>© 2017 <a href="" target="_blank">HostelWorld</a></span>
                     <a class="icp" href="" target="_blank">苏ICP备110120130号</a>
                     <span>联系方式：110120130</span>
-                    <span>AnyQuant Beta</span>
-                    <a href="" target="_blank" class="agreement">Find Password Team</a>
+                    <span>HostelWorld Beta</span>
+                    <a href="" target="_blank" class="agreement">zhouss.wel@foxmail.com</a>
                 </p>
             </div>
         </footer>

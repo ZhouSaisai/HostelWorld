@@ -1,0 +1,53 @@
+body {
+    background-color: #F9F9F9;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+#logReg{
+    width:450px;
+    margin: 12% auto 20px;
+}
+
+.main-content{
+    position: relative;
+    height: 94%;
+    background-image: url("../img/welcome-bgi.jpg");
+}
+
+#logReg * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#logReg .top-wrapper {
+    text-align: center;
+}
+
+#logReg .top-wrapper p {
+    margin: 15px auto;
+    color: #555555;
+    font-size: 20px;
+}
+#logReg .switch-buttons{
+    width:400px;
+    margin: 20px auto;
+}
+#logReg .switch-button{
+    display: inline-block;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    width: 120px;
+    text-align: center;
+    background: #5288d7;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    margin:0 40px 0 38px;
+}

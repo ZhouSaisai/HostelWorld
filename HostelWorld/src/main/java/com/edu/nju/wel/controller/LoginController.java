@@ -11,9 +11,18 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 public class LoginController {
-    @RequestMapping(value = "login")
-    public String login(HttpServletRequest request, HttpServletResponse response){
-        return "login";
+    @RequestMapping(value = "welcome")
+    public String welcome(HttpServletRequest request, HttpServletResponse response){
+        return "index";
+    }
+
+    @RequestMapping(value = "person_login")
+    public String personLogin(HttpServletRequest request, HttpServletResponse response){
+        return "personLogin";
+    }
+    @RequestMapping(value = "hotel_login")
+    public String hotelLogin(HttpServletRequest request, HttpServletResponse response){
+        return "hotelLogin";
     }
 
     @RequestMapping(value = "ask_login")

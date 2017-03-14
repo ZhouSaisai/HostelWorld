@@ -5,13 +5,28 @@
 .navbar-brand > img{
     margin-top: -5px;
 }
-.navbar-inverse{
-    background-color: #023b53;
+
+.navbar{
+    padding: 0 50px;
 }
 
-.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus{
-    background-color: #4e7ed7;
-    border-color:#4e7ed7;
+.navbar-color{
+    background-color: #386fd2;
+    border: none;
+}
+.navbar-nav li a{
+    color: white;
+    margin: 0 1px;
+}
+
+.navbar-nav li a:hover{
+    background-color: #1d62bb;
+}
+.navbar-nav li a:focus{
+    background-color: #1d62bb;
+}
+.navbar-nav li a.active{
+    background-color: #1d62bb;
 }
 
 .footer-fixed-bottom{
