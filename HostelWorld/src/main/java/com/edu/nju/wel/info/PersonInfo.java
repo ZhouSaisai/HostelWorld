@@ -16,8 +16,28 @@ public class PersonInfo {
     private int isActive;
     //会员资格状态-恢复0/暂停1/停止2-默认恢复-0
     private int state;
+    //级别，默认为0
+    private int level;
+    //积分
+    private int point;
 
     public PersonInfo() {
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 
     public int getId() {
@@ -66,5 +86,19 @@ public class PersonInfo {
 
     public void setState(int state) {
         this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", code='" + code + '\'' +
+                ", isActive=" + isActive +
+                ", state=" + state +
+                ", level=" + level +
+                ", point=" + point +
+                '}';
     }
 }

@@ -48,14 +48,36 @@ function login(type){
             "type":type
         },
         success: function (result) {
-            if (result != "-1") {
-                alert('提交成功');
+            var array=result.split(";");
+            if (array[0]!= "-1") {
+                switch (array[1]){
+                    case "person":
+                        window.location.href = "/HotelWorld/person_zone?id="+array[0];
+                        break;
+                    case "hotel":
+                        window.location.href = "/HotelWorld/hotel_zone?id="+array[0];
+                        break;
+                    case "manager":
+                        alert("manage");
+                        break;
+                    default:
+                        $("#error-login").text("系统故障！");
+                        setTimeout(function() {
+                            $('#error-login').text('');
+                        },1000);
+                }
             } else {
-                alert(result);
+                $('#error-login').text(array[1]);
+                setTimeout(function() {
+                    $('#error-login').text('');
+                },1000);
             }
         },
         error: function () {
-             $("#error-login").text("出故障了请稍候再试");
+            $("#error-login").text("出故障了请稍候再试");
+            setTimeout(function() {
+                $('#error-login').text('');
+            },1000);
         }
     });
 
@@ -90,6 +112,8 @@ function register(type) {
         setTimeout("$('#error-register').text('');",1000);
         return false;
     }
+    var reg = /^[0-9]*$/;
+
     $.ajax({
         type: "post",
         async: true,
@@ -100,16 +124,28 @@ function register(type) {
             "type":type
         },
         success: function (result) {
-            if (result != "-1") {
-                window.location.href = "/HotelWorld/person_zone?id="+result;
+            var array=result.split(";");
+            if (array[0]!= "-1") {
+                switch (array[1]){
+                    case "person":
+                        window.location.href = "/HotelWorld/person_zone?id="+array[0];
+                        break;
+                    case "hotel":
+                        window.location.href = "/HotelWorld/hotel_zone?id="+array[0];
+                        break;
+                    default:
+                        $('#error-register').text('系统故障');
+                        setTimeout("$('#error-register').text('');",1000);
+                }
+
             } else {
-                setTimeout(function() {
-                    $('#error-register').text(result);
-                },1000);
+                $('#error-register').text(array[1]);
+                setTimeout("$('#error-register').text('');",1000);
             }
         },
         error: function () {
-            setTimeout("$('#error-register').text('出故障了请稍候再试')",1000);
+            $('#error-register').text('出故障了请稍候再试');
+            setTimeout("$('#error-register').text('');",1000);
         }
     });
     return true;

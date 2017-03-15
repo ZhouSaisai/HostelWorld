@@ -34,7 +34,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#">个人空间</a></li>
-                    <li><a href="#">注销</a></li>
+                    <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

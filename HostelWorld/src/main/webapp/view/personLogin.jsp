@@ -36,7 +36,7 @@
                     <li class="active"><a href="#">登录</a></li>
                     <li><a href="#">注册</a></li>
                     <li><a href="#">个人空间</a></li>
-                    <li><a href="#">注销</a></li>
+                    <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>

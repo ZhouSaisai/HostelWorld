@@ -7,7 +7,12 @@ import org.springframework.stereotype.Repository;
 /**
  * Created by zs on 2017/3/3.
  */
-@Repository
-public class VIPDao extends BaseDao<VIP,Integer>{
 
+public interface VIPDao{
+    //注册会员
+    public int addVIP(VIP vip);
+    //通过id获取会员
+    public VIP getVIPById(int vId);
+    //通过识别码获取会员
+    public VIP getVIPByCode(String code);
 }

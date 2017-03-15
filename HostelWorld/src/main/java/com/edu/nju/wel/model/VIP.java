@@ -12,7 +12,7 @@ import java.util.Date;
 @Table(name="vip")
 public class VIP implements Serializable{
     //vip数据库编号
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @Id
     private int vId;
     //姓名-初始为null
