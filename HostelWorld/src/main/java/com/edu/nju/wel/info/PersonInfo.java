@@ -20,6 +20,10 @@ public class PersonInfo {
     private int level;
     //积分
     private int point;
+    //年纪
+    private int age;
+    //住址
+    private String address;
 
     public PersonInfo() {
     }
@@ -88,6 +92,22 @@ public class PersonInfo {
         this.state = state;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "PersonInfo{" +
@@ -99,6 +119,8 @@ public class PersonInfo {
                 ", state=" + state +
                 ", level=" + level +
                 ", point=" + point +
+                ", age=" + age +
+                ", address='" + address + '\'' +
                 '}';
     }
 }

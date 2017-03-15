@@ -1,0 +1,9 @@
+body {
+    background-color: #F9F9F9;
+}
+.main-content{
+    position: relative;
+    width:74%;
+    margin:0 auto;
+    height: 93%;
+}

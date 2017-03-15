@@ -8,6 +8,7 @@
     <title>登录</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/common/navbar.css" rel="stylesheet">
+    <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/personInfo.css" rel="stylesheet">
 </head>
 <body>
@@ -39,6 +40,46 @@
             </div><!-- /.navbar-collapse -->
         </div>
     </nav>
-    <p>注册成功</p>
+    <div class="container-fluid main-content">
+        <div class="row content-row">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" style="background-color: red">
+                <div class="row">
+                    <div class="pic-container">
+                        <img src="../img/common/user.jpg" class="user-pic">
+                    </div>
+
+                    <p>v160907<span> lv 5</span></p>
+                    <p>汤旭</p>
+                    <p>余额：<span>10000</span></p>
+                    <button>充值</button>
+                    <button>暂停账号</button>
+                    <button>去激活</button>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7" style="background-color: #1d62bb">
+                <div class="row">
+                    <p>你的账号是<span>v160907</span></p>
+                    <p>该账号将用作你的唯一登录账号</p>
+                    <button>去激活</button>
+                </div>
+                <div class="row">
+                    <p>基础资料</p>
+                    <p>该账号将用作你的唯一登录账号</p>
+                    <button>修改资料</button>
+                </div>
+            </div>
+        </div>
+        <footer class="footer-fixed-bottom global-footer">
+            <div class="copyright">
+                <p style="text-align: center;">
+                    <span>© 2017 <a href="/HotelWorld/welcome" target="_blank">HostelWorld</a></span>
+                    <a class="icp" href="/HotelWorld/welcome" target="_blank">苏ICP备110120号</a>
+                    <span>联系方式：110120130</span>
+                    <span>HostelWorld Beta</span>
+                    <a href="/HotelWorld/welcome" target="_blank" class="agreement">zhouss.wel@foxmail.com</a>
+                </p>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>

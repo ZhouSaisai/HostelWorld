@@ -22,6 +22,8 @@ public class PersonInfoController {
      */
     @RequestMapping(value = "person_zone")
     public String welcome(@RequestParam String id, HttpServletRequest request, HttpServletResponse response){
+        //TODO 限制进入
+
         return "personInfo";
     }
 }

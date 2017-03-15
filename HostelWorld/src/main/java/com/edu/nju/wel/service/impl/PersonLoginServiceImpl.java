@@ -50,6 +50,8 @@ public class PersonLoginServiceImpl implements PersonLoginService {
         info.setLevel(temp.getLevel());
         info.setPoint(temp.getPoint());
         info.setState(temp.getState());
+        info.setAge(temp.getAge());
+        info.setAddress(temp.getAddress());
         return info;
     }
 }
