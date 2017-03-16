@@ -1,13 +1,129 @@
 .content-row{
     margin: 40px 0;
 }
+
+.info-container{
+    /*border-right: 1px solid gray;*/
+}
+
 .pic-container{
     width:100%;
-    height:160px;
+    height:172px;
+    text-align: center;
 }
 .user-pic{
-    width:120px;
-    height:120px;
-    margin: 20px;
+    position: relative;
+    width:140px;
+    height:140px;
+    margin: 25px auto 5px;
     border-radius: 20px;
+}
+
+
+.info-line p{
+    margin: 5px 0 0 30%;
+    color: #444444;
+    font-size: 16px;
+}
+
+#score-line p{
+    margin-left: 36%;
+}
+
+.info-name{
+    float:left;
+    font-size: 18px !important;
+}
+.info-state{
+    vertical-align: middle;
+    font-size: 8px;
+    font-weight:normal;
+    margin-right: 4px;
+    margin-left: 2px;
+    padding: 1px 4px;
+    border-top-left-radius: 2em 0.5em;
+    border-top-right-radius: 1em 2em;
+    border-bottom-right-radius: 2em 0.5em;
+    border-bottom-left-radius: 1em 2em;
+    /*border-top-left-radius: 1em 2em;*/
+    /*border-top-right-radius: 2em 0.5em;*/
+    /*border-bottom-right-radius: 1em 2em;*/
+    /*border-bottom-left-radius: 2em 0.5em;*/
+    background-color: #777;
+    color: white;
+}
+
+#info-welcome{
+    background-color:#337ab7;
+}
+
+#info-warning{
+    background-color:#d9534f;
+}
+.info-operate{
+    display: block;
+    height: 29px;
+    line-height: 29px;
+    color: #fff;
+    width: 36%;
+    text-align: center;
+    background-color: #5288d7;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    box-shadow: none;
+    margin: 5px auto;
+}
+
+.info-operate:hover{
+    text-decoration: none;
+    background-color: #1d62bb;
+    color:white;
+}
+
+
+.notice-row{
+    width:100%;
+    margin:10px 0;
+    border: 1px solid #EBEBEB;
+    /*background-color: #FFF;*/
+    border-radius: 30px;
+    padding-bottom: 10px;
+}
+
+.notice-row p{
+    color: #606060;
+    font-size: 17px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+#success-notice{
+    text-align: center;
+    vertical-align: middle;
+    height:50px;
+    margin:20px 0 10px;
+}
+#success-notice img{
+    margin-right: 3px;
+}
+#success-notice p{
+    display: inline;
+    color: #5288d7;
+    font-size: 28px;
+    vertical-align: middle;
+}
+#notice-code{
+    color: #5288d7;
+    font-size: 22px;
+    margin-left: 5px;
+}
+.active-href{
+    color: #5288d7;
+    cursor: pointer;
+}
+.active-href:hover{
+    color: #1d62bb;
+    text-decoration: none;
 }

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>登录</title>
+    <title>个人空间</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/common/navbar.css" rel="stylesheet">
     <link href="../css/common/common.css" rel="stylesheet">
@@ -42,29 +42,78 @@
     </nav>
     <div class="container-fluid main-content">
         <div class="row content-row">
-            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5" style="background-color: red">
-                <div class="row">
-                    <div class="pic-container">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 info-container">
+                <div class="row basic-info-row">
+                    <div class="row pic-container">
                         <img src="../img/common/user.jpg" class="user-pic">
                     </div>
-
-                    <p>v160907<span> lv 5</span></p>
-                    <p>汤旭</p>
-                    <p>余额：<span>10000</span></p>
-                    <button>充值</button>
-                    <button>暂停账号</button>
-                    <button>去激活</button>
+                    <div class="row">
+                        <div class="row info-line">
+                            <p class="info-name">v160907 汤旭</p>
+                            <small class="info-state">未激活</small>
+                        </div>
+                        <div class="row">
+                            <a class="info-operate">去激活</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row info-line">
+                            <p class="info-name">v160907 汤旭</p>
+                            <small class="info-state"  id="info-welcome">欢迎你</small>
+                        </div>
+                        <div class="row">
+                            <a class="info-operate">停用账号</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row info-line">
+                            <p class="info-name">v160907 汤旭</p>
+                            <small class="info-state" id="info-warning">已暂停</small>
+                        </div>
+                        <div class="row">
+                            <a class="info-operate">充值恢复</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row info-line" id="score-line">
+                            <p>等级：lv5</p>
+                            <p>积分：500</p>
+                            <p>余额：5000</p>
+                            <a class="info-operate">积分兑换</a>
+                            <a class="info-operate">账号充值</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7" style="background-color: #1d62bb">
-                <div class="row">
-                    <p>你的账号是<span>v160907</span></p>
-                    <p>该账号将用作你的唯一登录账号</p>
-                    <button>去激活</button>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
+
+                <div class="row notice-row">
+                    <div id="success-notice">
+                        <img src="../img/common/success.svg">
+                        <p id="success-notice-p">注册成功！</p>
+                    </div>
+                    <p id="notice-code-name">您的会员卡号是: <span id="notice-code">v160907</span></p>
+                    <p>该账号将用作您的唯一登录账号，充值1000以上即可激活!  <a class="active-href">去激活>></a></p>
                 </div>
                 <div class="row">
                     <p>基础资料</p>
                     <p>该账号将用作你的唯一登录账号</p>
+                    <button>修改资料</button>
+                </div>
+                <div class="row">
+                    <p>充值</p>
+                    <p>确认充值</p>
+                    <button>修改资料</button>
+                </div>
+                <div class="row">
+                    <p>积分兑换</p>
+                    <p>确认兑换</p>
+                    <button>修改资料</button>
+                </div>
+                <div class="row">
+                    <p>修改密码</p>
+                    <p>输入原密码</p>
+                    <p>输入新密码</p>
                     <button>修改资料</button>
                 </div>
             </div>
@@ -81,5 +130,7 @@
             </div>
         </footer>
     </div>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap.js"></script>
 </body>
 </html>
