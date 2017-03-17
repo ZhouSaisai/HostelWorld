@@ -1,6 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
 import com.edu.nju.wel.dao.VIPDao;
+import com.edu.nju.wel.model.BankCard;
 import com.edu.nju.wel.model.VIP;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -39,7 +40,19 @@ public class VIPDaoImpl implements VIPDao{
     }
 
     public VIP getVIPById(int vId) {
-        return null;
+        session = sessionFactory.openSession();
+        VIP result = null;
+        Transaction tx = session.beginTransaction();
+        //查询
+        Criteria criteria = session.createCriteria(VIP.class);
+        criteria.add(Expression.eq("vId",vId));
+        List<VIP> list=criteria.list();
+        if(list!=null && !list.isEmpty()){
+            result=list.get(0);
+        }
+        tx.commit();
+        session.close();
+        return result;
     }
 
     public VIP getVIPByCode(String code) {
@@ -53,8 +66,17 @@ public class VIPDaoImpl implements VIPDao{
         if(list!=null && !list.isEmpty()){
             result=list.get(0);
         }
+        //事务
         tx.commit();
         session.close();
         return result;
+    }
+
+    public void updateVIP(VIP vip) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.update(vip);
+        tx.commit();
+        session.close();
     }
 }

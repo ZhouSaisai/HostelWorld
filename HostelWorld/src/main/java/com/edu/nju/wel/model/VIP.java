@@ -30,7 +30,7 @@ public class VIP implements Serializable{
     //是否激活-默认为0-未激活
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int isActive;
-    //会员资格状态-暂停1/恢复0/停止2-默认恢复-0
+    //会员资格状态-/恢复0/暂停1/停止2-默认恢复-0
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int state;
     //会员资格状态，更改后的时间

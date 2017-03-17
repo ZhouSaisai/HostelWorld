@@ -1,6 +1,7 @@
 package com.edu.nju.wel.dao;
 
 import com.edu.nju.wel.dao.base.BaseDao;
+import com.edu.nju.wel.model.BankCard;
 import com.edu.nju.wel.model.VIP;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ public interface VIPDao{
     public VIP getVIPById(int vId);
     //通过识别码获取会员
     public VIP getVIPByCode(String code);
+    //更新会员信息
+    public void updateVIP(VIP vip);
 }

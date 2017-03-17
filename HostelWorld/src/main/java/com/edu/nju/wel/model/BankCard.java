@@ -14,6 +14,7 @@ public class BankCard implements Serializable{
     @Id
     private int cId;
     //账号
+    @Column(nullable = false,unique=true)
     private String account;
 
     @JoinColumn(name="vId")//指定在本实体所映射的那个表中关联的外键
