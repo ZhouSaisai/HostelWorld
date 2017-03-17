@@ -8,14 +8,13 @@ import org.springframework.context.ApplicationContext;
  */
 public class DAOManager {
 
-    public final static UserDao userDao;
     public final static VIPDao vipDao;
-
+    public final static BankCardDao bankcardDao;
 
     static {
         ApplicationContext context = ApplicationContextHelper.getApplicationContext();
-        userDao = context.getBean(UserDao.class);
         vipDao = context.getBean(VIPDao.class);
+        bankcardDao = context.getBean(BankCardDao.class);
     }
 
 }
