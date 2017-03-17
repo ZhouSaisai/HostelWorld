@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zs on 2017/3/3.
@@ -40,6 +41,12 @@ public class VIP implements Serializable{
     //积分
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int point;
+    //余额
+    @Column(columnDefinition = "INT default 0",nullable = false)
+    private double money;
+
+    @OneToMany(targetEntity=BankCard.class,mappedBy="vip")
+    private List<BankCard> cards;
 
     public VIP() {
     }
@@ -130,5 +137,13 @@ public class VIP implements Serializable{
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 }

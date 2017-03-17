@@ -123,6 +123,7 @@ public class LoginController {
             }
             HttpSession session=request.getSession(true);
             session.setAttribute("info",personInfo);
+            session.setAttribute("sign","new");
 //            System.out.println(personInfo.toString());
             return personInfo.getId()+";person";
         }else if(type.equals("hotel")){
@@ -135,6 +136,7 @@ public class LoginController {
     public String askLoginOut(HttpServletRequest request, HttpServletResponse response){
         request.getSession().setAttribute("info", null);
         request.getSession().setAttribute("manager", null);
+        request.getSession().setAttribute("sign", null);
         return "index";
     }
 }

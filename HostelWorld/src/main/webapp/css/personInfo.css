@@ -87,7 +87,7 @@
     width:100%;
     margin:10px 0;
     border: 1px solid #EBEBEB;
-    /*background-color: #FFF;*/
+    background-color: #FFF;
     border-radius: 30px;
     padding-bottom: 10px;
 }
@@ -126,4 +126,141 @@
 .active-href:hover{
     color: #1d62bb;
     text-decoration: none;
+}
+
+.input-row{
+    width:100%;
+    margin:10px 0;
+    border: 1px solid #EBEBEB;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 10px 30px;
+}
+.input-row .title{
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.input-row .title span{
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 2px solid #5288d7;
+    margin-bottom: -1px;
+    padding: 10px 5px 5px;
+    display: inline-block;
+}
+.static-info{
+    /*padding-bottom: 20px;*/
+    /*border-bottom: 1px solid #e6e6e6;*/
+}
+
+.dynamic-info{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div.item{
+    margin-top: 20px;
+}
+
+div.item.buttons{
+    text-align: center;
+}
+
+span.n {
+    font-size: 16px;
+    color: #555555;
+    display: inline-block;
+    text-align: right;
+    width: 110px;
+}
+span.n.mid-n{
+    width: 130px;
+}
+span.n.long-n{
+    width: 170px;
+}
+
+span.content-span{
+    font-size: 16px;
+    color: #333333;
+    display: inline-block;
+    width: 120px;
+    margin-left: 5px;
+}
+
+.info-operate-inline{
+    display: inline-block;
+    border: 1px solid #e6e6e6;
+    color: #333;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: color .1s;
+    width:90px;
+    margin: -3px auto;
+    height: 28px;
+    line-height: 28px;
+    font-size: 15px;
+}
+
+.info-operate-inline:hover {
+    color: #5288d7;
+    border-color: #5288d7;
+    text-decoration: none;
+}
+
+.reg-input {
+    border: 1px solid #d3d3d3;
+    height: 28px;
+    border-radius: 4px;
+    text-indent: 12px;
+    width: 71%;
+    font-size: 14px;
+    background: none;
+    margin-left: 5px;
+}
+
+.reg-input.mid{
+    width: 68%;
+}
+.reg-input.long{
+    width: 63%;
+}
+
+.errorMsg {
+    float: left;
+    height: 28px;
+    margin:20px 30px 1px 77px;
+    color: #ff6767;
+    /*display: none;*/
+}
+
+.border-btn {
+    border: 1px solid #e6e6e6;
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    border-radius: 4px;
+    width: 90px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    transition: color .1s;
+    float:right;
+    margin:16px 130px 5px -110px;
+}
+
+.border-btn:hover {
+    color: #5288d7;
+    border-color: #5288d7;
+}
+
+.btn-second{
+    display: none;
+}
+
+#cash-table{
+    margin:20px auto;
 }

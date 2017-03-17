@@ -20,6 +20,8 @@ public class PersonInfo {
     private int level;
     //积分
     private int point;
+    //余额
+    private double money;
     //年纪
     private int age;
     //住址
@@ -108,6 +110,14 @@ public class PersonInfo {
         this.address = address;
     }
 
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     @Override
     public String toString() {
         return "PersonInfo{" +
@@ -119,6 +129,7 @@ public class PersonInfo {
                 ", state=" + state +
                 ", level=" + level +
                 ", point=" + point +
+                ", money=" + money +
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 '}';
