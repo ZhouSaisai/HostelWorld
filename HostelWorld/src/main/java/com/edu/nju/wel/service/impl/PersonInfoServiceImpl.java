@@ -140,4 +140,31 @@ public class PersonInfoServiceImpl implements PersonInfoService {
         DAOManager.cashDao.addCash(cash);
         return "兑换成功";
     }
+
+    public String modifyInfo(PersonInfo info) {
+        //取得用户的信息
+        VIP vip = DAOManager.vipDao.getVIPById(info.getId());
+        if(vip==null){
+            return "修改失败";
+        }
+        vip.setName(info.getName());
+        vip.setAge(info.getAge());
+        vip.setAddress(info.getAddress());
+        DAOManager.vipDao.updateVIP(vip);
+        return "修改成功";
+    }
+
+    public String modifyPSW(int vipId, String password, String passwordNew) {
+        //取得用户的信息
+        VIP vip = DAOManager.vipDao.getVIPById(vipId);
+        if(vip==null){
+            return "修改失败！";
+        }
+        if(!password.equals(vip.getPassword())){
+            return "原密码输入错误！";
+        }
+        vip.setPassword(passwordNew);
+        DAOManager.vipDao.updateVIP(vip);
+        return "修改成功！";
+    }
 }

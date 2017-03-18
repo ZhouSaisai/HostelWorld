@@ -161,15 +161,15 @@
                     <div class="row dynamic-info">
                         <div class="item">
                             <span class="n">昵称：</span>
-                            <input type="text" class="reg-input dynamic-info-input" name="name" value="${info.name}" disabled="disabled">
+                            <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-name" name="name" value="${info.name}" disabled="disabled">
                         </div>
                         <div class="item">
                             <span class="n">年龄：</span>
-                            <input type="text" class="reg-input dynamic-info-input" name="age" value="${info.age}" disabled="disabled">
+                            <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-age" name="age" value="${info.age}" disabled="disabled">
                         </div>
                         <div class="item">
                             <span class="n">地址：</span>
-                            <input type="text" class="reg-input dynamic-info-input" name="address" value="${info.address}" disabled="disabled">
+                            <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-address" name="address" value="${info.address}" disabled="disabled">
                         </div>
                     </div>
                     <%--已激活且正常状态才能操作--%>
@@ -178,8 +178,7 @@
                         </c:when>
                         <c:when test="${info.state==0}">
                             <div class="row operate-info">
-                                <div class="errorMsg nicknameError">
-                                    昵称格式要求：1-10个字符
+                                <div class="errorMsg nicknameError" id="error-dynamic-info">
                                 </div>
                                 <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
                                 <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
@@ -239,19 +238,18 @@
                     <div class="row dynamic-info">
                         <div class="item">
                             <span class="n long-n">请输入原密码：</span>
-                            <input type="text" class="reg-input long" name="nickname">
+                            <input type="password" class="reg-input long" id="modify-psw-password" name="nickname">
                         </div>
                         <div class="item">
                             <span class="n long-n">请输入新密码：</span>
-                            <input type="text" class="reg-input long" name="nickname">
+                            <input type="password" class="reg-input long" id="modify-psw-password-new" name="nickname">
                         </div>
                         <div class="item">
                             <span class="n long-n">请再次输入新密码：</span>
-                            <input type="text" class="reg-input long" name="nickname">
+                            <input type="password" class="reg-input long" id="modify-psw-password-new-again" name="nickname">
                         </div>
                         <div class="row operate-info">
-                            <div class="errorMsg nicknameError">
-                                密码错误
+                            <div class="errorMsg nicknameError" id="error-modify-psw">
                             </div>
                             <span class="border-btn" onclick="modifyPswSave()">修改密码</span>
                             <span class="border-btn" onclick="modifyCancel()">取消修改</span>

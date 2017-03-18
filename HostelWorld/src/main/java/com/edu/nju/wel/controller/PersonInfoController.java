@@ -135,4 +135,41 @@ public class PersonInfoController {
         String result = person.pointChange(vipId,number);
         return result;
     }
+
+    @RequestMapping(value = "modify_info",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyInfo(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String vid = request.getParameter("vid");
+        String name = request.getParameter("name");
+        String age = request.getParameter("age");
+        String address = request.getParameter("address");
+        //转换类型
+        int vipId=Integer.parseInt(vid);
+        int ageInt=Integer.parseInt(age);
+        //错误处理
+        if(vipId<0){
+            return "修改失败";
+        }
+        PersonInfo info = new PersonInfo();
+        info.setAddress(address);
+        info.setAge(ageInt);
+        info.setName(name);
+        info.setId(vipId);
+        String result = person.modifyInfo(info);
+        return result;
+    }
+
+    @RequestMapping(value = "modify_psw",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyPSW(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String password = request.getParameter("password");
+        String passwordNew = request.getParameter("passwordN");
+        String vid = request.getParameter("vid");
+        //转换类型
+        int vipId=Integer.parseInt(vid);
+        String result = person.modifyPSW(vipId,password,passwordNew);
+        return result;
+    }
 }

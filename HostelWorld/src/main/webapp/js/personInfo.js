@@ -113,7 +113,45 @@ function modifyPsw() {
 }
 
 function modifyPswSave() {
-    $(".choose-row").css("display","none");
+    var password = $("#modify-psw-password").val();
+    var passwordN = $("#modify-psw-password-new").val();
+    var passwordNA = $("#modify-psw-password-new-again").val();
+    var vId = $("#vId").val();
+    alert(password+";"+passwordN+";"+passwordNA);
+    if(password==""){
+        $("#error-modify-psw").text("原密码不能为空！");
+        setTimeout("$('#error-modify-psw').text('');",1000);
+        return false;
+    }else if(passwordN=="" || passwordNA==""){
+        $("#error-modify-psw").text("新密码不能为空！");
+        setTimeout("$('#error-modify-psw').text('');",1000);
+        return false;
+    }else if(passwordNA!=passwordN){
+        $("#error-modify-psw").text("前后密码不一致！");
+        setTimeout("$('#error-modify-psw').text('');",1000);
+        return false;
+    }
+
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/modify_psw",
+        data: {
+            "password": password,
+            "passwordN":passwordN,
+            "vid":vId
+        },
+        success: function (result) {
+            $('#error-modify-psw').text(result);
+            setTimeout("$('#error-modify-psw').text('');",500);
+            setTimeout(refresh,1200);
+            return true;
+        },
+        error: function () {
+            $('#error-modify-psw').text('出故障了请稍候再试');
+            setTimeout("$('#error-modify-psw').text('');",1000);
+        }
+    });
 }
 
 function modifyInfo() {
@@ -123,9 +161,44 @@ function modifyInfo() {
 }
 
 function modifyInfoSave() {
-    $(".dynamic-info-input").attr("disabled",true);
-    $(".btn-first").css("display","block");
-    $(".btn-second").css("display","none");
+    var name = $("#dynamic-info-name").val();
+    var age = $("#dynamic-info-age").val();
+    var address = $("#dynamic-info-address").val();
+    var vId = $("#vId").val();
+
+    var reg = /^[0-9]*$/;
+    if(name==""){
+        $("#error-dynamic-info").text("姓名不能为空！");
+        setTimeout("$('#error-dynamic-info').text('');",1000);
+        return false;
+    }else if(!reg.test(age) || age<0 || age>100){
+        $("#error-dynamic-info").text("年纪输入错误！");
+        setTimeout("$('#error-dynamic-info').text('');",1000);
+        return false;
+    }
+
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/modify_info",
+        data: {
+            "name": name,
+            "age":age,
+            "address":address,
+            "vid":vId
+        },
+        success: function (result) {
+            $('#error-dynamic-info').text(result);
+            setTimeout("$('#error-dynamic-info').text('');",500);
+            setTimeout(refresh,1200);
+            return true;
+        },
+        error: function () {
+            $('#error-dynamic-info').text('出故障了请稍候再试');
+            setTimeout("$('#error-dynamic-info').text('');",1000);
+        }
+    });
+
 }
 
 function stopVIP() {

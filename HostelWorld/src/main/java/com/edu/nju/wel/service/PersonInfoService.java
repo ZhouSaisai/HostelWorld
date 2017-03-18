@@ -16,4 +16,8 @@ public interface PersonInfoService {
     public String stopVIP(int vid);
     //兑换积分
     public String pointChange(int vipId, int number);
+    //修改资料
+    public String modifyInfo(PersonInfo info);
+    //修改密码
+    public String modifyPSW(int vipId, String password, String passwordNew);
 }
