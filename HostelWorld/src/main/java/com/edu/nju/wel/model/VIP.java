@@ -48,6 +48,9 @@ public class VIP implements Serializable{
     @OneToMany(targetEntity=BankCard.class,mappedBy="vip")
     private List<BankCard> cards;
 
+    @OneToMany(targetEntity=Cash.class,mappedBy="vip")
+    private List<Cash> cashs;
+
     public VIP() {
     }
 
@@ -145,5 +148,21 @@ public class VIP implements Serializable{
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    public List<BankCard> getCards() {
+        return cards;
+    }
+
+    public void setCards(List<BankCard> cards) {
+        this.cards = cards;
+    }
+
+    public List<Cash> getCashs() {
+        return cashs;
+    }
+
+    public void setCashs(List<Cash> cashs) {
+        this.cashs = cashs;
     }
 }

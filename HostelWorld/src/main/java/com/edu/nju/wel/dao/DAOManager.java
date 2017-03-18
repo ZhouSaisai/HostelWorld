@@ -10,11 +10,12 @@ public class DAOManager {
 
     public final static VIPDao vipDao;
     public final static BankCardDao bankcardDao;
-
+    public final static CashDao cashDao;
     static {
         ApplicationContext context = ApplicationContextHelper.getApplicationContext();
         vipDao = context.getBean(VIPDao.class);
         bankcardDao = context.getBean(BankCardDao.class);
+        cashDao = context.getBean(CashDao.class);
     }
 
 }

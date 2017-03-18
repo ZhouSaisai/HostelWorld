@@ -1,5 +1,9 @@
 package com.edu.nju.wel.info;
 
+import com.edu.nju.wel.model.Cash;
+
+import java.util.List;
+
 /**
  * Created by zs on 2017/3/14.
  */
@@ -17,7 +21,7 @@ public class PersonInfo {
     //会员资格状态-恢复0/暂停1/停止2-默认恢复-0
     private int state;
     //级别，默认为0
-    private int level;
+    private String level;
     //积分
     private int point;
     //余额
@@ -30,11 +34,11 @@ public class PersonInfo {
     public PersonInfo() {
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 

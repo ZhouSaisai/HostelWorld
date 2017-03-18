@@ -7,6 +7,7 @@ import com.edu.nju.wel.service.PersonLoginService;
 import com.edu.nju.wel.util.exception.NotExistException;
 import com.edu.nju.wel.util.exception.WrongPasswordException;
 import com.edu.nju.wel.util.helper.IDCodeHelper;
+import com.edu.nju.wel.util.helper.PointHelper;
 import org.springframework.stereotype.Service;
 
 
@@ -47,7 +48,8 @@ public class PersonLoginServiceImpl implements PersonLoginService {
         info.setPassword(temp.getPassword());
         info.setName(temp.getName());
         info.setIsActive(temp.getIsActive());
-        info.setLevel(temp.getLevel());
+        String level = PointHelper.calLevel(temp.getLevel());
+        info.setLevel(level);
         info.setPoint(temp.getPoint());
         info.setMoney(temp.getMoney());
         info.setState(temp.getState());

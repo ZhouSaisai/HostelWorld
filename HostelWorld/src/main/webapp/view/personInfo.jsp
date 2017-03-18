@@ -79,7 +79,7 @@
                                     <small class="info-state" id="info-warning">已暂停</small>
                                 </div>
                                 <div class="row">
-                                    <a class="info-operate" onclick="addMoney(0)">充值恢复</a>
+                                    <a class="info-operate" onclick="addMoney(1)">充值恢复</a>
                                 </div>
                             </div>
                         </c:when>
@@ -87,11 +87,17 @@
 
                     <div class="row">
                         <div class="row info-line" id="score-line">
-                            <p>等级：lv${info.level}</p>
+                            <p>等级：${info.level}</p>
                             <p>积分：${info.point}</p>
                             <p>余额：${info.money}</p>
                             <a class="info-operate" onclick="pointChange()">积分兑换</a>
-                            <a class="info-operate" onclick="addMoney(1)">账号充值</a>
+                            <c:choose>
+                                <c:when test="${info.isActive==0}">
+                                </c:when>
+                                <c:when test="${info.state==0}">
+                                    <a class="info-operate" onclick="addMoney(2)">账号充值</a>
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
                 </div>
@@ -119,7 +125,7 @@
                             </div>
                             <div class="item">
                                 <span class="n">等级：</span>
-                                <span class="content-span">lv.${info.level}</span>
+                                <span class="content-span">${info.level}</span>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-4">
@@ -134,7 +140,17 @@
                         </div>
                         <div class="col-lg-3 col-md-3">
                             <div class="item buttons">
-                                <a class="info-operate-inline" onclick="addMoney(1)">账号充值</a>
+                                <c:choose>
+                                    <c:when test="${info.isActive==0}">
+                                        <a class="info-operate-inline" onclick="addMoney(0)">去激活</a>
+                                    </c:when>
+                                    <c:when test="${info.state==0}">
+                                        <a class="info-operate-inline" onclick="addMoney(2)">账号充值</a>
+                                    </c:when>
+                                    <c:when test="${info.state==1}">
+                                        <a class="info-operate-inline" onclick="addMoney(1)">充值恢复</a>
+                                    </c:when>
+                                </c:choose>
                             </div>
                             <div class="item buttons">
                                 <a class="info-operate-inline" onclick="pointChange()">积分兑换</a>
@@ -174,15 +190,14 @@
                     <div class="row dynamic-info">
                         <div class="item">
                             <span class="n">卡号：</span>
-                            <input type="text" class="reg-input" name="nickname" value="">
+                            <input type="text" class="reg-input" id="add-money-account" name="nickname" value="">
                         </div>
                         <div class="item">
                             <span class="n">金额：</span>
-                            <input type="text" class="reg-input" name="nickname" value="0">
+                            <input type="text" class="reg-input" id="add-money-num" name="nickname" value="0">
                         </div>
                         <div class="row operate-info">
-                            <div class="errorMsg nicknameError">
-                                金额需要大于1000
+                            <div class="errorMsg nicknameError" id="error-add-money">
                             </div>
                             <span class="border-btn" onclick="addMoneySave()">充值</span>
                             <span class="border-btn" onclick="modifyCancel()">取消</span>
@@ -243,7 +258,7 @@
                         <span>财务流水</span>
                     </div>
                     <c:choose>
-                        <c:when test="${0==0}">
+                        <c:when test="${cashs.size()==0}">
                             <br>
                             <p style="text-align: center">当前没有财务流水，一看就没激活！</p>
                             <br>
@@ -257,19 +272,29 @@
                                     <th style="text-align:center;">时间</th>
 
                                 </tr>
-                                <% int i=1;
-                                    for(;i<10;i++){
-                                %>
-                                <%--<c:forEach items="${answererInfos}" var="answererInfo" varStatus="vs">--%>
+                                <% int i=1;%>
+                                <c:forEach items="${cashs}" var="cash" varStatus="vs">
                                     <tr>
                                         <td style="text-align:center;"><%=i%></td>
-                                        <td style="text-align:center;">+1000</td>
-                                        <td style="text-align:center;">充值</td>
-                                        <td style="text-align:center;">2017/03/01/22:07</td>
-
+                                        <td style="text-align:center;">${cash.content}</td>
+                                        <c:choose>
+                                            <c:when test="${cash.type==0}">
+                                                <td style="text-align:center;">充值</td>
+                                            </c:when>
+                                            <c:when test="${cash.type==1}">
+                                                <td style="text-align:center;">预定</td>
+                                            </c:when>
+                                            <c:when test="${cash.type==2}">
+                                                <td style="text-align:center;">退款</td>
+                                            </c:when>
+                                            <c:when test="${cash.type==3}">
+                                                <td style="text-align:center;">积分兑换</td>
+                                            </c:when>
+                                        </c:choose>
+                                        <td style="text-align:center;">${cash.time}</td>
                                     </tr>
-                                    <% }%>
-                                <%--</c:forEach>--%>
+                                    <% i++;%>
+                                </c:forEach>
                             </table>
 
                             <input type="hidden" id="start_page">
@@ -300,6 +325,8 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="vId" value="${info.id}">
+        <input type="hidden" id="type">
         <br>
         <br>
         <br>
