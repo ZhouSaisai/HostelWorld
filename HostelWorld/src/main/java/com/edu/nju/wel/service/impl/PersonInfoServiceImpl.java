@@ -108,4 +108,36 @@ public class PersonInfoServiceImpl implements PersonInfoService {
         info.setAddress(vip.getAddress());
         return info;
     }
+
+    public String stopVIP(int vid) {
+        //取得用户的信息
+        VIP vip = DAOManager.vipDao.getVIPById(vid);
+        if(vip==null){
+            return "停止失败";
+        }
+        vip.setState(2);
+        DAOManager.vipDao.updateVIP(vip);
+        return "-1";
+    }
+
+    public String pointChange(int vipId, int number) {
+        //取得用户的信息
+        VIP vip = DAOManager.vipDao.getVIPById(vipId);
+        if(vip==null){
+            return "兑换失败";
+        }
+        int money = number/10;
+        vip.setPoint(vip.getPoint()-number);
+        vip.setMoney(vip.getMoney()+money);
+        DAOManager.vipDao.updateVIP(vip);
+        //记录流水
+        Cash cash = new Cash();
+        cash.setVip(vip);
+        Timestamp timestamp=new Timestamp(System.currentTimeMillis());
+        cash.setTime(timestamp);
+        cash.setType(CashType.CHANGE.ordinal());
+        cash.setContent("+"+money);
+        DAOManager.cashDao.addCash(cash);
+        return "兑换成功";
+    }
 }

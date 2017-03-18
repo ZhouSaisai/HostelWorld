@@ -99,4 +99,40 @@ public class PersonInfoController {
         return result;
     }
 
+    @RequestMapping(value = "stop_vip",method = RequestMethod.POST)
+    @ResponseBody
+    public String stopVIP(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String vid = request.getParameter("vid");
+        //转换类型
+        int vipId=Integer.parseInt(vid);
+        //错误处理
+        if(vipId<0){
+            return "停止失败";
+        }
+        String result = person.stopVIP(vipId);
+        if(result.equals("-1")){
+            request.getSession().setAttribute("info", null);
+            request.getSession().setAttribute("manager", null);
+            request.getSession().setAttribute("sign", null);
+        }
+        return result;
+    }
+
+    @RequestMapping(value = "point_change",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String pointChange(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String vid = request.getParameter("vid");
+        String num = request.getParameter("num");
+        //转换类型
+        int vipId=Integer.parseInt(vid);
+        int number=Integer.parseInt(num);
+        //错误处理
+        if(vipId<0 || number<0){
+            return "兑换失败";
+        }
+        String result = person.pointChange(vipId,number);
+        return result;
+    }
 }

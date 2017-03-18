@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zs on 2017/3/13.
@@ -96,6 +92,9 @@ public class LoginController {
             }
             if(personInfo==null) {
                 return "-1;登录失败";
+            }
+            if(personInfo.getState()==2){
+                return "-1;此账号已停用！";
             }
             HttpSession session=request.getSession(true);
             session.setAttribute("info",personInfo);

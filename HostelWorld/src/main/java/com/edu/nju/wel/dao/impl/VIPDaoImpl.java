@@ -1,7 +1,6 @@
 package com.edu.nju.wel.dao.impl;
 
 import com.edu.nju.wel.dao.VIPDao;
-import com.edu.nju.wel.model.BankCard;
 import com.edu.nju.wel.model.VIP;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,6 +10,7 @@ import org.hibernate.criterion.Expression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -67,6 +67,21 @@ public class VIPDaoImpl implements VIPDao{
             result=list.get(0);
         }
         //事务
+        tx.commit();
+        session.close();
+        return result;
+    }
+
+    public List<VIP> getVIPList() {
+        session = sessionFactory.openSession();
+        List<VIP> result = null;
+        Transaction tx = session.beginTransaction();
+        //查询
+        Criteria criteria = session.createCriteria(VIP.class);
+        result=criteria.list();
+        if(result==null){
+            result=new ArrayList<VIP>();
+        }
         tx.commit();
         session.close();
         return result;

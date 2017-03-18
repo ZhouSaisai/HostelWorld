@@ -1,14 +1,5 @@
 $(document).ready(function () {
     $(".choose-row").css("display","none");
-
-    // //关闭编辑区
-    // $(document).click(function(){
-    //     $(".choose-row").css("display","none");
-    // });
-    // $(".choose-row").click(function(){
-    //     $(".choose-row").css("display","block");
-    //     event.stopPropagation();
-    // });
 });
 
 function refresh() {
@@ -54,15 +45,16 @@ function addMoneySave() {
         },
         success: function (result) {
             $('#error-add-money').text(result);
-            setTimeout("$('#error-add-money').text('');",1000);
+            setTimeout("$('#error-add-money').text('');",500);
+            setTimeout(refresh,1200);
+            return true;
         },
         error: function () {
             $('#error-add-money').text('出故障了请稍候再试');
-            setTimeout("$('#error-add-money').text('');",1000);
+            setTimeout("$('#error-add-money').text('');",500);
         }
     });
-    setTimeout(refresh,2000);
-    return true;
+
 
 }
 
@@ -73,7 +65,45 @@ function pointChange() {
 }
 
 function pointChangeSave() {
-    $(".choose-row").css("display","none");
+    var num = $("#point-change-num").val();
+    var point = $("#point-num-text").text();
+    var vId = $("#vId").val();
+
+    var reg = /^[0-9]*$/;
+    if(num=="" || !reg.test(num)){
+        $("#error-point-change").text("数额输入错误！");
+        setTimeout("$('#error-point-change').text('');",1000);
+        return false;
+    }else if(num>point){
+        $("#error-point-change").text("数额大于已有积分！");
+        setTimeout("$('#error-point-change').text('');",1000);
+        return false;
+    }else if(num<=0){
+        $("#error-point-change").text("数额不能小于等于0！");
+        setTimeout("$('#error-point-change').text('');",1000);
+        return false;
+    }
+
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/point_change",
+        data: {
+            "num": num,
+            "vid":vId
+        },
+        success: function (result) {
+            $('#error-point-change').text(result);
+            setTimeout("$('#error-point-change').text('');",500);
+            setTimeout(refresh,1200);
+            return true;
+        },
+        error: function () {
+            $('#error-point-change').text('出故障了请稍候再试');
+            setTimeout("$('#error-point-change').text('');",1000);
+        }
+    });
+
 }
 
 function modifyPsw() {
@@ -96,6 +126,29 @@ function modifyInfoSave() {
     $(".dynamic-info-input").attr("disabled",true);
     $(".btn-first").css("display","block");
     $(".btn-second").css("display","none");
+}
+
+function stopVIP() {
+    var vId = $("#vId").val();
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/stop_vip",
+        data: {
+            "vid":vId
+        },
+        success: function (result) {
+            if(result==-1){
+                alert("该账户已停止！");
+                window.location.href="/HotelWorld/welcome";
+            }else{
+                alert(result);
+            }
+        },
+        error: function () {
+            alert("停止失败！");
+        }
+    });
 }
 
 function modifyCancel() {

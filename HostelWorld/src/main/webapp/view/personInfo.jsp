@@ -36,7 +36,7 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">个人空间</a></li>
+                    <li class="active"><a onclick="refresh()">个人空间</a></li>
                     <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -68,7 +68,7 @@
                                     <small class="info-state"  id="info-welcome">欢迎你</small>
                                 </div>
                                 <div class="row">
-                                    <a class="info-operate">停用账号</a>
+                                    <a class="info-operate" onclick="stopVIP()">停用账号</a>
                                 </div>
                             </div>
                         </c:when>
@@ -90,11 +90,12 @@
                             <p>等级：${info.level}</p>
                             <p>积分：${info.point}</p>
                             <p>余额：${info.money}</p>
-                            <a class="info-operate" onclick="pointChange()">积分兑换</a>
+                            <%--已激活且正常状态才能操作--%>
                             <c:choose>
                                 <c:when test="${info.isActive==0}">
                                 </c:when>
                                 <c:when test="${info.state==0}">
+                                    <a class="info-operate" onclick="pointChange()">积分兑换</a>
                                     <a class="info-operate" onclick="addMoney(2)">账号充值</a>
                                 </c:when>
                             </c:choose>
@@ -135,7 +136,7 @@
                             </div>
                             <div class="item">
                                 <span class="n">积分：</span>
-                                <span class="content-span">${info.point}</span>
+                                <span class="content-span" id="point-num-text">${info.point}</span>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3">
@@ -146,14 +147,14 @@
                                     </c:when>
                                     <c:when test="${info.state==0}">
                                         <a class="info-operate-inline" onclick="addMoney(2)">账号充值</a>
+                                    </div>
+                                    <div class="item buttons">
+                                        <a class="info-operate-inline" onclick="pointChange()">积分兑换</a>
                                     </c:when>
                                     <c:when test="${info.state==1}">
                                         <a class="info-operate-inline" onclick="addMoney(1)">充值恢复</a>
                                     </c:when>
                                 </c:choose>
-                            </div>
-                            <div class="item buttons">
-                                <a class="info-operate-inline" onclick="pointChange()">积分兑换</a>
                             </div>
                         </div>
                     </div>
@@ -171,16 +172,22 @@
                             <input type="text" class="reg-input dynamic-info-input" name="address" value="${info.address}" disabled="disabled">
                         </div>
                     </div>
-                    <div class="row operate-info">
-                        <div class="errorMsg nicknameError">
-                            昵称格式要求：1-10个字符
-                        </div>
-                        <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
-                        <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
-                        <span class="border-btn btn-second" onclick="modifyInfoSave()">确认修改</span>
-                        <span class="border-btn btn-second" onclick="modifyCancel()">取消修改</span>
-                    </div>
-
+                    <%--已激活且正常状态才能操作--%>
+                    <c:choose>
+                        <c:when test="${info.isActive==0}">
+                        </c:when>
+                        <c:when test="${info.state==0}">
+                            <div class="row operate-info">
+                                <div class="errorMsg nicknameError">
+                                    昵称格式要求：1-10个字符
+                                </div>
+                                <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
+                                <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
+                                <span class="border-btn btn-second" onclick="modifyInfoSave()">确认修改</span>
+                                <span class="border-btn btn-second" onclick="modifyCancel()">取消修改</span>
+                            </div>
+                        </c:when>
+                    </c:choose>
                 </div>
 
                 <div class="row input-row choose-row add-money-row">
@@ -213,11 +220,10 @@
                     <div class="row dynamic-info">
                         <div class="item">
                             <span class="n">数额：</span>
-                            <input type="text" class="reg-input" name="nickname" value="0">
+                            <input type="text" class="reg-input" id="point-change-num" name="nickname" value="0">
                         </div>
                         <div class="row operate-info">
-                            <div class="errorMsg nicknameError">
-                                积分不够
+                            <div class="errorMsg nicknameError" id="error-point-change">
                             </div>
                             <span class="border-btn" onclick="pointChangeSave()">兑换</span>
                             <span class="border-btn" onclick="modifyCancel()">取消</span>
