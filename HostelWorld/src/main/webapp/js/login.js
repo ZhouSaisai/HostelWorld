@@ -58,7 +58,7 @@ function login(type){
                         window.location.href = "/HotelWorld/hotel_zone?id="+array[0];
                         break;
                     case "manager":
-                        alert("manage");
+                        window.location.href = "/HotelWorld/welcome";
                         break;
                     default:
                         $("#error-login").text("系统故障！");

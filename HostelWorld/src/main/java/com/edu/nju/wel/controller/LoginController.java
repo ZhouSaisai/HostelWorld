@@ -40,16 +40,27 @@ public class LoginController {
         if(session==null){
             return "index";
         }
-        PersonInfo info=(PersonInfo)session.getAttribute("info");
-        if(info==null){
-            return "index";
+        String manager =(String)session.getAttribute("manager");
+        if(manager!=null && manager.equals(ManageAccountHelper.CODE)){
+            return "welcome-manager";
         }
-        System.out.println(info.toString());
-        String code = info.getCode();
-        if(code.startsWith("v")){
-            return "welcome-person";
-        }else if(code.startsWith("h")){
-            return "welcome-hotel";
+        String type=(String)session.getAttribute("type");
+        if(type.equals("person")){
+            PersonInfo info=(PersonInfo)session.getAttribute("info");
+            if(info!=null){
+                String code = info.getCode();
+                if(code.startsWith("v")){
+                    return "welcome-person";
+                }
+            }
+        }else if(type.equals("hotel")){
+            HotelInfo info1=(HotelInfo) session.getAttribute("info");
+            if(info1!=null) {
+                String code = info1.getCode();
+                if (code.startsWith("h")) {
+                    return "welcome-hotel";
+                }
+            }
         }
         return "index";
     }
@@ -103,6 +114,7 @@ public class LoginController {
             }
             HttpSession session=request.getSession(true);
             session.setAttribute("info",personInfo);
+            session.setAttribute("type","person");
             return personInfo.getId()+";person";
         }else if(type.equals("hotel")){
             //新建PersonInfo对象
@@ -126,6 +138,7 @@ public class LoginController {
             }
             HttpSession session=request.getSession(true);
             session.setAttribute("info",hotelInfo);
+            session.setAttribute("type","hotel");
             return hotelInfo.gethId()+";hotel";
         }
         return "-1;登录失败";
@@ -154,6 +167,7 @@ public class LoginController {
         HttpSession session=request.getSession(true);
         session.setAttribute("info",hotelInfo);
         session.setAttribute("sign","new");
+        session.setAttribute("type","hotel");
         return hotelInfo.gethId()+";hotel";
     }
 
@@ -174,6 +188,7 @@ public class LoginController {
         HttpSession session=request.getSession(true);
         session.setAttribute("info",personInfo);
         session.setAttribute("sign","new");
+        session.setAttribute("type","person");
 //            System.out.println(personInfo.toString());
         return personInfo.getId()+";person";
     }
@@ -183,6 +198,7 @@ public class LoginController {
         request.getSession().setAttribute("info", null);
         request.getSession().setAttribute("manager", null);
         request.getSession().setAttribute("sign", null);
+        request.getSession().setAttribute("type",null);
         return "index";
     }
 }

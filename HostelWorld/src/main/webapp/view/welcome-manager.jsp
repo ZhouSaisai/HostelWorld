@@ -27,12 +27,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
-                <li><a href="#">订单登记</a></li>
-                <li><a href="#">客栈统计</a></li>
+                <li><a href="/HotelWorld/manage_zone">查看申请</a></li>
+                <li><a href="#">会员结算</a></li>
+                <li><a href="#">网站统计</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">客栈空间</a></li>
+                <li class="active"><a>管理员，你好</a></li>
                 <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -43,13 +44,13 @@
         <div class="row">
             <div class="top-wrapper">
                 <img src="../img/common/login-lg.png">
-                <p>您私人的在外居家客栈平台</p>
+                <p>您私人的客栈管理平台</p>
             </div>
         </div>
         <div class="row">
             <div class="switch-buttons">
-                <a class="switch-button" href="#">发布计划</a>
-                <a class="switch-button" href="#">查看预定</a>
+                <a class="switch-button" href="/HotelWorld/manage_zone">查看申请</a>
+                <a class="switch-button" href="#">会员结算</a>
             </div>
         </div>
     </div>
