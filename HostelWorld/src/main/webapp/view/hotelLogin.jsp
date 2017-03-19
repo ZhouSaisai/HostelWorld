@@ -9,6 +9,7 @@
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/common/navbar.css" rel="stylesheet">
     <link href="../css/login.css" rel="stylesheet">
+    <link href="../css/hotel_login.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-color navbar-static-top">
@@ -27,6 +28,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
+                    <li><a href="#">发布计划</a></li>
                     <li><a href="#">订单登记</a></li>
                     <li><a href="#">客栈统计</a></li>
 
@@ -34,10 +36,8 @@
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">登录</a></li>
-                    <li><a href="#">注册</a></li>
-                    <li><a href="#">客栈空间</a></li>
-                    <li><a href="#">注销</a></li>
+                    <li class="active"><a onclick="tab(0)">登录</a></li>
+                    <li><a onclick="tab(1)">注册</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
@@ -87,6 +87,21 @@
                                 <div class="input-wrapper">
                                     <input type="text" name="tel" id="username-register" placeholder="客栈名">
                                 </div>
+                                <div class="input-wrapper">
+                                    <select id="level-register">
+                                        <option value="5" selected>五星级</option>
+                                        <option value="4">四星级</option>
+                                        <option value="3">三星级</option>
+                                        <option value="2">二星级</option>
+                                        <option value="1">一星级</option>
+                                    </select>
+                                </div>
+                                <div class="input-wrapper">
+                                    <input type="text" name="tel" id="tel-register" placeholder="电话">
+                                </div>
+                                <div class="input-wrapper">
+                                    <input type="text" name="tel" id="address-register" placeholder="地址">
+                                </div>
                                 <!--防止记住用户名密码自动填充到页面-->
                                 <input type="text" class="none">
                                 <input type="password" class="none">
@@ -97,10 +112,10 @@
                                 <div class="input-wrapper">
                                     <input type="password" name="passwordAgain" id="password-register-a" placeholder="请再次输入密码">
                                 </div>
-                                <input type="button" class="button btn-block submit-register" value="申请开店" onclick="register('hotel')">
+                                <input type="button" class="button btn-block submit-register" value="申请开店" onclick="hotelRegister()">
                                 <div class="clearfix-wrapper">
                                     <div class="errorField" id="error-register"></div>
-                                    <div class="input-wrapper checkbox-wrapper">
+                                    <div class="checkbox-wrapper">
                                         <p>已有账户？<a onclick="tab(0)" >立即登录</a></p>
                                     </div>
                                 </div>

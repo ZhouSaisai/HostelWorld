@@ -96,7 +96,7 @@
                                 <div class="input-wrapper">
                                     <input type="password" name="passwordAgain" id="password-register-a" placeholder="请再次输入密码">
                                 </div>
-                                <input type="button" class="button btn-block submit-register" value="注册" onclick="register('person')">
+                                <input type="button" class="button btn-block submit-register" value="注册" onclick="vipRegister()">
                                 <div class="clearfix-wrapper">
                                     <div class="errorField" id="error-register"></div>
                                     <div class="input-wrapper checkbox-wrapper">

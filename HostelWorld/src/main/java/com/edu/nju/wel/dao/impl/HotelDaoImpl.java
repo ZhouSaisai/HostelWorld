@@ -1,7 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
-import com.edu.nju.wel.dao.VIPDao;
-import com.edu.nju.wel.model.VIP;
+import com.edu.nju.wel.dao.HotelDao;
+import com.edu.nju.wel.model.Hotel;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,36 +17,35 @@ import java.util.List;
  * Created by zs on 2017/3/14.
  */
 @Repository
-public class VIPDaoImpl implements VIPDao{
+public class HotelDaoImpl implements HotelDao{
 
     @Autowired
     protected SessionFactory sessionFactory;
     private Session session;
 
-    public int addVIP(VIP vip) {
+    public int addHotel(Hotel hotel) {
         session = sessionFactory.openSession();
         int result = -1;
         Transaction tx = session.beginTransaction();
-        session.save(vip);
+        session.save(hotel);
         //查询
-        Criteria criteria = session.createCriteria(VIP.class);
-
-        criteria.add(Expression.eq("code",vip.getCode()));
-        List<VIP> list=criteria.list();
-        result=list.get(0).getvId();
+        Criteria criteria = session.createCriteria(Hotel.class);
+        criteria.add(Expression.eq("code",hotel.getCode()));
+        List<Hotel> list=criteria.list();
+        result=list.get(0).gethId();
         tx.commit();
         session.close();
         return result;
     }
 
-    public VIP getVIPById(int vId) {
+    public Hotel getHotelById(int hId) {
         session = sessionFactory.openSession();
-        VIP result = null;
+        Hotel result = null;
         Transaction tx = session.beginTransaction();
         //查询
-        Criteria criteria = session.createCriteria(VIP.class);
-        criteria.add(Expression.eq("vId",vId));
-        List<VIP> list=criteria.list();
+        Criteria criteria = session.createCriteria(Hotel.class);
+        criteria.add(Expression.eq("hId",hId));
+        List<Hotel> list=criteria.list();
         if(list!=null && !list.isEmpty()){
             result=list.get(0);
         }
@@ -55,14 +54,14 @@ public class VIPDaoImpl implements VIPDao{
         return result;
     }
 
-    public VIP getVIPByCode(String code) {
+    public Hotel getHotelByCode(String code) {
         session = sessionFactory.openSession();
-        VIP result = null;
+        Hotel result = null;
         Transaction tx = session.beginTransaction();
         //查询
-        Criteria criteria = session.createCriteria(VIP.class);
+        Criteria criteria = session.createCriteria(Hotel.class);
         criteria.add(Expression.eq("code",code));
-        List<VIP> list=criteria.list();
+        List<Hotel> list=criteria.list();
         if(list!=null && !list.isEmpty()){
             result=list.get(0);
         }
@@ -72,26 +71,26 @@ public class VIPDaoImpl implements VIPDao{
         return result;
     }
 
-    public List<VIP> getVIPList() {
+    public List<Hotel> getHotelList() {
         session = sessionFactory.openSession();
-        List<VIP> result = null;
+        List<Hotel> result = null;
         Transaction tx = session.beginTransaction();
         //查询
-        Criteria criteria = session.createCriteria(VIP.class);
+        Criteria criteria = session.createCriteria(Hotel.class);
         result=criteria.list();
         if(result==null){
-            result=new ArrayList<VIP>();
+            result=new ArrayList<Hotel>();
         }
         tx.commit();
         session.close();
         return result;
     }
 
-    public void updateVIP(VIP vip) {
-        //这里重复了
+    public void updateHotel(Hotel hotel) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.update(vip);
+        System.out.println("更新客栈信息");
+        session.update(hotel);
         tx.commit();
         session.close();
     }

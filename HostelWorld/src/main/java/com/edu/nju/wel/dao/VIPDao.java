@@ -15,7 +15,7 @@ public interface VIPDao{
     public VIP getVIPById(int vId);
     //通过识别码获取会员
     public VIP getVIPByCode(String code);
-    //通过识别码获取会员
+    //获取全部会员
     public List<VIP> getVIPList();
     //更新会员信息
     public void updateVIP(VIP vip);
