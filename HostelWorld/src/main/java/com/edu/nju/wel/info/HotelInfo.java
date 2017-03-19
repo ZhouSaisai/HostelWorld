@@ -1,6 +1,8 @@
 package com.edu.nju.wel.info;
 
 
+import java.sql.Timestamp;
+
 /**
  * Created by zs on 2017/3/3.
  */
@@ -25,7 +27,8 @@ public class HotelInfo{
     private double money;
     //待结算
     private double outMoney;
-
+    //申请时间
+    private Timestamp time;
     public HotelInfo() {
     }
 
@@ -107,5 +110,13 @@ public class HotelInfo{
 
     public void setOutMoney(double outMoney) {
         this.outMoney = outMoney;
+    }
+
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 }

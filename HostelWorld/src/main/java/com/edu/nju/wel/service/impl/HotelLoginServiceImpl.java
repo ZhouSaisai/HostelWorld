@@ -9,6 +9,8 @@ import com.edu.nju.wel.util.exception.WrongPasswordException;
 import com.edu.nju.wel.util.helper.IDCodeHelper;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+
 
 /**
  * Created by zs on 2017/3/14.
@@ -27,6 +29,9 @@ public class HotelLoginServiceImpl implements HotelLoginService {
         String code = "h"+IDCodeHelper.getID();
 //        System.out.println(code);
         hotel.setCode(code);
+        //生成申请时间
+        Timestamp time = new Timestamp(System.currentTimeMillis());
+        hotel.setTime(time);
         //调用数据层
         int hid= DAOManager.hotelDao.addHotel(hotel);
         hotelInfo.sethId(hid);
@@ -55,6 +60,7 @@ public class HotelLoginServiceImpl implements HotelLoginService {
         info.setAddress(temp.getAddress());
         info.setOutMoney(temp.getOutMoney());
         info.setTel(temp.getTel());
+        info.setTime(temp.getTime());
         return info;
     }
 }

@@ -36,6 +36,7 @@ public class HotelInfoServiceImpl implements HotelInfoService {
         info.setTel(hotel.getTel());
         info.setMoney(hotel.getMoney());
         info.setOutMoney(hotel.getOutMoney());
+        info.setTime(hotel.getTime());
         return info;
     }
 

@@ -2,6 +2,7 @@ package com.edu.nju.wel.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -37,10 +38,14 @@ public class Hotel implements Serializable{
     //待结算
     @Column(columnDefinition = "INT default 0",nullable = false)
     private double outMoney;
-
+    //申请时间
+    private Timestamp time;
 
     @OneToMany(targetEntity=Room.class,mappedBy="hotel")
     private List<Room> rooms;
+
+    @OneToMany(targetEntity = Application.class, mappedBy = "hotel")
+    private List<Application> applications;
 
     public Hotel() {
     }
@@ -121,6 +126,14 @@ public class Hotel implements Serializable{
         return outMoney;
     }
 
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
     public void setOutMoney(double outMoney) {
         this.outMoney = outMoney;
     }
@@ -131,5 +144,13 @@ public class Hotel implements Serializable{
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 }

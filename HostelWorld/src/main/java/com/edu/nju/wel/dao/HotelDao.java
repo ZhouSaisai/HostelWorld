@@ -20,4 +20,6 @@ public interface HotelDao {
     public List<Hotel> getHotelList();
     //更新会员信息
     public void updateHotel(Hotel hotel);
+    //获得申请开店的所有客栈
+    public List<Hotel> getOpenHotelList();
 }

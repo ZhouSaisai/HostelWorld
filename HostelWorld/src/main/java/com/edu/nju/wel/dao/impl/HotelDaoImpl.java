@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Expression;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -93,5 +94,22 @@ public class HotelDaoImpl implements HotelDao{
         session.update(hotel);
         tx.commit();
         session.close();
+    }
+
+    public List<Hotel> getOpenHotelList() {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<Hotel> list;
+        //查询
+        int state = 0;
+        String hql = "from Hotel hotel where hotel.state = "+ state +"order by hotel.time desc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList<Hotel>();
+        //事务
+        tx.commit();
+        session.close();
+        return list;
     }
 }

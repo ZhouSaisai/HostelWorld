@@ -1,0 +1,62 @@
+.application-row{
+    widtH:86%;
+    margin:25px auto;
+    padding: 20px 10px;
+    border-radius: 5px;
+    border: 1px solid #EBEBEB;
+}
+.open-hotel-ul{
+    width:100%;
+    margin: 0;
+    padding: 0 20px;
+}
+
+.open-hotel-ul li{
+    float: left;
+    display: block;
+}
+
+.application-header span{
+    font-size: 30px;
+    color: #5389d2;
+    margin-right: 22px;
+    vertical-align: middle;
+}
+
+.application-header img{
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.application-content-container{
+    width:650px;
+    height: 100px;
+    padding: 10px 30px;
+}
+.application-content-left,.application-content-right{
+    float: left;
+    width:50%;
+}
+
+.application-content-title{
+    font-size: 16px;
+    color: #555555;
+    margin: 5px 10px;
+}
+.application-content-title:first-child{
+    margin: 3px 10px 5px;
+}
+
+.application-operate-container{
+    float: left;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+.application-operate-btn{
+    font-size: 15px;
+    margin: 15px 10px 0;
+}
