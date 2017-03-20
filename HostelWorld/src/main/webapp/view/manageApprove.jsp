@@ -100,8 +100,8 @@
                                 </li>
                                 <li>
                                     <div class="application-operate-container">
-                                        <span class="border-btn application-operate-btn" onclick="">通过</span>
-                                        <span class="border-btn application-operate-btn" onclick="">拒绝</span>
+                                        <span class="border-btn application-operate-btn" onclick="manage_open_app(${hotel.hId},1)">通过</span>
+                                        <span class="border-btn application-operate-btn" onclick="manage_open_app(${hotel.hId},2)">拒绝</span>
                                     </div>
                                 </li>
                             </ul>

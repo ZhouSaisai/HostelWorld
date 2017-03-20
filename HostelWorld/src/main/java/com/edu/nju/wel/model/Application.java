@@ -24,8 +24,6 @@ public class Application implements Serializable {
     //客栈状态 0-申请中，1-申请通过，2-审批未通过，3-审批前有新的修改
     @Column(columnDefinition = "INT default 0", nullable = false)
     private int state;
-    //星级
-    private int level;
     //时间-已有申请的时候，将之前的状态设置为3
     private Timestamp time;
 
@@ -75,14 +73,6 @@ public class Application implements Serializable {
 
     public void setState(int state) {
         this.state = state;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public Timestamp getTime() {

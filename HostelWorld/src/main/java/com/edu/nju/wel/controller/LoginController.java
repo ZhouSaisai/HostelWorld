@@ -45,6 +45,9 @@ public class LoginController {
             return "welcome-manager";
         }
         String type=(String)session.getAttribute("type");
+        if(type==null){
+            return "index";
+        }
         if(type.equals("person")){
             PersonInfo info=(PersonInfo)session.getAttribute("info");
             if(info!=null){

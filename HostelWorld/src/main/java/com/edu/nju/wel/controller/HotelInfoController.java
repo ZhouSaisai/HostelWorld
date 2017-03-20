@@ -30,7 +30,7 @@ public class HotelInfoController {
      * @return
      */
     @RequestMapping(value = "hotel_zone")
-    public ModelAndView welcome(@RequestParam String id, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView hotelZone(@RequestParam String id, HttpServletRequest request, HttpServletResponse response) {
         //构造ModelAndView
         ModelAndView view = new ModelAndView("index");
         //TODO 限制进入
@@ -48,6 +48,7 @@ public class HotelInfoController {
             if(temp==null || (!id.equals(temp.gethId()+""))){
                 return view;
             }
+//            System.out.println(temp.toString());
             HotelInfo info = hotel.getHotelById(temp.gethId());
             //刷新session
             session.setAttribute("info",info);
@@ -66,5 +67,41 @@ public class HotelInfoController {
             }
         }
         return view;
+    }
+
+    @RequestMapping(value = "modify_info_hotel",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyInfo(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String hid = request.getParameter("hid");
+        String name = request.getParameter("name");
+        String tel = request.getParameter("tel");
+        String address = request.getParameter("address");
+        //转换类型
+        int hotelId=Integer.parseInt(hid);
+        //错误处理
+        if(hotelId<0){
+            return "申请失败";
+        }
+        HotelInfo info = new HotelInfo();
+        info.setAddress(address);
+        info.setTel(tel);
+        info.setName(name);
+        info.sethId(hotelId);
+        String result = hotel.modifyInfo(info);
+        return result;
+    }
+
+    @RequestMapping(value = "modify_psw_hotel",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String modifyPSW(HttpServletRequest request,HttpServletResponse response){
+        //获取参数
+        String password = request.getParameter("password");
+        String passwordNew = request.getParameter("passwordN");
+        String hid = request.getParameter("hid");
+        //转换类型
+        int hotelId=Integer.parseInt(hid);
+        String result = hotel.modifyPSW(hotelId,password,passwordNew);
+        return result;
     }
 }

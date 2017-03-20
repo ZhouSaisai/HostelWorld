@@ -14,6 +14,7 @@ public class DAOManager {
     public final static CashDao cashDao;
     public final static HotelDao hotelDao;
     public final static RoomDao roomDao;
+    public final static ApplicationDao applicationDao;
 
     static {
         ApplicationContext context = ApplicationContextHelper.getApplicationContext();
@@ -22,6 +23,7 @@ public class DAOManager {
         cashDao = context.getBean(CashDao.class);
         hotelDao = context.getBean(HotelDao.class);
         roomDao = context.getBean(RoomDao.class);
+        applicationDao = context.getBean(ApplicationDao.class);
     }
 
 }

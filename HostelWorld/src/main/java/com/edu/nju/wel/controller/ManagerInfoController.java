@@ -6,6 +6,8 @@ import com.edu.nju.wel.util.helper.ManageAccountHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +60,20 @@ public class ManagerInfoController {
             view.addObject("hotels",hotels);
         }
         return view;
+    }
+
+    @RequestMapping(value = "manage_open_app",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String manageOpenApplication(HttpServletRequest request, HttpServletResponse response) {
+        //获取参数
+        String hid = request.getParameter("hId");
+        //1是通过，2是拒绝
+        String type = request.getParameter("type");
+        //转换类型
+        int hidInt = Integer.parseInt(hid);
+        int typeInt = Integer.parseInt(type);
+        String result = applicationService.manageOpenApplication(hidInt,typeInt);
+        return result;
     }
 
 }

@@ -12,6 +12,7 @@
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/common/pageGroup.css" rel="stylesheet">
     <link href="../css/personInfo.css" rel="stylesheet">
+    <link href="../css/hotelInfo.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-color navbar-static-top">
@@ -30,9 +31,11 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
-                    <li><a href="#">发布计划</a></li>
-                    <li><a href="#">订单登记</a></li>
-                    <li><a href="#">客栈统计</a></li>
+                    <c:if test="${info.state==1}">
+                        <li><a href="#">发布计划</a></li>
+                        <li><a href="#">订单登记</a></li>
+                        <li><a href="#">客栈统计</a></li>
+                    </c:if>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -53,15 +56,17 @@
                         <c:when test="${info.state==0}">
                             <div class="row">
                                 <div class="row info-line">
-                                    <p class="info-name">${info.code} ${info.name}</p>
+                                    <p class="info-name">${info.code}</p>
+                                    <p class="info-name">${info.name}</p>
                                     <small class="info-state">审批中</small>
                                 </div>
                             </div>
                         </c:when>
-                        <c:when test="${info.state==0}">
+                        <c:when test="${info.state==1}">
                             <div class="row">
                                 <div class="row info-line">
-                                    <p class="info-name">${info.code} ${info.name}</p>
+                                    <p class="info-name">${info.code}</p>
+                                    <p class="info-name">${info.name}</p>
                                     <small class="info-state"  id="info-welcome">营业中</small>
                                 </div>
                             </div>
@@ -70,8 +75,8 @@
 
                     <div class="row">
                         <div class="row info-line" id="score-line">
-                            <p>等级：${info.level}</p>
-                            <p>余额：${info.money}</p>
+                            <p>星级：${info.level}星级</p>
+                            <p>收入：${info.money}</p>
                             <p>未结算：${info.outMoney}</p>
                         </div>
                     </div>
@@ -93,23 +98,23 @@
                         <span>基础资料</span>
                     </div>
                     <div class="row static-info">
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-5 col-md-5">
                             <div class="item">
                                 <span class="n">账户：</span>
                                 <span class="content-span">${info.code}</span>
                             </div>
                             <div class="item">
-                                <span class="n">等级：</span>
-                                <span class="content-span">${info.level}</span>
+                                <span class="n">星级：</span>
+                                <span class="content-span">${info.level}星级</span>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-4">
+                        <div class="col-lg-6 col-md-6">
                             <div class="item">
-                                <span class="n">余额：</span>
+                                <span class="n">收入：</span>
                                 <span class="content-span">${info.money}</span>
                             </div>
                             <div class="item">
-                                <span class="n">待结算：</span>
+                                <span class="n">未结算：</span>
                                 <span class="content-span" id="point-num-text">${info.outMoney}</span>
                             </div>
                         </div>
@@ -121,22 +126,26 @@
                         </div>
                         <div class="item">
                             <span class="n">电话：</span>
-                            <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-age" name="age" value="${info.tel}" disabled="disabled">
+                            <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-tel" name="age" value="${info.tel}" disabled="disabled">
                         </div>
                         <div class="item">
                             <span class="n">地址：</span>
                             <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-address" name="address" value="${info.address}" disabled="disabled">
                         </div>
                     </div>
-
-                    <div class="row operate-info">
-                        <div class="errorMsg nicknameError" id="error-dynamic-info">
-                        </div>
-                        <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
-                        <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
-                        <span class="border-btn btn-second" onclick="modifyInfoSave()">确认修改</span>
-                        <span class="border-btn btn-second" onclick="modifyCancel()">取消修改</span>
-                    </div>
+                    <%--审批通过才能操作--%>
+                    <c:choose>
+                        <c:when test="${info.state==1}">
+                            <div class="row operate-info">
+                                <div class="errorMsg nicknameError" id="error-dynamic-info">
+                                </div>
+                                <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
+                                <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
+                                <span class="border-btn btn-second" onclick="modifyInfoSave()">申请修改</span>
+                                <span class="border-btn btn-second" onclick="modifyCancel()">取消修改</span>
+                            </div>
+                        </c:when>
+                    </c:choose>
 
                 </div>
 
@@ -238,7 +247,7 @@
                 <%--</div>--%>
             </div>
         </div>
-        <input type="hidden" id="vId" value="${info.id}">
+        <input type="hidden" id="hId" value="${info.hId}">
         <br>
         <br>
         <br>
@@ -258,5 +267,6 @@
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/pageGroup.js"></script>
+<script src="../js/hotelInfo.js"></script>
 </body>
 </html>

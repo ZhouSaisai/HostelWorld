@@ -117,7 +117,6 @@ function modifyPswSave() {
     var passwordN = $("#modify-psw-password-new").val();
     var passwordNA = $("#modify-psw-password-new-again").val();
     var vId = $("#vId").val();
-    alert(password+";"+passwordN+";"+passwordNA);
     if(password==""){
         $("#error-modify-psw").text("原密码不能为空！");
         setTimeout("$('#error-modify-psw').text('');",1000);

@@ -229,3 +229,24 @@ function pageDown(pageNum,pageCount){
             break;
     }
 }
+
+function manage_open_app(hId,type) {
+    $.ajax({
+        type: "post",
+        async: true,
+        url: "/HotelWorld/manage_open_app",
+        data: {
+            "hId":hId,
+            "type":type
+        },
+        success: function (result) {
+            alert(result);
+            setTimeout(function () {
+                window.location.reload();
+            },1000);
+        },
+        error: function () {
+            alert("操作失败！");
+        }
+    });
+}

@@ -116,6 +116,7 @@ public class PersonInfoServiceImpl implements PersonInfoService {
             return "停止失败";
         }
         vip.setState(2);
+        vip.setMoney(0);
         DAOManager.vipDao.updateVIP(vip);
         return "-1";
     }

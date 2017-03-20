@@ -119,4 +119,21 @@ public class HotelInfo{
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        return "HotelInfo{" +
+                "hId=" + hId +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", code='" + code + '\'' +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", state=" + state +
+                ", level=" + level +
+                ", money=" + money +
+                ", outMoney=" + outMoney +
+                ", time=" + time +
+                '}';
+    }
 }

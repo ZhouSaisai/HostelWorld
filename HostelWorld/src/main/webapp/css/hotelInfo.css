@@ -1,0 +1,13 @@
+.info-state{
+    float:left;
+}
+
+.info-line p{
+    margin: 5px 0 0 36%;
+}
+
+#score-line p{
+    margin-left: 36%;
+}
+
+

@@ -2,14 +2,12 @@ package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.info.*;
-import com.edu.nju.wel.model.BankCard;
-import com.edu.nju.wel.model.Cash;
-import com.edu.nju.wel.model.Hotel;
-import com.edu.nju.wel.model.VIP;
+import com.edu.nju.wel.model.*;
 import com.edu.nju.wel.service.HotelInfoService;
 import com.edu.nju.wel.service.PersonInfoService;
 import com.edu.nju.wel.util.helper.PointHelper;
 import com.sun.xml.internal.rngom.digested.DMixedPattern;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -44,14 +42,23 @@ public class HotelInfoServiceImpl implements HotelInfoService {
         //取得客栈的信息
         Hotel hotel = DAOManager.hotelDao.getHotelById(info.gethId());
         if(hotel==null){
-            return "修改失败！";
+            return "申请失败！";
         }
-        hotel.setName(info.getName());
-        hotel.setAddress(info.getAddress());
-        hotel.setLevel(info.getLevel());
-        hotel.setTel(info.getTel());
-        DAOManager.hotelDao.updateHotel(hotel);
-        return "修改成功！";
+        Application application=DAOManager.applicationDao.getApplicationById(info.gethId());
+        //修改前有新的修改
+        if(application!=null){
+            application.setState(3);
+            DAOManager.applicationDao.updateApplication(application);
+        }
+        application = new Application();
+        application.setName(info.getName());
+        application.setAddress(info.getAddress());
+        application.setTel(info.getTel());
+        application.setHotel(hotel);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        application.setTime(timestamp);
+        DAOManager.applicationDao.addApplication(application);
+        return "申请成功！";
     }
 
     public String modifyPSW(int hId, String password, String passwordNew) {
