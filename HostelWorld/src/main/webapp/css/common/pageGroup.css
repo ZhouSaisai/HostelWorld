@@ -1,10 +1,3 @@
-/* CSS Document */
-
-/*body {*/
-	/*font-size: 14px;*/
-	/*text-align: center;*/
-	/*color: #000000;*/
-/*}*/
 
 #pageGro *{
 	margin: 0;
@@ -16,10 +9,9 @@
 }
 /*分页*/
 #pageGro{
-	width:460px;
+	width:400px;
 	height:26px;
 	margin:-5px auto 20px;
-
 }
 #pageGro div,#pageGro div ul li{
 	font-size:14px;
@@ -36,8 +28,8 @@
 }
 #pageGro div ul li.on{
 	color:#fff;
-	background:#5288d7;
-	border:1px solid #5288d7;
+	background:#5389d2;
+	border:1px solid #5389d2;
 }
 #pageGro .pageUp,#pageGro .pageDown,#pageGro .pagestart,#pageGro .pageend{
 	width:70px;
@@ -45,3 +37,41 @@
 	cursor:pointer;
 }
 
+#pageQA *{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+#pageQA li{
+	list-style: none;
+}
+/*分页*/
+#pageQA{
+	width:400px;
+	height:26px;
+	margin:-5px auto 20px;
+
+}
+#pageQA div,#pageQA div ul li{
+	font-size:14px;
+	color:#999;
+	line-height:26px;
+	float:left;
+	margin-left:4px;
+}
+#pageQA div ul li{
+	width:27px;
+	text-align:center;
+	border:1px solid #999;
+	cursor:pointer;
+}
+#pageQA div ul li.on{
+	color:#fff;
+	background:#5389d2;
+	border:1px solid #5389d2;
+}
+#pageQA .QAPageUp,#pageQA .QAPageDown,#pageQA .QAPagestart,#pageQA .QAPageend{
+	width:70px;
+	border:1px solid #999;
+	cursor:pointer;
+}

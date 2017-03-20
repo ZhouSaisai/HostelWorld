@@ -1,6 +1,8 @@
 package com.edu.nju.wel.controller;
 
 import com.edu.nju.wel.info.HotelInfo;
+import com.edu.nju.wel.model.Application;
+import com.edu.nju.wel.service.ApplicationService;
 import com.edu.nju.wel.service.HotelInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by zs on 2017/3/15.
@@ -22,6 +25,8 @@ import java.io.IOException;
 public class HotelInfoController {
     @Autowired
     HotelInfoService hotel;
+    @Autowired
+    ApplicationService app;
     /**
      * 进入个空间页
      * 第一次进入，即注册完成时显示识别码提示
@@ -48,13 +53,19 @@ public class HotelInfoController {
             if(temp==null || (!id.equals(temp.gethId()+""))){
                 return view;
             }
-//            System.out.println(temp.toString());
+            System.out.println(temp.toString());
             HotelInfo info = hotel.getHotelById(temp.gethId());
             //刷新session
             session.setAttribute("info",info);
             //设置modelAndView
             view.setViewName("hotelInfo");
             view.addObject("info",info);
+//            List<Application> apps = app.getALLModifyApplication(temp.gethId());
+//            for (Application a:apps){
+//                System.out.println(a.toString());
+//                System.out.println("ssss");
+//            }
+//            view.addObject("apps",apps);
             //财务流水
 //            List<Cash> cashs = cashService.getCashByVId(info.getId());
 //            view.addObject("cashs",cashs);

@@ -121,8 +121,6 @@
                                 <li>1</li>
                                 <li>2</li>
                                 <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
                             </ul>
                         </div>
                         <div class="pageDown">下一页</div>
@@ -132,79 +130,118 @@
                 </c:otherwise>
             </c:choose>
             </div>
-            <div class="row input-row"> 
+            <div class="row input-row">
                 <div class="title">
-                    <span>修改资料申请</span>
+                    <span>修改申请</span>
                 </div>
-                <div class="row static-info">
-                    <div class="col-lg-4 col-md-4">
-                        <div class="item">
-                            <span class="n">账户：</span>
-                            <span class="content-span">${info.code}</span>
-                        </div>
-                        <div class="item">
-                            <span class="n">等级：</span>
-                            <span class="content-span">${info.level}</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-4">
-                        <div class="item">
-                            <span class="n">余额：</span>
-                            <span class="content-span">${info.money}</span>
-                        </div>
-                        <div class="item">
-                            <span class="n">积分：</span>
-                            <span class="content-span" id="point-num-text">${info.point}</span>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3">
-                        <div class="item buttons">
-                            <c:choose>
-                            <c:when test="${info.isActive==0}">
-                                <a class="info-operate-inline" onclick="addMoney(0)">去激活</a>
-                            </c:when>
-                                <c:when test="${info.state==0}">
-                                <a class="info-operate-inline" onclick="addMoney(2)">账号充值</a>
-                        </div>
-                        <div class="item buttons">
-                            <a class="info-operate-inline" onclick="pointChange()">积分兑换</a>
-                            </c:when><c:when test="${info.state==1}">
-                            <a class="info-operate-inline" onclick="addMoney(1)">充值恢复</a>
-                            </c:when>
-                            </c:choose>
-                        </div>
-                    </div>
-                </div>
-                <div class="row dynamic-info">
-                    <div class="item">
-                        <span class="n">昵称：</span>
-                        <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-name" name="name" value="${info.name}" disabled="disabled">
-                    </div>
-                    <div class="item">
-                        <span class="n">年龄：</span>
-                        <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-age" name="age" value="${info.age}" disabled="disabled">
-                    </div>
-                    <div class="item">
-                        <span class="n">地址：</span>
-                        <input type="text" class="reg-input dynamic-info-input" id="dynamic-info-address" name="address" value="${info.address}" disabled="disabled">
-                    </div>
-                </div>
-                <%--已激活且正常状态才能操作--%>
                 <c:choose>
-                    <c:when test="${info.isActive==0}">
+                    <c:when test="${apps.size()==0}">
+                        <br>
+                        <p style="text-align: center">当前没有申请修改的客栈！</p>
+                        <br>
                     </c:when>
-                    <c:when test="${info.state==0}">
-                        <div class="row operate-info">
-                            <div class="errorMsg nicknameError" id="error-dynamic-info">
+                    <c:otherwise>
+                        <% int i=1;%>
+                        <c:forEach items="${apps}" var="app" varStatus="vs">
+                            <div class="row application-row modify-hotel-row">
+                                <ul class="open-hotel-ul">
+                                    <li>
+                                        <div class="application-header">
+                                            <span class="order"><%=i%></span>
+                                            <img src="../img/common/hotel<%=i%5%>.jpg">
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="application-content-container">
+                                            <div class="application-content-left">
+                                                <div class="application-content-title application-title-name">
+                                                    名称：
+                                                    <c:choose>
+                                                        <c:when test="${app.hotel.name == app.name}">
+                                                            <span class="application-content application-content-name">${app.hotel.name}</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="application-content application-content-name">${app.name} <sapn class="new">(new)</sapn></span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+
+                                                </div>
+                                                <div class="application-content-title application-title-level">
+                                                    星级：
+                                                    <span class="application-content application-content-level">${app.hotel.level}星级</span>
+                                                </div>
+                                                <div class="application-content-title application-title-tel">
+                                                    电话：
+                                                    <c:choose>
+                                                        <c:when test="${app.hotel.tel == app.tel}">
+                                                            <span class="application-content application-content-name">${app.hotel.tel}</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="application-content application-content-name">${app.tel} <sapn class="new">(new)</sapn></span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                            <div class="application-content-right">
+                                                <div class="application-content-title application-title-id">
+                                                    编号：
+                                                    <span class="application-content application-content-id">${app.hotel.code}</span>
+                                                </div>
+                                                <div class="application-content-title application-title-level">
+                                                    时间：
+                                                    <span class="application-content application-content-level">${app.time}</span>
+                                                </div>
+                                                <div class="application-content-title application-title-address">
+                                                    地址：
+                                                    <c:choose>
+                                                        <c:when test="${app.hotel.address == app.address}">
+                                                            <span class="application-content application-content-name">${app.hotel.address}</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="application-content application-content-name">${app.address} <sapn class="new">(new)</sapn></span>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="application-operate-container">
+                                            <span class="border-btn application-operate-btn" onclick="manage_modify_app(${app.hotel.hId},1)">通过</span>
+                                            <span class="border-btn application-operate-btn" onclick="manage_modify_app(${app.hotel.hId},2)">拒绝</span>
+                                            <%--<span class="border-btn application-operate-btn">申请中</span>--%>
+                                            <%--<span class="border-btn application-operate-btn">已通过</span>--%>
+                                            <%--<span class="border-btn application-operate-btn">被拒绝</span>--%>
+                                            <%--<span class="border-btn application-operate-btn">已覆盖</span>--%>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
-                            <span class="border-btn btn-first" onclick="modifyInfo()">修改资料</span>
-                            <span class="border-btn btn-first" onclick="modifyPsw()">修改密码</span>
-                            <span class="border-btn btn-second" onclick="modifyInfoSave()">确认修改</span>
-                            <span class="border-btn btn-second" onclick="modifyCancel()">取消修改</span>
+                            <%i++;%>
+                        </c:forEach>
+                        <input type="hidden" id="qa_start_page">
+                        <input type="hidden" id="qa_current_page" />
+                        <input type="hidden" id="qa_show_per_page" />
+                        <input type="hidden" id="qa_end_page">
+                        <!-------------------------------------------分页----------------------------------------------------------------->
+                        <div id="pageQA" class="cb">
+                            <div class="QAPagestart">首页</div>
+                            <div class="QAPageUp">上一页</div>
+                            <div class="QAPageList">
+                                <ul>
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                </ul>
+                            </div>
+                            <div class="QAPageDown">下一页</div>
+                            <div class="QAPageend">尾页</div>
                         </div>
-                    </c:when>
+                        <!-------------------------------------------END 分页----------------------------------------------------------------->
+                    </c:otherwise>
                 </c:choose>
             </div>
+        </div>
         <br>
         <br>
         <br>
@@ -224,5 +261,6 @@
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/manageApprove.js"></script>
+<script src="../js/pageGroupHelper.js"></script>
 </body>
 </html>

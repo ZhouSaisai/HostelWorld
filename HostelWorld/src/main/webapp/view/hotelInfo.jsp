@@ -12,6 +12,7 @@
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/common/pageGroup.css" rel="stylesheet">
     <link href="../css/personInfo.css" rel="stylesheet">
+    <link href="../css/common/hotelList.css" rel="stylesheet">
     <link href="../css/hotelInfo.css" rel="stylesheet">
 </head>
 <body>
@@ -175,76 +176,125 @@
                     </div>
                 </div>
 
-                <%--<div class="row input-row">--%>
-                    <%--<div class="title">--%>
-                        <%--<span>财务流水</span>--%>
-                    <%--</div>--%>
-                    <%--<c:choose>--%>
-                        <%--<c:when test="${cashs.size()==0}">--%>
-                            <%--<br>--%>
-                            <%--<p style="text-align: center">当前没有财务流水，您开的啥店啊，或者叫经历来审批！</p>--%>
-                            <%--<br>--%>
-                        <%--</c:when>--%>
-                        <%--<c:otherwise>--%>
-                            <%--<table class="table table-striped table-hover" id="cash-table">--%>
-                                <%--<tr>--%>
-                                    <%--<th style="text-align:center;">序号</th>--%>
-                                    <%--<th style="text-align:center;">金额</th>--%>
-                                    <%--<th style="text-align:center;">类别</th>--%>
-                                    <%--<th style="text-align:center;">时间</th>--%>
+                <div class="row input-row">
+                    <div class="title">
+                        <span>修改申请</span>
+                    </div>
+                    <c:choose>
+                        <c:when test="${apps.size()==0}">
+                            <br>
+                            <p style="text-align: center">当前没有申请修改的客栈！</p>
+                            <br>
+                        </c:when>
+                        <c:otherwise>
+                            <% int i=1;%>
+                            <c:forEach items="${apps}" var="app" varStatus="vs">
+                                <div class="row application-row modify-hotel-row">
+                                    <ul class="open-hotel-ul">
+                                        <li>
+                                            <div class="application-header">
+                                                <span class="order"><%=i%></span>
+                                                <img src="../img/common/hotel<%=i%5%>.jpg">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="application-content-container">
+                                                <div class="application-content-left">
+                                                    <div class="application-content-title application-title-name">
+                                                        名称：
+                                                        <c:choose>
+                                                            <c:when test="${app.hotel.name == app.name}">
+                                                                <span class="application-content application-content-name">${app.hotel.name}</span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="application-content application-content-name">${app.name} <sapn class="new">(new)</sapn></span>
+                                                            </c:otherwise>
+                                                        </c:choose>
 
-                                <%--</tr>--%>
-                                <%--<% int i=1;%>--%>
-                                <%--<c:forEach items="${cashs}" var="cash" varStatus="vs">--%>
-                                    <%--<tr>--%>
-                                        <%--<td style="text-align:center;"><%=i%></td>--%>
-                                        <%--<td style="text-align:center;">${cash.content}</td>--%>
-                                        <%--<c:choose>--%>
-                                            <%--<c:when test="${cash.type==0}">--%>
-                                                <%--<td style="text-align:center;">充值</td>--%>
-                                            <%--</c:when>--%>
-                                            <%--<c:when test="${cash.type==1}">--%>
-                                                <%--<td style="text-align:center;">预定</td>--%>
-                                            <%--</c:when>--%>
-                                            <%--<c:when test="${cash.type==2}">--%>
-                                                <%--<td style="text-align:center;">退款</td>--%>
-                                            <%--</c:when>--%>
-                                            <%--<c:when test="${cash.type==3}">--%>
-                                                <%--<td style="text-align:center;">积分兑换</td>--%>
-                                            <%--</c:when>--%>
-                                        <%--</c:choose>--%>
-                                        <%--<td style="text-align:center;">${cash.time}</td>--%>
-                                    <%--</tr>--%>
-                                    <%--<% i++;%>--%>
-                                <%--</c:forEach>--%>
-                            <%--</table>--%>
-
-                            <%--<input type="hidden" id="start_page">--%>
-                            <%--<input type="hidden" id="current_page" />--%>
-                            <%--<input type="hidden" id="show_per_page" />--%>
-                            <%--<input type="hidden" id="end_page">--%>
-                            <%--<!-------------------------------------------分页----------------------------------------------------------------->--%>
-                            <%--<div id="pageGro" class="cb">--%>
-                                <%--<div class="pagestart">首页</div>--%>
-                                <%--<div class="pageUp">上一页</div>--%>
-                                <%--<div class="pageList">--%>
-                                    <%--<ul>--%>
-                                        <%--<li>1</li>--%>
-                                        <%--<li>2</li>--%>
-                                        <%--<li>3</li>--%>
-                                        <%--<li>4</li>--%>
-                                        <%--<li>5</li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                                <%--<div class="pageDown">下一页</div>--%>
-                                <%--<div class="pageend">尾页</div>--%>
-                            <%--</div>--%>
-                            <%--<!-------------------------------------------END 分页----------------------------------------------------------------->--%>
-
-                        <%--</c:otherwise>--%>
-                    <%--</c:choose>--%>
-
-                <%--</div>--%>
+                                                    </div>
+                                                    <div class="application-content-title application-title-level">
+                                                        星级：
+                                                        <span class="application-content application-content-level">${app.hotel.level}星级</span>
+                                                    </div>
+                                                    <div class="application-content-title application-title-tel">
+                                                        电话：
+                                                        <c:choose>
+                                                            <c:when test="${app.hotel.tel == app.tel}">
+                                                                <span class="application-content application-content-name">${app.hotel.tel}</span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="application-content application-content-name">${app.tel} <sapn class="new">(new)</sapn></span>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                                <div class="application-content-right">
+                                                    <div class="application-content-title application-title-id">
+                                                        编号：
+                                                        <span class="application-content application-content-id">${app.hotel.code}</span>
+                                                    </div>
+                                                    <div class="application-content-title application-title-level">
+                                                        时间：
+                                                        <span class="application-content application-content-level">${app.time}</span>
+                                                    </div>
+                                                    <div class="application-content-title application-title-address">
+                                                        地址：
+                                                        <c:choose>
+                                                            <c:when test="${app.hotel.address == app.address}">
+                                                                <span class="application-content application-content-name">${app.hotel.address}</span>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <span class="application-content application-content-name">${app.address} <sapn class="new">(new)</sapn></span>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="application-operate-container">
+                                                <c:choose>
+                                                    <c:when test="${app.state==0}">
+                                                        <span class="border-btn application-operate-btn">申请中</span>
+                                                    </c:when>
+                                                    <c:when test="${app.state==1}">
+                                                        <span class="border-btn application-operate-btn">已通过</span>
+                                                    </c:when>
+                                                    <c:when test="${app.state==2}">
+                                                        <span class="border-btn application-operate-btn">被拒绝</span>
+                                                    </c:when>
+                                                    <c:when test="${app.state==3}">
+                                                        <span class="border-btn application-operate-btn">已覆盖</span>
+                                                    </c:when>
+                                                </c:choose>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <%i++;%>
+                            </c:forEach>
+                            <input type="hidden" id="qa_start_page">
+                            <input type="hidden" id="qa_current_page" />
+                            <input type="hidden" id="qa_show_per_page" />
+                            <input type="hidden" id="qa_end_page">
+                            <!-------------------------------------------分页----------------------------------------------------------------->
+                            <div id="pageQA" class="cb">
+                                <div class="QAPagestart">首页</div>
+                                <div class="QAPageUp">上一页</div>
+                                <div class="QAPageList">
+                                    <ul>
+                                        <li>1</li>
+                                        <li>2</li>
+                                        <li>3</li>
+                                    </ul>
+                                </div>
+                                <div class="QAPageDown">下一页</div>
+                                <div class="QAPageend">尾页</div>
+                            </div>
+                            <!-------------------------------------------END 分页----------------------------------------------------------------->
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             </div>
         </div>
         <input type="hidden" id="hId" value="${info.hId}">

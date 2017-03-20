@@ -12,4 +12,5 @@ public interface HotelInfoService {
     public String modifyInfo(HotelInfo info);
     //修改密码
     public String modifyPSW(int hId, String password, String passwordNew);
+
 }

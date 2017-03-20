@@ -1,5 +1,6 @@
 package com.edu.nju.wel.controller;
 
+import com.edu.nju.wel.model.Application;
 import com.edu.nju.wel.model.Hotel;
 import com.edu.nju.wel.service.ApplicationService;
 import com.edu.nju.wel.util.helper.ManageAccountHelper;
@@ -33,7 +34,7 @@ public class ManagerInfoController {
      * @return
      */
     @RequestMapping(value = "manage_zone")
-    public ModelAndView welcome(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView manageZone(HttpServletRequest request, HttpServletResponse response) {
         //构造ModelAndView
         ModelAndView view = new ModelAndView("index");
         //
@@ -57,7 +58,9 @@ public class ManagerInfoController {
             }
             view.setViewName("manageApprove");
             List<Hotel> hotels = applicationService.getOpenApplicationHotels();
+            List<Application> applications = applicationService.getModifyApplicationHotels();
             view.addObject("hotels",hotels);
+            view.addObject("apps",applications);
         }
         return view;
     }
@@ -73,6 +76,20 @@ public class ManagerInfoController {
         int hidInt = Integer.parseInt(hid);
         int typeInt = Integer.parseInt(type);
         String result = applicationService.manageOpenApplication(hidInt,typeInt);
+        return result;
+    }
+
+    @RequestMapping(value = "manage_modify_app",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String manageModifyApplication(HttpServletRequest request, HttpServletResponse response) {
+        //获取参数
+        String hid = request.getParameter("hId");
+        //1是通过，2是拒绝
+        String type = request.getParameter("type");
+        //转换类型
+        int hidInt = Integer.parseInt(hid);
+        int typeInt = Integer.parseInt(type);
+        String result = applicationService.manageModifyApplication(hidInt,typeInt);
         return result;
     }
 

@@ -77,4 +77,21 @@ public class ApplicationDaoImpl implements ApplicationDao {
         tx.commit();
         session.close();
     }
+
+    public List<Application> getAllApplicationById(int hId) {
+        session = sessionFactory.openSession();
+        List<Application> result = null;
+        Transaction tx = session.beginTransaction();
+        //查询
+        List<Application> list;
+        String hql = "from Application a where a.hotel.hId = "+hId+" order by a.time desc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            result=new ArrayList<Application>();
+        //事务
+        tx.commit();
+        session.close();
+        return result;
+    }
 }

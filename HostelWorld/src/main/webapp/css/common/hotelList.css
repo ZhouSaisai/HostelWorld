@@ -37,7 +37,10 @@
 }
 .application-content-left,.application-content-right{
     float: left;
-    width:50%;
+    width:45%;
+}
+.application-content-right{
+    width:55%;
 }
 
 .application-content-title{
@@ -59,4 +62,10 @@
 .application-operate-btn{
     font-size: 15px;
     margin: 15px 10px 0;
+}
+
+.new{
+    font-size: 12px;
+    color: red;
+    vertical-align: middle;
 }

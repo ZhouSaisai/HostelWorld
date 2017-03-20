@@ -11,6 +11,7 @@ import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by zs on 2017/3/18.
@@ -74,4 +75,5 @@ public class HotelInfoServiceImpl implements HotelInfoService {
         DAOManager.hotelDao.updateHotel(hotel);
         return "修改成功！";
     }
+
 }

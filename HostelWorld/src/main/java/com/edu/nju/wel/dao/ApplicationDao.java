@@ -16,4 +16,7 @@ public interface ApplicationDao {
     public Application getApplicationById(int hId);
     //更新申请信息
     public void updateApplication(Application application);
+
+    //根据酒店id获取全部申请信息，展现给客栈看
+    public List<Application> getAllApplicationById(int hId);
 }

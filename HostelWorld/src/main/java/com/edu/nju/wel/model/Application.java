@@ -90,6 +90,19 @@ public class Application implements Serializable {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "aId=" + aId +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", address='" + address + '\'' +
+                ", state=" + state +
+                ", time=" + time +
+                ", hotel=" + hotel +
+                '}';
+    }
 }
 
 
