@@ -37,14 +37,144 @@
 }
 .room-row li{
     display: inline-block;
-    width: 22%;
+    width: 28%;
     float: left;
     font-size: 18px;
+    line-height: 30px;
     text-align: center;
+    vertical-align: middle;
     padding: 5px 0;
+    color:#666666;
 }
+
+.room-row li span{
+    color: #5389d2;
+}
+
 .room-row .short-li{
+    width: 10%;
+}
+
+.room-row .li-header{
+    width: 6%;
+    background-color: #5389d2;
+    color:#fff;
+    font-size: 22px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.room-row .li-header.li-header-out{
+    background-color: #888888;
+}
+
+.li-btn{
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.li-btn:hover{
+    border: 1px solid #5389d2;
+}
+
+.li-btn-state{
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color:#888888 !important;
+}
+
+/*增加房型*/
+.add-room-info{
+    width:100%;
+    margin: 10px 15px;
+    padding:8px 0;
+}
+.add-room-info li{
+    width:27%;
+    float: left;
+    display: inline-block;
+}
+
+.add-room-info .add-last-li{
+    width:19%;
+}
+
+.item{
+    margin-top: 20px;
+}
+
+.item.buttons{
+    text-align: center;
+}
+
+span.n {
+    font-size: 16px;
+    color: #555555;
+    display: inline-block;
+    text-align: left;
+    margin: 0 5px 0 30px ;
+}
+
+span.content-span{
+    font-size: 16px;
+    color: #333333;
+    display: inline-block;
+    width: 120px;
+    margin-left: 5px;
+}
+
+.inline-reg-input{
+    width:200px;
+}
+
+.inline-border-btn{
+    margin: 0 85px 0 10px;
+}
+.inline-border-btn-b{
+    margin: 0 25px 0 -6px;
+    width:100px;
+}
+/*增加计划*/
+.add-plan-info{
+    width:100%;
+    margin: 10px 15px;
+    padding:8px 0;
+}
+.plan-input-row{
+    margin:10px 5px;
+}
+
+.add-plan-info .plan-li{
+    width:31%;
+    float: left;
+    display: inline-block;
+}
+
+.reg-input.reg-plan-input{
+    width: 220px;
+}
+
+.reg-input.reg-plan-input[type=text]{
+    padding-left:15px;
+}
+.type-select{
+    border: 1px solid #d3d3d3;
+    height: 28px;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 220px;
+    outline: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.room-plan-row li{
     width: 17%;
 }
-
-
+.room-plan-row .long-li{
+    width: 33%;
+}

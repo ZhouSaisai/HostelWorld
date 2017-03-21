@@ -51,12 +51,6 @@ body {
     margin-left: 5px;
 }
 
-.reg-input.mid{
-    width: 68%;
-}
-.reg-input.long{
-    width: 63%;
-}
 
 .errorMsg {
     float: left;

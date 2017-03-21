@@ -53,7 +53,6 @@ public class HotelInfoController {
             if(temp==null || (!id.equals(temp.gethId()+""))){
                 return view;
             }
-            System.out.println(temp.toString());
             HotelInfo info = hotel.getHotelById(temp.gethId());
             //刷新session
             session.setAttribute("info",info);

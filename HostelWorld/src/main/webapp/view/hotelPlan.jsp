@@ -47,7 +47,7 @@
         <div class="row content-row">
             <div class="row input-row">
                 <div class="room-button-container">
-                    <a class="room-add-button" target="_blank">增加房型</a>
+                    <a class="room-add-button" target="_blank" onclick="addRoom()">增加房型</a>
                 </div>
                 <div class="title">
                     <span>房型一览</span>
@@ -60,146 +60,152 @@
                 <div class="blank_div"></div>
                 <div class="row room-row room-type-row even-row">
                     <ul>
-                        <li class="short-li">房型1</li>
-                        <li>房型：单人房</li>
-                        <li>价格：￥500</li>
-                        <li>数量：30间</li>
-                        <li class="short-li">
+                        <li class="short-li li-header">A</li>
+                        <li>房型：<span>单人房</span></li>
+                        <li>价格：<span>￥500</span></li>
+                        <li>数量：<span>30间</span></li>
+                        <li class="short-li li-footer">
                             <span class="li-btn" onclick="manage_modify_app()">删除</span>
                         </li>
                     </ul>
                 </div>
                 <div class="row room-row room-type-row even-row">
                     <ul>
-                        <li class="short-li">房型1</li>
-                        <li>单人房</li>
-                        <li>￥500</li>
-                        <li>30间</li>
-                        <li class="short-li">删除</li>
+                        <li class="short-li li-header">B</li>
+                        <li>房型：<span>双人房</span></li>
+                        <li>价格：<span>￥500</span></li>
+                        <li>数量：<span>30间</span></li>
+                        <li class="short-li li-footer">
+                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
+                        </li>
                     </ul>
                 </div>
                 <div class="row room-row room-type-row even-row">
                     <ul>
-                        <li>房型1</li>
-                        <li>单人房</li>
-                        <li>￥500</li>
-                        <li>30间</li>
+                        <li class="short-li li-header">C</li>
+                        <li>房型：<span>总统房</span></li>
+                        <li>价格：<span>￥5000</span></li>
+                        <li>数量：<span>30间</span></li>
+                        <li class="short-li li-footer">
+                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
+                        </li>
                     </ul>
                 </div>
                 <div class="blank_div"></div>
+                <div class="blank_div"></div>
             </div>
 
-            <div class="row input-row">
+            <div class="row input-row choose-row add-room-row">
                 <div class="title">
-                    <span>已有计划</span>
+                    <span>增加房型</span>
                 </div>
-
-                <div class="row application-row modify-hotel-row">
-                    <ul class="open-hotel-ul">
-
+                <div class="blank_div"></div>
+                <div class="row add-room-info">
+                    <ul>
                         <li>
-                            <div class="application-content-container">
-                                <div class="application-content-left">
-                                    <div class="application-content-title application-title-name">
-                                        名称：
-
-                                        <span class="application-content application-content-name">{info.name}</span>
-
-
-                                    </div>
-                                    <div class="application-content-title application-title-level">
-                                        星级：
-                                        <span class="application-content application-content-level">{app.hotel.level}星级</span>
-                                    </div>
-                                    <div class="application-content-title application-title-tel">
-                                        电话：
-
-                                        <span class="application-content application-content-name">{app.hotel.tel}</span>
-
-                                    </div>
-                                </div>
-                                <div class="application-content-right">
-                                    <div class="application-content-title application-title-id">
-                                        编号：
-                                        <span class="application-content application-content-id">{app.hotel.code}</span>
-                                    </div>
-                                    <div class="application-content-title application-title-level">
-                                        时间：
-                                        <span class="application-content application-content-level">{app.time}</span>
-                                    </div>
-                                    <div class="application-content-title application-title-address">
-                                        地址：
-
-                                        <span class="application-content application-content-name">{app.hotel.address}</span>
-
-                                    </div>
-                                </div>
-                            </div>
+                            <span class="n">房型：</span>
+                            <input type="text" class="reg-input inline-reg-input" id="type-room-name" name="name">
                         </li>
                         <li>
-                            <div class="application-operate-container">
-                                <span class="border-btn application-operate-btn" onclick="manage_modify_app()">删除</span>
-
-                            </div>
+                            <span class="n">价格：</span>
+                            <input type="text" class="reg-input inline-reg-input" id="type-room-price" name="name">
+                        </li>
+                        <li>
+                            <span class="n">数量：</span>
+                            <input type="text" class="reg-input inline-reg-input" id="type-room-num" name="name">
+                        </li>
+                        <li class="add-last-li">
+                            <span class="border-btn inline-border-btn" onclick="manage_modify_app()">增加</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="row input-row">
-                <div class="title">
-                    <span>已有计划</span>
-                </div>
-               
-                            <div class="row application-row modify-hotel-row">
-                                <ul class="open-hotel-ul">
-                                    
-                                    <li>
-                                        <div class="application-content-container">
-                                            <div class="application-content-left">
-                                                <div class="application-content-title application-title-name">
-                                                    名称：
-                                                    
-                                                            <span class="application-content application-content-name">{info.name}</span>
-                                                        
 
-                                                </div>
-                                                <div class="application-content-title application-title-level">
-                                                    星级：
-                                                    <span class="application-content application-content-level">{app.hotel.level}星级</span>
-                                                </div>
-                                                <div class="application-content-title application-title-tel">
-                                                    电话：
-                                                    
-                                                            <span class="application-content application-content-name">{app.hotel.tel}</span>
-                                                        
-                                                </div>
-                                            </div>
-                                            <div class="application-content-right">
-                                                <div class="application-content-title application-title-id">
-                                                    编号：
-                                                    <span class="application-content application-content-id">{app.hotel.code}</span>
-                                                </div>
-                                                <div class="application-content-title application-title-level">
-                                                    时间：
-                                                    <span class="application-content application-content-level">{app.time}</span>
-                                                </div>
-                                                <div class="application-content-title application-title-address">
-                                                    地址：
-                                                  
-                                                            <span class="application-content application-content-name">{app.hotel.address}</span>
-                                                       
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="application-operate-container">
-                                            <span class="border-btn application-operate-btn" onclick="manage_modify_app()">删除</span>
-                                           
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+            <div class="row input-row choose-row add-plan-row">
+                <div class="title">
+                    <span>发布计划</span>
+                </div>
+                <div class="blank_div"></div>
+                <div class="row add-plan-info">
+
+                    <div class="row plan-input-row">
+                        <ul>
+                            <li class="plan-li plan-li-b">
+                                <span class="n">房型：</span>
+                                <select class="type-select">
+                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单人房</option>
+                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;双人房</option>
+                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总统房</option>
+                                </select>
+                            </li>
+                            <li class="plan-li plan-li-b">
+                                <span class="n">价格：</span>
+                                <input type="text" class="reg-input reg-plan-input" id="type-plan-price" name="name">
+                            </li>
+                            <li class="plan-li plan-li-b">
+                                <span class="n">数量：</span>
+                                <input type="text" class="reg-input reg-plan-input" id="type-plan-num" name="name">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row plan-input-row">
+                        <ul>
+                            <li class="plan-li plan-li-a">
+                                <span class="n">开始：</span>
+                                <input type="date" class="reg-input reg-plan-input" id="type-plan-time-start" name="name">
+                            </li>
+
+                            <li class="plan-li plan-li-a">
+                                <span class="n">结束：</span>
+                                <input type="date" class="reg-input reg-plan-input" id="type-plan-time-end" name="name">
+                            </li>
+                            <li class="plan-li">
+                                <span class="border-btn inline-border-btn-b">增加</span>
+                                <span class="border-btn inline-border-btn-b" onclick="refresh()">取消</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row input-row">
+                <div class="room-button-container">
+                    <a class="room-add-button" target="_blank" onclick="addPlan()">增加计划</a>
+                </div>
+                <div class="title">
+                    <span>优惠计划</span>
+                </div>
+                <div class="notice room-type-notice">
+                    <p>当前没有优惠计划哦!</p>
+                    <p>快看看有没有添加房型哦！</p>
+                </div>
+                <div class="blank_div"></div>
+                <div class="row room-row room-plan-row even-row">
+                    <ul>
+                        <li class="short-li li-header">A</li>
+                        <li class="long-li">时间：<span>2017/03/01-2018/09/01</span></li>
+                        <li>房型：<span>单人房</span></li>
+                        <li>价格：<span>￥400</span></li>
+                        <li>数量：<span>30间</span></li>
+                        <li class="short-li li-footer">
+                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row room-row room-plan-row even-row">
+                    <ul>
+                        <li class="short-li li-header li-header-out">A</li>
+                        <li class="long-li">时间：<span>2017/03/01-2018/09/01</span></li>
+                        <li>房型：<span>双人房</span></li>
+                        <li>价格：<span>￥300</span></li>
+                        <li>数量：<span>30间</span></li>
+                        <li class="short-li li-footer">
+                            <span class="li-btn-state">失效</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="blank_div"></div>
+                <div class="blank_div"></div>
             </div>
         </div>
         <br>

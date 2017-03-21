@@ -153,4 +153,6 @@ public class Hotel implements Serializable{
     public void setApplications(List<Application> applications) {
         this.applications = applications;
     }
+
+
 }

@@ -2,6 +2,7 @@ package com.edu.nju.wel.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by zs on 2017/3/3.
@@ -15,6 +16,9 @@ public class Room implements Serializable{
     private int rId;
     //名称-初始为null
     private String name;
+    @Column(columnDefinition = "INT default 0",nullable = false)
+    //是否删除 0-没有，1-删除
+    private int deleted;
     //价格
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int price;
@@ -28,6 +32,9 @@ public class Room implements Serializable{
     @JoinColumn(name="hId")//指定在本实体所映射的那个表中关联的外键
     @ManyToOne(targetEntity=Hotel.class)
     private Hotel hotel;
+
+    @OneToMany(targetEntity = Plan.class, mappedBy = "room")
+    private List<Plan> plans;
 
     public Room() {
     }
@@ -78,5 +85,13 @@ public class Room implements Serializable{
 
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public int getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(int deleted) {
+        this.deleted = deleted;
     }
 }
