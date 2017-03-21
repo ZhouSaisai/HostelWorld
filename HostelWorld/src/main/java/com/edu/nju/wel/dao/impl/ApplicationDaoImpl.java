@@ -43,7 +43,7 @@ public class ApplicationDaoImpl implements ApplicationDao {
         String hql = "from Application a where a.state = "+state+" order by a.time desc";
         Query query=session.createQuery(hql);
         list=query.list();
-        if(list==null)
+        if(list==null&&list.isEmpty())
             list=new ArrayList<Application>();
         //事务
         tx.commit();
@@ -87,11 +87,11 @@ public class ApplicationDaoImpl implements ApplicationDao {
         String hql = "from Application a where a.hotel.hId = "+hId+" order by a.time desc";
         Query query=session.createQuery(hql);
         list=query.list();
-        if(list==null)
-            result=new ArrayList<Application>();
+        if(list==null&&list.isEmpty())
+            list=new ArrayList<Application>();
         //事务
         tx.commit();
         session.close();
-        return result;
+        return list;
     }
 }

@@ -60,12 +60,8 @@ public class HotelInfoController {
             //设置modelAndView
             view.setViewName("hotelInfo");
             view.addObject("info",info);
-//            List<Application> apps = app.getALLModifyApplication(temp.gethId());
-//            for (Application a:apps){
-//                System.out.println(a.toString());
-//                System.out.println("ssss");
-//            }
-//            view.addObject("apps",apps);
+            List<Application> apps = app.getALLModifyApplication(temp.gethId());
+            view.addObject("apps",apps);
             //财务流水
 //            List<Cash> cashs = cashService.getCashByVId(info.getId());
 //            view.addObject("cashs",cashs);

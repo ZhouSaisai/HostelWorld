@@ -194,7 +194,6 @@
                                         <li>
                                             <div class="application-header">
                                                 <span class="order"><%=i%></span>
-                                                <img src="../img/common/hotel<%=i%5%>.jpg">
                                             </div>
                                         </li>
                                         <li>
@@ -255,16 +254,16 @@
                                             <div class="application-operate-container">
                                                 <c:choose>
                                                     <c:when test="${app.state==0}">
-                                                        <span class="border-btn application-operate-btn">申请中</span>
+                                                        <span class="application-state application-state-apply">申请中</span>
                                                     </c:when>
                                                     <c:when test="${app.state==1}">
-                                                        <span class="border-btn application-operate-btn">已通过</span>
+                                                        <span class="application-state application-state-success">已通过</span>
                                                     </c:when>
                                                     <c:when test="${app.state==2}">
-                                                        <span class="border-btn application-operate-btn">被拒绝</span>
+                                                        <span class="application-state application-state-fail">被拒绝</span>
                                                     </c:when>
                                                     <c:when test="${app.state==3}">
-                                                        <span class="border-btn application-operate-btn">已覆盖</span>
+                                                        <span class="application-state application-state-out">被覆盖</span>
                                                     </c:when>
                                                 </c:choose>
                                             </div>
@@ -316,7 +315,7 @@
     </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
-<script src="../js/pageGroup.js"></script>
+<script src="../js/pageGroupHelper.js"></script>
 <script src="../js/hotelInfo.js"></script>
 </body>
 </html>

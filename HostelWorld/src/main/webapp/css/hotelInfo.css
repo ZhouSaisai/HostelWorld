@@ -10,4 +10,65 @@
     margin-left: 36%;
 }
 
+.application-row{
+    widtH:90%;
+    margin: 15px auto;
+    padding: 10px 10px;
+}
+
+
+.application-header{
+    height: 90px;
+    display: block;
+}
+.application-header span{
+    font-size: 28px;
+    margin-right: 10px;
+    line-height: 90px;
+    height: 90px;
+    vertical-align: middle;
+}
+
+.application-content-container{
+    width:540px;
+    height: 90px;
+    padding: 10px 10px;
+}
+.application-content-left{
+    width:40%;
+}
+.application-content-right{
+    width:60%;
+}
+
+.application-state{
+    display: inline-block;
+    color: #333;
+    border-radius: 4px;
+    width: 70px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    float: right;
+    font-size: 15px;
+    margin: 30px auto;
+    color: white;
+}
+
+.application-state-success{
+    background-color: #4cae4c;
+}
+
+.application-state-fail{
+    background-color: #f13838;
+}
+
+.application-state-apply{
+    background-color: #5389d2;
+}
+
+.application-state-out{
+    background-color: #555555;
+}
+
 
