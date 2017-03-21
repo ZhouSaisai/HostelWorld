@@ -1,3 +1,4 @@
+<%@ page import="com.edu.nju.wel.info.HotelInfo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -27,12 +28,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
+                <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
                 <li><a href="#">订单登记</a></li>
                 <li><a href="#">客栈统计</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">客栈空间</a></li>
+                <li><a href="/HotelWorld/hotel_zone?id=<%=((HotelInfo)session.getAttribute("info")).gethId()%>">客栈空间</a></li>
                 <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->

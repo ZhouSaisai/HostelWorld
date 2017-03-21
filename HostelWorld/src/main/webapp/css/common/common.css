@@ -1,6 +1,7 @@
 body {
     background-color: #F9F9F9;
 }
+
 .main-content{
     position: relative;
     width:74%;
@@ -11,4 +12,91 @@ body {
 .row{
     margin-right: 0;
     margin-left: 0;
+}
+
+.content-row{
+    margin: 40px 0;
+}
+
+.input-row{
+    width:100%;
+    margin:20px 0;
+    border: 1px solid #EBEBEB;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 10px 40px;
+}
+.input-row .title{
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.input-row .title span{
+    font-weight: bold;
+    font-size: 15px;
+    color: #333;
+    border-bottom: 2px solid #5288d7;
+    margin-bottom: -1px;
+    padding: 10px 5px 5px;
+    display: inline-block;
+}
+
+.reg-input {
+    border: 1px solid #d3d3d3;
+    height: 28px;
+    border-radius: 4px;
+    text-indent: 12px;
+    width: 71%;
+    font-size: 14px;
+    background: none;
+    margin-left: 5px;
+}
+
+.reg-input.mid{
+    width: 68%;
+}
+.reg-input.long{
+    width: 63%;
+}
+
+.errorMsg {
+    float: left;
+    height: 28px;
+    margin:20px 30px 1px 77px;
+    color: #ff6767;
+    /*display: none;*/
+}
+
+.border-btn {
+    border: 1px solid #e6e6e6;
+    display: inline-block;
+    font-size: 14px;
+    color: #333;
+    border-radius: 4px;
+    width: 90px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    transition: color .1s;
+    float:right;
+    margin:16px 130px 5px -110px;
+}
+
+.border-btn:hover {
+    color: #5288d7;
+    border-color: #5288d7;
+}
+
+.btn-second{
+    display: none;
+}
+/** 专用作列表，表格等的无数据显示 */
+.notice{
+    width: 100%;
+    font-size: 16px;
+    margin: 40px auto;
+    text-align: center;
+}
+.blank_div{
+    height: 10px;
 }

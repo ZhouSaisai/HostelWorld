@@ -1,0 +1,50 @@
+.room-type-notice{
+    display: none;
+}
+
+.room-button-container a{
+    position: absolute;
+    margin-top: 5px;
+    right: 55px;
+    font-size: 14px;
+    color: #9c9ed8;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    width: 90px;
+    height: 28px;
+    line-height: 26px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.room-button-container a:hover{
+    color: #5389d2;
+    border-color: #5389d2;
+}
+.room-row{
+    width: 88%;
+    margin: 15px auto 0;
+    border: 1px solid #e6e6e6;
+    border-radius: 30px;
+}
+
+
+.room-row ul{
+    margin: 0;
+    padding: 0;
+
+}
+.room-row li{
+    display: inline-block;
+    width: 22%;
+    float: left;
+    font-size: 18px;
+    text-align: center;
+    padding: 5px 0;
+}
+.room-row .short-li{
+    width: 17%;
+}
+
+
