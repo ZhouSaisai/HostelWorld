@@ -1,9 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
 import com.edu.nju.wel.dao.ApplicationDao;
-import com.edu.nju.wel.dao.CashDao;
 import com.edu.nju.wel.model.Application;
-import com.edu.nju.wel.model.Cash;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

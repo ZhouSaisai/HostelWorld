@@ -1,6 +1,5 @@
 package com.edu.nju.wel.dao;
 
-import com.edu.nju.wel.model.Room;
 import com.edu.nju.wel.util.helper.ApplicationContextHelper;
 import org.springframework.context.ApplicationContext;
 

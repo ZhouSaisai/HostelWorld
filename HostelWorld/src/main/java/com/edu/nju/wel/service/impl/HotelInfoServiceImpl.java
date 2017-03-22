@@ -1,17 +1,13 @@
 package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
-import com.edu.nju.wel.info.*;
-import com.edu.nju.wel.model.*;
+import com.edu.nju.wel.info.HotelInfo;
+import com.edu.nju.wel.model.Application;
+import com.edu.nju.wel.model.Hotel;
 import com.edu.nju.wel.service.HotelInfoService;
-import com.edu.nju.wel.service.PersonInfoService;
-import com.edu.nju.wel.util.helper.PointHelper;
-import com.sun.xml.internal.rngom.digested.DMixedPattern;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * Created by zs on 2017/3/18.

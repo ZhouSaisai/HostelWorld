@@ -19,7 +19,7 @@ public class Plan implements Serializable{
     //结束
     private Date end;
     @Column(columnDefinition = "INT default 0",nullable = false)
-    //是否删除 0-没有，1-删除
+    //是否删除 0-没有，1-删除,2-失效
     private int deleted;
     //价格
     @Column(columnDefinition = "INT default 0",nullable = false)

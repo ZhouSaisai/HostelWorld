@@ -3,7 +3,6 @@ package com.edu.nju.wel.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
 /**
  * Created by zs on 2017/3/3.

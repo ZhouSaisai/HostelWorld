@@ -6,7 +6,6 @@ import com.edu.nju.wel.model.Hotel;
 import com.edu.nju.wel.service.ApplicationService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
