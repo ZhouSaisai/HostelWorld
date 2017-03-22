@@ -1,0 +1,112 @@
+.order-header{
+    width: 100%;
+    height:44%;
+    background-image: url("../img/welcome-bgi-sm2.jpg");
+}
+
+#logReg{
+    width:450px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+#logReg * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#logReg .top-wrapper {
+    text-align: center;
+}
+
+#logReg .top-wrapper p {
+    margin: 15px auto;
+    color: #555555;
+    font-size: 20px;
+}
+
+.content-row{
+    margin: 10px 0;
+}
+
+.recommend-hotel-row{
+    margin:20px 10px;
+}
+
+.recommend-hotel-col{
+    width: 322px;
+    height: 270px;
+    margin: 0 auto;
+    border:1px solid #e3e3e3;
+    border-radius: 5px;
+}
+
+.order_hotel_img{
+    display: block;
+}
+
+.recommend-hotel-content{
+    float: left;
+    font-size: 16px;
+}
+
+.recommend-hotel-content-left{
+    width:60%;
+}
+
+.recommend-hotel-content-right{
+    width:40%;
+}
+.order_hotel_name{
+    font-size: 19px;
+    margin: 8px 25px 3px;
+    color: #5389d2;
+}
+
+.order_hotel_address{
+    margin: 0px 25px 10px;
+    color: #666666;
+}
+.order-btn{
+    display: block;
+    width:80px;
+    margin: 20px auto 20px;
+    color: #5288d7;
+    border-color: #5288d7;
+    float: none;
+}
+
+.application-row {
+    width: 86%;
+    margin: 20px auto;
+    padding: 10px 15px;
+    border-radius: 10px;
+}
+
+.application-header img{
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    margin-right: 5px;
+    margin-left: 15px;
+}
+
+.application-content-container{
+    width:630px;
+    height: 80px;
+    padding: 10px 30px;
+}
+
+.application-content-title:first-child {
+    margin: 0 10px 15px;
+}
+
+.application-operate-container {
+    height: 80px;
+}
+
+.application-operate-btn {
+    font-size: 15px;
+    float: none;
+    margin: 28px auto 0;
+}

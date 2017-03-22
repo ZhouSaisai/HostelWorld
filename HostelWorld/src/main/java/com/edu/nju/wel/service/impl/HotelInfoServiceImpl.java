@@ -8,6 +8,7 @@ import com.edu.nju.wel.service.HotelInfoService;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by zs on 2017/3/18.
@@ -70,6 +71,10 @@ public class HotelInfoServiceImpl implements HotelInfoService {
         hotel.setPassword(passwordNew);
         DAOManager.hotelDao.updateHotel(hotel);
         return "修改成功！";
+    }
+
+    public List<Hotel> getHotels() {
+        return DAOManager.hotelDao.getHotelList();
     }
 
 }

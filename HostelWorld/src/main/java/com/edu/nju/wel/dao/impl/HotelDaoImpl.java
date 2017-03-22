@@ -78,6 +78,7 @@ public class HotelDaoImpl implements HotelDao{
         Transaction tx = session.beginTransaction();
         //查询
         Criteria criteria = session.createCriteria(Hotel.class);
+        criteria.add(Expression.eq("state",1));
         result=criteria.list();
         if(result==null){
             result=new ArrayList<Hotel>();
