@@ -1,10 +1,13 @@
 package com.edu.nju.wel.task;
 
 import com.edu.nju.wel.dao.DAOManager;
+import com.edu.nju.wel.model.Plan;
 import com.edu.nju.wel.model.VIP;
+import com.edu.nju.wel.util.helper.DateHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
@@ -16,9 +19,10 @@ import java.util.List;
 public class StateMonitorTask {
     //每天凌晨5点触发
     @Scheduled(cron="0 0 5 * * ? ")
-//    @Scheduled(cron="0 0/5 22 * * ? ")//间隔5min执行
+//    @Scheduled(cron="0 0/12 16 * * ? ")//间隔5min执行
     public void stateMonitor(){
-        System.out.println("这是一个定时器输出");
+
+        System.out.println("这是一个定时器更新输出");
         List<VIP> list = DAOManager.vipDao.getVIPList();
         for(VIP vip : list){
             //获取客户的存储时间和状态
@@ -52,5 +56,20 @@ public class StateMonitorTask {
                 }
             }
         }
+        System.out.println("这是一个定时器更新输出-2");
+//        List<Plan> plans = DAOManager.planDao.getAllPlan();
+//        for(Plan plan : plans){
+//            System.out.println(plan.toString());
+//            if(plan.getDeleted()==0){
+//                Date end = plan.getEnd();
+//                System.out.println(plan.toString());
+//                if(DateHelper.isAfter(end)){
+//                    plan.setDeleted(2);
+//                    DAOManager.planDao.updatePlan(plan);
+//                }
+//            }
+//        }
     }
+
+
 }

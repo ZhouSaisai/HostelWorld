@@ -17,9 +17,15 @@ public interface PlanDao {
     //获得酒店某房间对应的某计划
     public Plan getPlan(int pId);
 
-    //增加房间
+    //增加计划
     public int addPlan(Plan plan);
 
-    //删除房间
+    //删除计划
     public int deletePlan(int pId);
+
+    //获得全部计划
+    public List<Plan> getAllPlan();
+
+    //更新计划
+    public void updatePlan(Plan plan);
 }

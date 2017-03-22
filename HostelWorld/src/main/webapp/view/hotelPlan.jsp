@@ -30,9 +30,9 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
                     <c:if test="${info.state==1}">
-                        <li><a href="#">发布计划</a></li>
-                        <li><a href="#">订单登记</a></li>
-                        <li><a href="#">客栈统计</a></li>
+                        <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
+                        <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
+                        <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
                     </c:if>
                 </ul>
 
@@ -52,47 +52,32 @@
                 <div class="title">
                     <span>房型一览</span>
                 </div>
-
-                <div class="notice room-type-notice">
-                    <p>还没有录入房型哦!</p>
-                    <p>快来添加,不然是发布不了计划的！</p>
-                </div>
-                <div class="blank_div"></div>
-                <div class="row room-row room-type-row even-row">
-                    <ul>
-                        <li class="short-li li-header">A</li>
-                        <li>房型：<span>单人房</span></li>
-                        <li>价格：<span>￥500</span></li>
-                        <li>数量：<span>30间</span></li>
-                        <li class="short-li li-footer">
-                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row room-row room-type-row even-row">
-                    <ul>
-                        <li class="short-li li-header">B</li>
-                        <li>房型：<span>双人房</span></li>
-                        <li>价格：<span>￥500</span></li>
-                        <li>数量：<span>30间</span></li>
-                        <li class="short-li li-footer">
-                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row room-row room-type-row even-row">
-                    <ul>
-                        <li class="short-li li-header">C</li>
-                        <li>房型：<span>总统房</span></li>
-                        <li>价格：<span>￥5000</span></li>
-                        <li>数量：<span>30间</span></li>
-                        <li class="short-li li-footer">
-                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="blank_div"></div>
-                <div class="blank_div"></div>
+                <c:choose>
+                    <c:when test="${rooms.isEmpty()}">
+                        <div class="notice room-type-notice">
+                            <p>还没有录入房型哦!</p>
+                            <p>快来添加,不然是发布不了计划的！</p>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="blank_div"></div>
+                        <c:forEach items="${rooms}" var="room">
+                            <div class="row room-row room-type-row even-row">
+                                <ul>
+                                    <li class="short-li li-header">A</li>
+                                    <li>房型：<span>${room.name}</span></li>
+                                    <li>价格：<span>￥${room.price}</span></li>
+                                    <li>数量：<span>${room.num}间</span></li>
+                                    <li class="short-li li-footer">
+                                        <span class="li-btn" onclick="deleteRoom(${room.rId})">删除</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </c:forEach>
+                        <div class="blank_div"></div>
+                        <div class="blank_div"></div>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <div class="row input-row choose-row add-room-row">
@@ -115,7 +100,7 @@
                             <input type="text" class="reg-input inline-reg-input" id="type-room-num" name="name">
                         </li>
                         <li class="add-last-li">
-                            <span class="border-btn inline-border-btn" onclick="manage_modify_app()">增加</span>
+                            <span class="border-btn inline-border-btn" onclick="addRoomSave()">增加</span>
                         </li>
                     </ul>
                 </div>
@@ -125,6 +110,7 @@
                 <div class="title">
                     <span>发布计划</span>
                 </div>
+
                 <div class="blank_div"></div>
                 <div class="row add-plan-info">
 
@@ -132,10 +118,10 @@
                         <ul>
                             <li class="plan-li plan-li-b">
                                 <span class="n">房型：</span>
-                                <select class="type-select">
-                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单人房</option>
-                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;双人房</option>
-                                    <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总统房</option>
+                                <select class="type-select" id="plan-room-type">
+                                    <c:forEach var="type" items="${rooms}">
+                                        <option value="${type.rId}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${type.name}</option>
+                                    </c:forEach>
                                 </select>
                             </li>
                             <li class="plan-li plan-li-b">
@@ -160,7 +146,7 @@
                                 <input type="date" class="reg-input reg-plan-input" id="type-plan-time-end" name="name">
                             </li>
                             <li class="plan-li">
-                                <span class="border-btn inline-border-btn-b">增加</span>
+                                <span class="border-btn inline-border-btn-b" onclick="addPlanSave()">增加</span>
                                 <span class="border-btn inline-border-btn-b" onclick="refresh()">取消</span>
                             </li>
                         </ul>
@@ -174,40 +160,44 @@
                 <div class="title">
                     <span>优惠计划</span>
                 </div>
-                <div class="notice room-type-notice">
-                    <p>当前没有优惠计划哦!</p>
-                    <p>快看看有没有添加房型哦！</p>
-                </div>
-                <div class="blank_div"></div>
-                <div class="row room-row room-plan-row even-row">
-                    <ul>
-                        <li class="short-li li-header">A</li>
-                        <li class="long-li">时间：<span>2017/03/01-2018/09/01</span></li>
-                        <li>房型：<span>单人房</span></li>
-                        <li>价格：<span>￥400</span></li>
-                        <li>数量：<span>30间</span></li>
-                        <li class="short-li li-footer">
-                            <span class="li-btn" onclick="manage_modify_app()">删除</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="row room-row room-plan-row even-row">
-                    <ul>
-                        <li class="short-li li-header li-header-out">A</li>
-                        <li class="long-li">时间：<span>2017/03/01-2018/09/01</span></li>
-                        <li>房型：<span>双人房</span></li>
-                        <li>价格：<span>￥300</span></li>
-                        <li>数量：<span>30间</span></li>
-                        <li class="short-li li-footer">
-                            <span class="li-btn-state">失效</span>
-                        </li>
-                    </ul>
-                </div>
+                <c:choose>
+                    <c:when test="${plans.isEmpty()}">
+                        <div class="notice room-type-notice">
+                            <p>当前没有优惠计划哦!</p>
+                            <p>快看看有没有添加房型哦！</p>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="blank_div"></div>
+                        <c:forEach items="${plans}" var="plan">
+                            <div class="row room-row room-plan-row even-row">
+                                <ul>
+                                    <li class="short-li li-header">A</li>
+                                    <li class="long-li">时间：<span>${plan.start}~${plan.end}</span></li>
+                                    <li>房型：<span>${plan.room.name}</span></li>
+                                    <li>价格：<span>￥${plan.price}</span></li>
+                                    <li>数量：<span>${plan.num}间</span></li>
+                                    <li class="short-li li-footer">
+                                        <c:choose>
+                                            <c:when test="${plan.deleted==0}">
+                                                <span class="li-btn" onclick="deletePlan(${plan.pId})">删除</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="li-btn-state">失效</span>
+                                            </c:otherwise>
+                                        </c:choose>
 
-                <div class="blank_div"></div>
-                <div class="blank_div"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </c:forEach>
+                        <div class="blank_div"></div>
+                        <div class="blank_div"></div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
+        <input type="hidden" id="hId" value="${info.hId}">
         <br>
         <br>
         <br>

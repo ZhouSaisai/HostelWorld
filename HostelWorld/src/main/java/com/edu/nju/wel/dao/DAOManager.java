@@ -13,6 +13,7 @@ public class DAOManager {
     public final static CashDao cashDao;
     public final static HotelDao hotelDao;
     public final static RoomDao roomDao;
+    public final static PlanDao planDao;
     public final static ApplicationDao applicationDao;
 
     static {
@@ -22,6 +23,7 @@ public class DAOManager {
         cashDao = context.getBean(CashDao.class);
         hotelDao = context.getBean(HotelDao.class);
         roomDao = context.getBean(RoomDao.class);
+        planDao = context.getBean(PlanDao.class);
         applicationDao = context.getBean(ApplicationDao.class);
     }
 

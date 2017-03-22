@@ -57,15 +57,21 @@ public class RoomDaoImpl implements RoomDao {
     }
 
     public int addRoom(Room room) {
+        //添加房型
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         session.save(room);
+        //事务
+        tx.commit();
+        session.close();
         return 0;
     }
 
     public int deleteRoom(int rId) {
         Room room = getRoom(rId);
-
+        if(room == null){
+            return -1;
+        }
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         room.setDeleted(1);

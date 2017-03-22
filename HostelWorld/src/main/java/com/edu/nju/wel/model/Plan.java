@@ -15,9 +15,9 @@ public class Plan implements Serializable{
     @Id
     private int pId;
     //开始时间
-    private Date start;
+    private String start;
     //结束
-    private Date end;
+    private String end;
     @Column(columnDefinition = "INT default 0",nullable = false)
     //是否删除 0-没有，1-删除,2-失效
     private int deleted;
@@ -43,19 +43,19 @@ public class Plan implements Serializable{
         this.pId = pId;
     }
 
-    public Date getStart() {
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Date start) {
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Date getEnd() {
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(String end) {
         this.end = end;
     }
 
@@ -89,5 +89,17 @@ public class Plan implements Serializable{
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    @Override
+    public String toString() {
+        return "Plan{" +
+                "pId=" + pId +
+                ", start=" + start +
+                ", end=" + end +
+                ", deleted=" + deleted +
+                ", price=" + price +
+                ", num=" + num +
+                '}';
     }
 }

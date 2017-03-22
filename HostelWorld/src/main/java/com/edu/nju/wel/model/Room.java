@@ -94,4 +94,26 @@ public class Room implements Serializable{
     public void setDeleted(int deleted) {
         this.deleted = deleted;
     }
+
+    public List<Plan> getPlans() {
+        return plans;
+    }
+
+    public void setPlans(List<Plan> plans) {
+        this.plans = plans;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "rId=" + rId +
+                ", name='" + name + '\'' +
+                ", deleted=" + deleted +
+                ", price=" + price +
+                ", num=" + num +
+                ", orderNum=" + orderNum +
+                ", hotel=" + hotel +
+                ", plans=" + plans +
+                '}';
+    }
 }
