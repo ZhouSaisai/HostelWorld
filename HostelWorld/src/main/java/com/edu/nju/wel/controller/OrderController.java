@@ -3,7 +3,10 @@ package com.edu.nju.wel.controller;
 import com.edu.nju.wel.info.HotelInfo;
 import com.edu.nju.wel.info.PersonInfo;
 import com.edu.nju.wel.model.Hotel;
+import com.edu.nju.wel.model.Plan;
+import com.edu.nju.wel.model.Room;
 import com.edu.nju.wel.service.HotelInfoService;
+import com.edu.nju.wel.service.HotelPlanService;
 import com.edu.nju.wel.service.PersonInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,8 @@ public class OrderController {
     PersonInfoService person;
     @Autowired
     HotelInfoService hotelService;
+    @Autowired
+    HotelPlanService planService;
 
     @RequestMapping(value = "order_hotel")
     public ModelAndView orderHotel(HttpServletRequest request, HttpServletResponse response) {
@@ -76,12 +81,20 @@ public class OrderController {
             PersonInfo info = person.getPersonById(temp.getId());
             //刷新session
             session.setAttribute("info",info);
-            //获得全部酒店
+            //获得酒店信息
             int hId = Integer.parseInt(id);
             HotelInfo hotel=hotelService.getHotelById(hId);
+            //获得酒店房间信息
+            List<Room> rooms = planService.getRoomsByHId(hId);
+            //获得房间对应的计划信息
+            for(Room room:rooms){
+                List<Plan> plans = planService.getPlansByRId(room.getrId());
+                room.setPlans(plans);
+            }
 
-            view.setViewName("orderHotel");
+            view.setViewName("hotelDetail");
             view.addObject("hotel",hotel);
+            view.addObject("rooms",rooms);
             view.addObject("info",info);
             view.addObject("vId",temp.getId());
         }

@@ -27,6 +27,9 @@ public class Plan implements Serializable{
     //房间数
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int num;
+    //被预定房间数
+    @Column(columnDefinition = "INT default 0",nullable = false)
+    private int orderNum;
 
     @JoinColumn(name="rId")//指定在本实体所映射的那个表中关联的外键
     @ManyToOne(targetEntity=Room.class)
@@ -89,6 +92,14 @@ public class Plan implements Serializable{
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
     }
 
     @Override
