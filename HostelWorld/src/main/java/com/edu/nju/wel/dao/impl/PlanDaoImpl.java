@@ -45,7 +45,7 @@ public class PlanDaoImpl implements PlanDao {
         Transaction tx = session.beginTransaction();
         List<Plan> list;
         //查询
-        String hql = "from Plan p where p.deleted == 0 and p.room.rId= "+ rId+" order by p.pId desc";
+        String hql = "from Plan p where p.deleted = 0 and p.room.rId= "+ rId+" order by p.pId desc";
         Query query=session.createQuery(hql);
         list=query.list();
         if(list==null)

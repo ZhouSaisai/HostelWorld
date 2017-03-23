@@ -12,6 +12,9 @@ public interface HotelPlanService {
     //获得客栈的全部房间信息
     public List<Room> getRoomsByHId(int hId);
 
+    //获得客栈某房型的信息
+    public Room getRoomByRId(int rId);
+
     //获得客栈的全部计划信息
     public List<Plan> getPlansByHId(int hId);
 

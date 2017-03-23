@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".choose-row").css("display","none");
+    // $(".choose-row").css("display","none");
     var typeNum = $('.room-type-row .li-header').length;
     var charList = 'ABCDEFGHIGKLMOPQRSTUVWXYZ';
     for(var i=0;i<typeNum;i++){
@@ -9,22 +9,7 @@ $(document).ready(function () {
 });
 
 function orderRoom(rId) {
-    $.ajax({
-        type: "post",
-        async: true,
-        url: "/HotelWorld/delete_room",
-        data: {
-            "rId":rId
-        },
-        success: function (result) {
-            alert(result);
-            refresh();
-            return true;
-        },
-        error: function () {
-            alert("未知错误");
-        }
-    });
+    window.location.href="/HotelWorld/hotel_order?rId="+rId;
 }
 
 

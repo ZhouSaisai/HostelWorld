@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
-                    <li><a href="/HotelWorld/order_hotel">预定客栈</a></li>
+                    <li><a href="/HotelWorld/hotel_list">预定客栈</a></li>
                     <li><a href="/HotelWorld/hotel_check">我的预定</a></li>
                     <li><a href="/HotelWorld/hotel_analyse">我的消费分析</a></li>
                 </ul>
@@ -111,7 +111,15 @@
                                     <li class="short-li li-header">A</li>
                                     <li>房型：<span>${room.name}</span></li>
                                     <li>价格：<span>￥${room.price}</span></li>
-                                    <li>数量：<span>${room.num-room.orderNum}间</span></li>
+                                    <c:choose>
+                                        <c:when test="${room.num-room.orderNum==0}">
+                                            <li><span class="no-plan">已售完</span></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li>还剩：<span>${room.num-room.orderNum}间</span></li>
+                                        </c:otherwise>
+                                    </c:choose>
+
                                     <c:choose>
                                         <c:when test="${room.plans.size()==0}">
                                             <li><span class="no-plan">无优惠计划</span></li>
@@ -121,7 +129,14 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <li class="short-li li-footer">
-                                        <span class="li-btn" onclick="orderRoom(${room.rId})">预定</span>
+                                        <c:choose>
+                                            <c:when test="${room.num-room.orderNum==0}">
+                                                <span class="no-plan">售罄</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="li-btn" onclick="orderRoom(${room.rId})">预定</span>
+                                            </c:otherwise>
+                                    </c:choose>
                                     </li>
                                 </ul>
                             </div>
@@ -137,7 +152,7 @@
                                                         <li><span class="no-plan">已售完</span></li>
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <li>数量：<span>${plan.num-plan.orderNum}间</span></li>
+                                                        <li>还剩：<span>${plan.num-plan.orderNum}间</span></li>
                                                     </c:otherwise>
                                                 </c:choose>
 
@@ -176,6 +191,6 @@
     </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
-    <script src="../js/hotelDetail.js"></script>
+<script src="../js/hotelDetail.js"></script>
 </body>
 </html>

@@ -32,8 +32,8 @@ public class OrderController {
     @Autowired
     HotelPlanService planService;
 
-    @RequestMapping(value = "order_hotel")
-    public ModelAndView orderHotel(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "hotel_list")
+    public ModelAndView hotelList(HttpServletRequest request, HttpServletResponse response) {
         //构造ModelAndView
         ModelAndView view = new ModelAndView("index");
         //限制进入
@@ -54,7 +54,7 @@ public class OrderController {
             //获得全部酒店
             List<Hotel> hotels=hotelService.getHotels();
 
-            view.setViewName("orderHotel");
+            view.setViewName("hotelList");
             view.addObject("hotels",hotels);
             view.addObject("info",info);
             view.addObject("vId",temp.getId());
@@ -96,6 +96,40 @@ public class OrderController {
             view.addObject("hotel",hotel);
             view.addObject("rooms",rooms);
             view.addObject("info",info);
+            view.addObject("vId",temp.getId());
+        }
+        return view;
+    }
+
+    @RequestMapping(value = "hotel_order")
+    public ModelAndView hotelOrder(@RequestParam String rId, HttpServletRequest request, HttpServletResponse response) {
+        //构造ModelAndView
+        ModelAndView view = new ModelAndView("index");
+        //限制进入
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            try {
+                response.sendRedirect("/HotelWorld/welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return view;
+            }
+            return view;
+        }else{
+            PersonInfo temp = (PersonInfo) session.getAttribute("info");
+            PersonInfo info = person.getPersonById(temp.getId());
+            //刷新session
+            session.setAttribute("info",info);
+            //获得房间信息
+            int rIdInt = Integer.parseInt(rId);
+            Room room = planService.getRoomByRId(rIdInt);
+            //获得房间对应的计划信息
+            List<Plan> plans = planService.getPlansByRId(rIdInt);
+
+            view.setViewName("hotelOrder");
+            view.addObject("room",room);
+            view.addObject("info",info);
+            view.addObject("plans",plans);
             view.addObject("vId",temp.getId());
         }
         return view;

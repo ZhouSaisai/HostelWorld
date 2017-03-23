@@ -21,6 +21,10 @@ public class HotelPlanServiceImpl implements HotelPlanService {
         return DAOManager.roomDao.getRooms(hId);
     }
 
+    public Room getRoomByRId(int rId) {
+        return DAOManager.roomDao.getRoom(rId);
+    }
+
     public List<Plan> getPlansByHId(int hId) {
         return DAOManager.planDao.getPlansbyHId(hId);
     }

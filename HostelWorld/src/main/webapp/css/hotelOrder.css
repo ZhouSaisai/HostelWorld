@@ -1,0 +1,100 @@
+.room-row li{
+    width:33.3%;
+}
+
+.plans-title{
+    font-size: 17px;
+    color: #666666;
+    text-align: center;
+    margin:20px auto 0;
+}
+
+.room-row.room-plan-row li{
+    width:23.5%;
+}
+.room-row.room-plan-row  .long-li{
+    width: 42%;
+}
+.room-row.room-plan-row .short-li{
+    width: 6%;
+}
+
+
+/*预定表单*/
+ul li{
+    display: block;
+}
+
+.order-input-row{
+    margin:10px 10px;
+}
+
+.order-first-ul li{
+    float: left;
+    width: 33.3%;
+    margin-bottom: 20px;
+}
+
+
+.reg-order-input{
+    width: 240px;
+}
+
+.span.n {
+    margin: 0 10px 0 30px;
+}
+
+.order-second-ul{
+    display: block;
+    clear:both;
+}
+.order-second-ul li{
+    float: left;
+    width: 33.3%;
+}
+.order-first-ul li.input-li,.order-second-ul li.input-li{
+    width:38%;
+}
+.order-first-ul li.msg-li,.order-second-ul li.msg-li{
+    width:20%;
+    text-align: center;
+    margin-right: 30px;
+    margin-top: -5px;
+}
+
+.reg-input.reg-order-input[type=text]{
+    padding-left:15px;
+}
+.type-select{
+    border: 1px solid #d3d3d3;
+    height: 28px;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 240px;
+    outline: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.order-btn{
+    float: none;
+    margin: 0 auto 0 15px;
+}
+
+.level-info-container{
+    float:right;
+    margin:10px 8px -12px;
+    color: #666666;
+}
+
+.cal_price{
+    font-size: 24px;
+    color:#a94442;
+    margin:0 3px 10px -10px;
+}
+
+.origin_price{
+    font-size: 15px;
+    text-decoration: line-through;
+}
