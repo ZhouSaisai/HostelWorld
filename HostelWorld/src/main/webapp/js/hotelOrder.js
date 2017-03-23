@@ -11,7 +11,7 @@ $(document).ready(function () {
             $.ajax({
                 type: "post",
                 async: true,
-                url: "/HotelWorld/order_hotel",
+                url: "/HotelWorld/get_price",
                 data: {
                     "plan":plan,
                     "num":num,
@@ -21,7 +21,9 @@ $(document).ready(function () {
                     "rId":rId
                 },
                 success: function (result) {
-
+                    var array =result.split(";");
+                    $(".cal_price").text("￥"+array[0]);
+                    $(".origin_price").text("￥"+array[0]);
                 }
             });
         }

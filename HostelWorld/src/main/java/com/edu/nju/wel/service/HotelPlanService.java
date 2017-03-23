@@ -21,6 +21,9 @@ public interface HotelPlanService {
     //获得客栈某房型的计划信息
     public List<Plan> getPlansByRId(int rId);
 
+    //获得客栈某房型的某计划信息
+    public Plan getPlanByPId(int pId);
+
     //增加房间
     public String addRoom(int hId,Room room);
 

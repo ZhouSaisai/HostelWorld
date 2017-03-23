@@ -33,6 +33,10 @@ public class HotelPlanServiceImpl implements HotelPlanService {
         return DAOManager.planDao.getPlansbyRId(rId);
     }
 
+    public Plan getPlanByPId(int pId) {
+        return DAOManager.planDao.getPlan(pId);
+    }
+
     public String addRoom(int hId, Room room) {
         Hotel hotel = DAOManager.hotelDao.getHotelById(hId);
         if(hotel==null){
