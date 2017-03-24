@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>消费分析</title>
+    <title>客栈统计</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/common/navbar.css" rel="stylesheet">
     <link href="../css/common/common.css" rel="stylesheet">
-    <link href="../css/analyse.css" rel="stylesheet">
+    <link href="../css/common/pageGroup.css" rel="stylesheet">
+    <link href="../css/personInfo.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-color navbar-static-top">
@@ -29,13 +30,15 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
-                <li><a href="/HotelWorld/hotel_list">预定客栈</a></li>
-                <li><a href="/HotelWorld/my_order">我的预定</a></li>
-                <li><a href="/HotelWorld/vip_analyse">我的消费分析</a></li>
+                <c:if test="${info.state==1}">
+                    <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
+                    <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
+                    <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
+                </c:if>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/HotelWorld/person_zone?id=${vId}">个人空间</a></li>
+                <li class="active"><a href="/HotelWorld/hotel_zone?id=${info.hId}">客栈空间</a></li>
                 <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -43,38 +46,12 @@
 </nav>
 <div class="container-fluid main-content">
     <div class="row content-row">
-        <div class="row input-row">
-            <div class="title">
-                <span>消费情况</span>
-            </div>
-            <div class="row info-row">
-                <ul>
-                    <li>
-                        <div class="info-div info-hotel-num">光顾了 <span>6</span> 家客栈</div>
-                    </li>
-                    <li>
-                        <div class="info-div info-order-num">产生了 <span>8</span> 次订单</div>
-                    </li>
-                    <li>
-                        <div class="info-div info-money-num">消费了 <span>￥1006</span> 元</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="row img-row">
-                <ul>
-                    <li>
-                        <div id="line"></div>
-                    </li>
-                    <li>
-                        <div id="bar"></div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <p>这是一个分析界面</p>
         <br>
-        <input type="hidden" id="vId" value="${vId}">
-        <footer class="global-footer footer-fixed-bottom">
+        <br>
+        <br>
+        <br>
+        <footer class="global-footer">
             <div class="copyright">
                 <p style="text-align: center;">
                     <span>© 2017 <a href="/HotelWorld/welcome" target="_blank">HostelWorld</a></span>
@@ -88,8 +65,8 @@
     </div>
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
-    <script src="../js/echarts.min.js"></script>
-    <script src="../js/vipAnalyse.js"></script>
+    <script src="../js/pageGroup.js"></script>
+    <script src="../js/personInfo.js"></script>
 </body>
 </html>
 

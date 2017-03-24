@@ -101,7 +101,7 @@ public class OrderServiceImpl implements OrderService {
         Timestamp stamp = new Timestamp(System.currentTimeMillis());
         cash.setTime(stamp);
         cash.setType(CashType.QUIT.ordinal());
-        cash.setContent("+"+money);
+        cash.setContent("+"+moneyNow);
         DAOManager.cashDao.addCash(cash);
         //房间数量变化
         int planId = order.getPlan();

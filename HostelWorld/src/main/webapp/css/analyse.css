@@ -1,0 +1,50 @@
+.content-row {
+    margin: 20px 0;
+}
+.info-row{
+    font-size:20px;
+    width:90%;
+    margin:0 auto;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.info-row li{
+    float:left;
+    width: 33.3%;
+    display: block;
+    text-align: center;
+    margin:20px 0;
+}
+
+.info-row li .info-div{
+    width:80%;
+    margin:10px auto;
+    padding: 20px 20px;
+    border-radius: 20px;
+    border: 1px solid #EBEBEB;
+    color: #666666;
+}
+
+.info-row li .info-div span{
+    font-size: 26px;
+    color: #5389d2;
+}
+
+.img-row{
+    width:90%;
+    margin:25px auto 0;
+}
+
+.img-row li{
+    float:left;
+    width: 50%;
+    display: block;
+    margin:20px 0;
+}
+
+.img-row li #line,.img-row li #bar{
+    width:500px;
+    height:400px;
+    margin:10px auto;
+}
