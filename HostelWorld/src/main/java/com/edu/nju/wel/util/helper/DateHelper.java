@@ -18,7 +18,6 @@ public class DateHelper {
             e.printStackTrace();
         }
         long d = c/1000/60/60/24;//天
-        System.out.println(d+"天");
         return (int)d;
     }
 

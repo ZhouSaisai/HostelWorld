@@ -113,8 +113,8 @@
                         </li>
                         <li class="msg-li">
                             <span class="n">价格：</span>
-                            <span class="cal_price">￥1000</span>
-                            <span class="origin_price">￥2000</span>
+                            <span class="cal_price">￥${room.price}</span>
+                            <span class="origin_price">￥${room.price}</span>
                         </li>
                     </ul>
                     <ul class="order-second-ul">
@@ -134,7 +134,7 @@
                             <input type="text" class="reg-input reg-order-input" id="order-num" name="name">
                         </li>
                         <li class="msg-li">
-                            <span class="border-btn order-btn" onclick="()">预定</span>
+                            <span class="border-btn order-btn" onclick="order()">预定</span>
                         </li>
                     </ul>
                 </div>

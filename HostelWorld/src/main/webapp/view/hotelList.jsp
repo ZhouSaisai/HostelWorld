@@ -12,6 +12,13 @@
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/common/hotelList.css" rel="stylesheet">
     <link href="../css/orderHotel.css" rel="stylesheet">
+    <style>
+        .list-background{
+            width:100%;
+            height:50%;
+            margin-bottom: -10px;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar navbar-color navbar-static-top">
@@ -43,11 +50,12 @@
         </div>
     </nav>
 
-    <div class="order-header">
+    <div class="orders-header">
+        <img src="../img/welcome-bgi-sm2.jpg" class="list-background">
     </div>
+
     <div class="container-fluid main-content">
         <div class="row content-row">
-
             <div class="row input-row">
                 <div class="title">
                     <span>精选推荐</span>

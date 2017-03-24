@@ -36,6 +36,9 @@ public class Room implements Serializable{
     @OneToMany(targetEntity = Plan.class, mappedBy = "room")
     private List<Plan> plans;
 
+    @OneToMany(targetEntity = Orders.class, mappedBy = "room")
+    private List<Orders> orderss;
+
     public Room() {
     }
 
@@ -101,6 +104,14 @@ public class Room implements Serializable{
 
     public void setPlans(List<Plan> plans) {
         this.plans = plans;
+    }
+
+    public List<Orders> getOrderss() {
+        return orderss;
+    }
+
+    public void setOrderss(List<Orders> orderss) {
+        this.orderss = orderss;
     }
 
     @Override

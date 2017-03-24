@@ -3,16 +3,19 @@ package com.edu.nju.wel.controller;
 import com.edu.nju.wel.info.HotelInfo;
 import com.edu.nju.wel.info.PersonInfo;
 import com.edu.nju.wel.model.Hotel;
+import com.edu.nju.wel.model.Orders;
 import com.edu.nju.wel.model.Plan;
 import com.edu.nju.wel.model.Room;
 import com.edu.nju.wel.service.HotelInfoService;
 import com.edu.nju.wel.service.HotelPlanService;
+import com.edu.nju.wel.service.OrderService;
 import com.edu.nju.wel.service.PersonInfoService;
 import com.edu.nju.wel.util.helper.DateHelper;
 import com.edu.nju.wel.util.helper.PointHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +37,8 @@ public class OrderController {
     HotelInfoService hotelService;
     @Autowired
     HotelPlanService planService;
+    @Autowired
+    OrderService orderService;
 
     @RequestMapping(value = "hotel_list")
     public ModelAndView hotelList(HttpServletRequest request, HttpServletResponse response) {
@@ -139,7 +144,7 @@ public class OrderController {
     }
 
 
-    @RequestMapping(value = "get_price")
+    @RequestMapping(value = "get_price",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
     @ResponseBody
     public String getPrice(HttpServletRequest request, HttpServletResponse response) {
         String vId = request.getParameter("vId");
@@ -155,6 +160,41 @@ public class OrderController {
         int numInt = Integer.parseInt(num);
         int pIdInt = Integer.parseInt(pId);
 
+        return calOrderPrice(vIdInt,pIdInt,rIdInt,start,end);
+    }
+
+    @RequestMapping(value = "order_hotel",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String orderHotel(HttpServletRequest request, HttpServletResponse response) {
+        String vId = request.getParameter("vId");
+        String rId = request.getParameter("rId");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String num = request.getParameter("num");
+        String pId = request.getParameter("plan");
+
+        //转换类型
+        int rIdInt = Integer.parseInt(rId);
+        int vIdInt = Integer.parseInt(vId);
+        int numInt = Integer.parseInt(num);
+        int pIdInt = Integer.parseInt(pId);
+        String[] price = calOrderPrice(vIdInt,pIdInt,rIdInt,start,end).split(";");
+        Double n_price = Double.parseDouble(price[0]);
+        Double o_price = Double.parseDouble(price[1]);
+        //生成订单
+        Orders order = new Orders();
+        order.setState(0);
+        order.setNum(numInt);
+        order.setStart(start);
+        order.setEnd(end);
+        order.setPlan(pIdInt);
+        order.setOriginPrice(o_price);
+        order.setNowPrice(n_price);
+        String result = orderService.addOrder(vIdInt,rIdInt,order);
+        return result;
+    }
+
+    private String calOrderPrice(int vIdInt,int pIdInt,int rIdInt,String start,String end){
         int day = DateHelper.calDays(start,end);
         if(day<0){
             return "0;0";

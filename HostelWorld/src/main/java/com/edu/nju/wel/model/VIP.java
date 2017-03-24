@@ -50,6 +50,9 @@ public class VIP implements Serializable{
     @OneToMany(targetEntity=Cash.class,mappedBy="vip")
     private List<Cash> cashs;
 
+    @OneToMany(targetEntity=Orders.class,mappedBy="vip")
+    private List<Orders> orderss;
+
     public VIP() {
     }
 
@@ -163,5 +166,13 @@ public class VIP implements Serializable{
 
     public void setCashs(List<Cash> cashs) {
         this.cashs = cashs;
+    }
+
+    public List<Orders> getOrderss() {
+        return orderss;
+    }
+
+    public void setOrderss(List<Orders> orderss) {
+        this.orderss = orderss;
     }
 }

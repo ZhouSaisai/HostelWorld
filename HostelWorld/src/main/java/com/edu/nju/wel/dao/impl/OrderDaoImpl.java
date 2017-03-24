@@ -1,7 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
-import com.edu.nju.wel.dao.RoomDao;
-import com.edu.nju.wel.model.Room;
+import com.edu.nju.wel.dao.OrderDao;
+import com.edu.nju.wel.model.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,38 +15,55 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zs on 2017/3/19.
+ * Created by zs on 2017/3/24.
  */
 @Repository
-public class RoomDaoImpl implements RoomDao {
+public class OrderDaoImpl implements OrderDao {
+
     @Autowired
     protected SessionFactory sessionFactory;
     private Session session;
 
-    public List<Room> getRooms(int hId) {
+    public List<Orders> getOrdersByRId(int rId,int state) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        List<Room> list;
+        List<Orders> list;
         //查询
-        String hql = "from Room r where r.deleted = 0 and r.hotel.hId= "+ hId;
+        String hql = "from Orders orders where orders.room.rId= "+rId+" and orders.state = "+ state +" order by orders.time desc";
         Query query=session.createQuery(hql);
         list=query.list();
         if(list==null)
-            list=new ArrayList<Room>();
+            list=new ArrayList<Orders>();
         //事务
         tx.commit();
         session.close();
         return list;
     }
 
-    public Room getRoom(int rId) {
+    public List<Orders> getOrdersByVId(int vId, int state) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        Room result = null;
+        List<Orders> list;
         //查询
-        Criteria criteria = session.createCriteria(Room.class);
-        criteria.add(Expression.eq("rId",rId));
-        List<Room> list=criteria.list();
+        String hql = "from Orders orders where orders.vip.vId= "+vId+" and orders.state = "+ state +" order by orders.time desc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList<Orders>();
+        //事务
+        tx.commit();
+        session.close();
+        return list;
+    }
+
+    public Orders getOrderByCode(String code) {
+        session = sessionFactory.openSession();
+        Orders result = null;
+        Transaction tx = session.beginTransaction();
+        //查询
+        Criteria criteria = session.createCriteria(Orders.class);
+        criteria.add(Expression.eq("code",code));
+        List<Orders> list=criteria.list();
         if(list!=null && !list.isEmpty()){
             result=list.get(0);
         }
@@ -56,37 +73,21 @@ public class RoomDaoImpl implements RoomDao {
         return result;
     }
 
-    public int addRoom(Room room) {
-        //添加房型
+    public int addOrder(Orders orders) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        session.save(room);
-        //事务
+        System.out.println("添加订单信息");
+        session.save(orders);
         tx.commit();
         session.close();
         return 0;
     }
 
-    public int deleteRoom(int rId) {
-        Room room = getRoom(rId);
-        if(room == null){
-            return -1;
-        }
+    public int updateOrder(Orders orders) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
-        room.setDeleted(1);
-        session.update(room);
-        tx.commit();
-        session.close();
-        return 0;
-    }
-
-    public int updateRoom(Room room) {
-        //更新房型
-        session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.update(room);
-        //事务
+        System.out.println("更新订单信息");
+        session.update(orders);
         tx.commit();
         session.close();
         return 0;

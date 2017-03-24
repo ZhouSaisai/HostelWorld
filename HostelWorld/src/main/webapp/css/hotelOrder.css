@@ -56,9 +56,8 @@ ul li{
     width:38%;
 }
 .order-first-ul li.msg-li,.order-second-ul li.msg-li{
-    width:20%;
+    width:24%;
     text-align: center;
-    margin-right: 30px;
     margin-top: -5px;
 }
 

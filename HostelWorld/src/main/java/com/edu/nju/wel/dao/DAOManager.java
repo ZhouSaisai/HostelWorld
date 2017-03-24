@@ -15,7 +15,7 @@ public class DAOManager {
     public final static RoomDao roomDao;
     public final static PlanDao planDao;
     public final static ApplicationDao applicationDao;
-
+    public final static OrderDao orderDao;
     static {
         ApplicationContext context = ApplicationContextHelper.getApplicationContext();
         vipDao = context.getBean(VIPDao.class);
@@ -25,6 +25,7 @@ public class DAOManager {
         roomDao = context.getBean(RoomDao.class);
         planDao = context.getBean(PlanDao.class);
         applicationDao = context.getBean(ApplicationDao.class);
+        orderDao = context.getBean(OrderDao.class);
     }
 
 }

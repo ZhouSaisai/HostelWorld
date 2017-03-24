@@ -1,33 +1,11 @@
 $(document).ready(function () {
-    $('.reg-input:input').bind('input propertychange', function() {
-        var plan = $("#plan-room-type option:selected").val();
-        var num = $("#order-num").val();
-        var start = $("#order-time-start").val();
-        var end =$("#order-time-end").val();
-        var vId = $("#vId").val();
-        var rId = $("#rId").val();
-        var reg = /^[0-9]*$/;
-        if(start!=""&&end!=""&&num!=""&&reg.test(num)){
-            $.ajax({
-                type: "post",
-                async: true,
-                url: "/HotelWorld/get_price",
-                data: {
-                    "plan":plan,
-                    "num":num,
-                    "start":start,
-                    "end":end,
-                    "vId":vId,
-                    "rId":rId
-                },
-                success: function (result) {
-                    var array =result.split(";");
-                    $(".cal_price").text("￥"+array[0]);
-                    $(".origin_price").text("￥"+array[0]);
-                }
-            });
-        }
-    })
+    $('.reg-input:input').bind('input propertychange', function () {
+        getTime();
+    });
+
+    $('#plan-room-type').bind('change', function () {
+        getTime();
+    });
 });
 
 function order(){
@@ -73,3 +51,32 @@ function order(){
     });
 }
 
+function getTime(){
+    var plan = $("#plan-room-type option:selected").val();
+    var num = $("#order-num").val();
+    var start = $("#order-time-start").val();
+    var end =$("#order-time-end").val();
+    var vId = $("#vId").val();
+    var rId = $("#rId").val();
+    var reg = /^[0-9]*$/;
+    if(start!=""&&end!=""&&num!=""&&reg.test(num)){
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "/HotelWorld/get_price",
+            data: {
+                "plan":plan,
+                "num":num,
+                "start":start,
+                "end":end,
+                "vId":vId,
+                "rId":rId
+            },
+            success: function (result) {
+                var array =result.split(";");
+                $(".cal_price").text("￥"+array[0]);
+                $(".origin_price").text("￥"+array[1]);
+            }
+        });
+    }
+}

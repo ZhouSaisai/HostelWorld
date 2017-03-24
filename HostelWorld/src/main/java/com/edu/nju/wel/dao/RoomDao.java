@@ -19,4 +19,7 @@ public interface RoomDao {
 
     //删除房间
     public int deleteRoom(int rId);
+
+    //更新房间信息
+    public int updateRoom(Room room);
 }

@@ -55,7 +55,7 @@ $(function(){
 	});
 
 	//点击上一页触发
-	$("#pageGro .pageUpC").click(function(){
+	$("#pageGro .pageUp").click(function(){
 		var pageNum = parseInt($("#pageGro li.on").html());//获取当前页
 		if (pageNum <= 1) {
 			var page = pageNum;
@@ -85,7 +85,7 @@ $(function(){
 	});
 	
 	//点击下一页触发
-	$("#pageGro .pageDownC").click(function(){
+	$("#pageGro .pageDown").click(function(){
 		var pageNum = parseInt($("#pageGro li.on").html());//获取当前页
 		var page = pageNum;
 		if (pageNum===pageCount) {
