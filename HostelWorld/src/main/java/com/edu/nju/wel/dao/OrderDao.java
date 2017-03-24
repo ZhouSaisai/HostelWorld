@@ -8,8 +8,8 @@ import java.util.List;
  * Created by zs on 2017/3/19.
  */
 public interface OrderDao {
-    //获得房间对应的全部订单
-    public List<Orders> getOrdersByRId(int rId,int state);
+    //获得酒店对应的全部订单
+    public List<Orders> getOrdersByHId(int rId,int state);
 
     //根据状态，获得用户对应的全部订单
     public List<Orders> getOrdersByVId(int vId, int state);

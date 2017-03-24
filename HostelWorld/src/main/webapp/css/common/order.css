@@ -1,0 +1,27 @@
+.order-row{
+    width:90%;
+    margin:15px auto;
+    border: 1px solid #EBEBEB;
+    border-radius: 10px;
+}
+
+.order-row *{
+    font-size: 18px;
+    margin:0;
+    padding: 0;
+}
+.order-row li{
+    display: block;
+    float: left;
+    margin: 10px 35px;
+    line-height: 30px;
+    vertical-align: middle;
+    color: #5389d2;
+}
+
+.order-row .short-li{
+    margin-left: 25px;
+    margin-right:20px;
+    color: #5389d2;
+    font-size: 20px;
+}

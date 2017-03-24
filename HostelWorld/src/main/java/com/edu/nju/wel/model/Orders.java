@@ -97,6 +97,14 @@ public class Orders implements Serializable{
         this.originPrice = originPrice;
     }
 
+    public int getPlan() {
+        return plan;
+    }
+
+    public void setPlan(int plan) {
+        this.plan = plan;
+    }
+
     public int getNum() {
         return num;
     }
@@ -159,14 +167,6 @@ public class Orders implements Serializable{
 
     public void setVip(VIP vip) {
         this.vip = vip;
-    }
-
-    public int getPlan() {
-        return plan;
-    }
-
-    public void setPlan(int plan) {
-        this.plan = plan;
     }
 
     @Override

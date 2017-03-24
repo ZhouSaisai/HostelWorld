@@ -1,0 +1,60 @@
+.switch-wrapper {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.switch-wrapper a {
+    color: #666666;
+    text-decoration: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 20px;
+    margin-right: 35px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.switch-wrapper a.active {
+    border-bottom: 2px solid #5389d2;
+    color: #5389d2;
+}
+
+.order-row li{
+    width:10.6%;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+}
+
+.order-row .short-li{
+    width:3%;
+    margin-right: 0;
+    text-align: left;
+}
+
+.order-row .mid-li{
+    width:19%;
+}
+
+.order-row .long-li{
+    width:24%;
+}
+.order-row .last-li{
+    width: 8%;
+}
+
+.cancel-button{
+    cursor: pointer;
+    color: #5389d2;
+    padding: 3px 8px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.cancel-button:hover{
+    border: 1px solid #5389d2;
+    text-decoration: none;
+    color: #5389d2;
+}

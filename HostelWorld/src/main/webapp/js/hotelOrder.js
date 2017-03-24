@@ -39,6 +39,7 @@ function order(){
         },
         success: function (result) {
             if(result=="success"){
+                alert("预定成功");
                 window.location.href="/HotelWorld/my_order";
                 return true;
             }

@@ -143,6 +143,42 @@ public class OrderController {
         return view;
     }
 
+    @RequestMapping(value = "my_order")
+    public ModelAndView myOrder(HttpServletRequest request, HttpServletResponse response) {
+        //构造ModelAndView
+        ModelAndView view = new ModelAndView("index");
+        //限制进入
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            try {
+                response.sendRedirect("/HotelWorld/welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return view;
+            }
+            return view;
+        }else{
+            PersonInfo temp = (PersonInfo) session.getAttribute("info");
+            PersonInfo info = person.getPersonById(temp.getId());
+            //刷新session
+            session.setAttribute("info",info);
+            //获得订单信息
+            List<Orders> orderingOrders = orderService.getMyOrdersByState(temp.getId(),0);
+            List<Orders> orderedOrders = orderService.getMyOrdersByState(temp.getId(),1);
+            List<Orders> checkedOrders = orderService.getMyOrdersByState(temp.getId(),2);
+            List<Orders> cancelOrders = orderService.getMyOrdersByState(temp.getId(),3);
+
+            view.setViewName("personOrder");
+            view.addObject("info",info);
+            view.addObject("orderingOrders",orderingOrders);
+            view.addObject("orderedOrders",orderedOrders);
+            view.addObject("checkedOrders",checkedOrders);
+            view.addObject("cancelOrders",cancelOrders);
+            view.addObject("vId",temp.getId());
+        }
+        return view;
+    }
+
 
     @RequestMapping(value = "get_price",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
     @ResponseBody
@@ -194,6 +230,12 @@ public class OrderController {
         return result;
     }
 
+    @RequestMapping(value = "cancel_order",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String cancelOrder(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
     private String calOrderPrice(int vIdInt,int pIdInt,int rIdInt,String start,String end){
         int day = DateHelper.calDays(start,end);
         if(day<0){
@@ -220,4 +262,6 @@ public class OrderController {
         int n_price = plan.getPrice()*day2+room.getPrice()*(day-day2);
         return n_price*(1-level*0.02)+";"+o_price;
     }
+
+
 }

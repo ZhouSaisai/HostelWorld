@@ -24,12 +24,12 @@ public class OrderDaoImpl implements OrderDao {
     protected SessionFactory sessionFactory;
     private Session session;
 
-    public List<Orders> getOrdersByRId(int rId,int state) {
+    public List<Orders> getOrdersByHId(int hId,int state) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
         List<Orders> list;
         //查询
-        String hql = "from Orders orders where orders.room.rId= "+rId+" and orders.state = "+ state +" order by orders.time desc";
+        String hql = "from Orders orders where orders.room.hotel.hId= "+hId+" and orders.state = "+ state +" order by orders.time desc";
         Query query=session.createQuery(hql);
         list=query.list();
         if(list==null)

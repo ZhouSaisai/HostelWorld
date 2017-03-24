@@ -67,4 +67,12 @@ public class OrderServiceImpl implements OrderService {
         DAOManager.orderDao.addOrder(order);
         return "success";
     }
+
+    public List<Orders> getMyOrdersByState(int vId, int state) {
+        return DAOManager.orderDao.getOrdersByVId(vId,state);
+    }
+
+    public List<Orders> getHotelOrderByState(int hId, int state) {
+        return DAOManager.orderDao.getOrdersByHId(hId, state);
+    }
 }
