@@ -41,7 +41,7 @@ public class VIP implements Serializable{
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int point;
     //余额
-    @Column(columnDefinition = "INT default 0",nullable = false)
+    @Column(columnDefinition = "double default 0",nullable = false)
     private double money;
 
     @OneToMany(targetEntity=BankCard.class,mappedBy="vip")

@@ -22,4 +22,6 @@ public interface OrderDao {
 
     //更新订单
     public int updateOrder(Orders orders);
+    //根据订单Id获得房间号
+    public Orders getOrderByOId(int oIdInt);
 }

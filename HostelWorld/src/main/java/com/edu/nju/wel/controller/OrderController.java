@@ -233,7 +233,9 @@ public class OrderController {
     @RequestMapping(value = "cancel_order",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
     @ResponseBody
     public String cancelOrder(HttpServletRequest request, HttpServletResponse response) {
-
+        String oId = request.getParameter("oId");
+        int oIdInt = Integer.parseInt(oId);
+        return orderService.cancelOrder(oIdInt);
     }
 
     private String calOrderPrice(int vIdInt,int pIdInt,int rIdInt,String start,String end){

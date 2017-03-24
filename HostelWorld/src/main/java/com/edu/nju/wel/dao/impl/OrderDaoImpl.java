@@ -92,4 +92,21 @@ public class OrderDaoImpl implements OrderDao {
         session.close();
         return 0;
     }
+
+    public Orders getOrderByOId(int oIdInt) {
+        session = sessionFactory.openSession();
+        Orders result = null;
+        Transaction tx = session.beginTransaction();
+        //查询
+        Criteria criteria = session.createCriteria(Orders.class);
+        criteria.add(Expression.eq("oId",oIdInt));
+        List<Orders> list=criteria.list();
+        if(list!=null && !list.isEmpty()){
+            result=list.get(0);
+        }
+        //事务
+        tx.commit();
+        session.close();
+        return result;
+    }
 }

@@ -14,4 +14,8 @@ public interface OrderService {
     public List<Orders> getMyOrdersByState(int vId,int state);
 
     public List<Orders> getHotelOrderByState(int hId,int state);
+
+    public String cancelOrder(int oIdInt);
+
+    public String checkOrder(int hId,String code);
 }

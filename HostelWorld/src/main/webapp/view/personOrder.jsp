@@ -68,6 +68,7 @@
                             <div class="row order-row">
                                 <ul>
                                     <li class="short-li"><%=i%></li>
+                                    <li>${order.code}</li>
                                     <li class="mid-li"><c:out value="${fn:substring(order.time, 0, 19)}" /></li>
                                     <li>${order.room.hotel.name}</li>
                                     <li>${order.room.name}</li>
@@ -98,13 +99,14 @@
                             <div class="row order-row">
                                 <ul>
                                     <li class="short-li"><%=j%></li>
+                                    <li>${order.code}</li>
                                     <li class="mid-li"><c:out value="${fn:substring(order.time, 0, 19)}" /></li>
                                     <li>${order.room.hotel.name}</li>
                                     <li>${order.room.name}</li>
                                     <li>${order.num}间房</li>
                                     <li>￥${order.nowPrice}</li>
                                     <li class="long-li">${order.start}~${order.end}</li>
-                                    <li class="last-li"><a class="cancel-button" onclick="cancel(${order.oId})">取消</a></li>
+                                    <li class="last-li">已入住</li>
                                 </ul>
                             </div>
                             <% j++; %>
@@ -128,13 +130,14 @@
                             <div class="row order-row">
                                 <ul>
                                     <li class="short-li"><%=z%></li>
+                                    <li>${order.code}</li>
                                     <li class="mid-li"><c:out value="${fn:substring(order.time, 0, 19)}" /></li>
                                     <li>${order.room.hotel.name}</li>
                                     <li>${order.room.name}</li>
                                     <li>${order.num}间房</li>
                                     <li>￥${order.nowPrice}</li>
                                     <li class="long-li">${order.start}~${order.end}</li>
-                                    <li class="last-li"><a class="cancel-button" onclick="cancel(${order.oId})">取消</a></li>
+                                    <li class="last-li">已退房</li>
                                 </ul>
                             </div>
                             <% z++; %>
@@ -158,6 +161,7 @@
                             <div class="row order-row">
                                 <ul>
                                     <li class="short-li"><%=k%></li>
+                                    <li>${order.code}</li>
                                     <li class="mid-li"><c:out value="${fn:substring(order.time, 0, 19)}" /></li>
                                     <li>${order.room.hotel.name}</li>
                                     <li>${order.room.name}</li>

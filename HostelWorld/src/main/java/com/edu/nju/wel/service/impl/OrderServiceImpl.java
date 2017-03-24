@@ -8,9 +8,11 @@ import com.edu.nju.wel.service.HotelPlanService;
 import com.edu.nju.wel.service.OrderService;
 import com.edu.nju.wel.util.helper.DateHelper;
 import com.edu.nju.wel.util.helper.IDCodeHelper;
+import com.sun.xml.internal.rngom.digested.DMixedPattern;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -74,5 +76,55 @@ public class OrderServiceImpl implements OrderService {
 
     public List<Orders> getHotelOrderByState(int hId, int state) {
         return DAOManager.orderDao.getOrdersByHId(hId, state);
+    }
+
+    public String cancelOrder(int oIdInt) {
+        //获得对象
+        Orders order = DAOManager.orderDao.getOrderByOId(oIdInt);
+        if(order==null){
+            return "取消失败";
+        }
+        VIP vip = order.getVip();
+        Room room = order.getRoom();
+        //现金流动
+        double money = order.getNowPrice()*0.9;
+        DecimalFormat df=new DecimalFormat(".#");
+        String st=df.format(money);
+        double moneyNow =Double.parseDouble(st);
+        double nMoney = vip.getMoney();
+        vip.setMoney(nMoney+moneyNow);
+        //更新用户
+        DAOManager.vipDao.updateVIP(vip);
+        //记录流水
+        Cash cash = new Cash();
+        cash.setVip(vip);
+        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        cash.setTime(stamp);
+        cash.setType(CashType.QUIT.ordinal());
+        cash.setContent("+"+money);
+        DAOManager.cashDao.addCash(cash);
+        //房间数量变化
+        int planId = order.getPlan();
+        int discountDay =0;
+        if(planId!=0) {
+            Plan plan = DAOManager.planDao.getPlan(planId);
+            discountDay = DateHelper.calPeriodDays(order.getStart(), order.getEnd(), plan.getStart(), plan.getEnd());
+            if (discountDay > 0) {
+                plan.setOrderNum(plan.getOrderNum() - order.getNum());
+                DAOManager.planDao.updatePlan(plan);
+            }
+        }
+        room.setOrderNum(room.getOrderNum()-order.getNum());
+        DAOManager.roomDao.updateRoom(room);
+        //加入对象
+        order.setVip(vip);
+        order.setRoom(room);
+        order.setState(3);
+        DAOManager.orderDao.updateOrder(order);
+        return "取消成功！另系统收取10%的手续费！";
+    }
+
+    public String checkOrder(int hId, String code) {
+        return null;
     }
 }

@@ -22,7 +22,7 @@
 }
 
 .order-row li{
-    width:10.6%;
+    width:9%;
     margin-left: 0;
     margin-right: 0;
     text-align: center;
@@ -35,14 +35,14 @@
 }
 
 .order-row .mid-li{
-    width:19%;
+    width:20%;
 }
 
 .order-row .long-li{
-    width:24%;
+    width:22%;
 }
 .order-row .last-li{
-    width: 8%;
+    width: 6%;
 }
 
 .cancel-button{
