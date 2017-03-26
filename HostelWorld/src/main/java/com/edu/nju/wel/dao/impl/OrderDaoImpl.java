@@ -1,6 +1,9 @@
 package com.edu.nju.wel.dao.impl;
 
+import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.dao.OrderDao;
+import com.edu.nju.wel.info.MonthAnalyse;
+import com.edu.nju.wel.info.VIPAnalyse;
 import com.edu.nju.wel.model.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -108,5 +112,55 @@ public class OrderDaoImpl implements OrderDao {
         tx.commit();
         session.close();
         return result;
+    }
+
+    public List<Orders> getVipOrderAnalyse(int vId) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<Orders> list;
+        //查询
+        String hql = "from Orders o where o.vip.vId= "+vId+" and o.state != 3 order by o.time asc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList<Orders>();
+        //事务
+        tx.commit();
+        session.close();
+        return list;
+    }
+
+    public int getVipHotelNum(int vId) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List list;
+        //查询
+        String hql = "select o.room.hotel.hId from Orders o where o.vip.vId= "+vId+" and o.state != 3 order by o.time desc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList();
+        //事务
+        tx.commit();
+        session.close();
+        HashSet<Integer> hs = new HashSet<Integer>(list);
+        return hs.toArray().length;
+    }
+
+    public int getHotelVipNum(int hId) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List list;
+        //查询
+        String hql = "select distinct o.vip.vId from Orders o where o.room.hotel.hId= "+hId+" and o.state != 3 order by o.time desc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList();
+        //事务
+        tx.commit();
+        session.close();
+        HashSet<Integer> hs = new HashSet<Integer>(list);
+        return hs.toArray().length;
     }
 }

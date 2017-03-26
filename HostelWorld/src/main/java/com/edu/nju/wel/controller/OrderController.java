@@ -149,6 +149,41 @@ public class OrderController {
         ModelAndView view = new ModelAndView("index");
         //限制进入
         HttpSession session = request.getSession(false);
+        if (session == null) {
+            try {
+                response.sendRedirect("/HotelWorld/welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return view;
+            }
+            return view;
+        } else {
+            PersonInfo temp = (PersonInfo) session.getAttribute("info");
+            PersonInfo info = person.getPersonById(temp.getId());
+            //刷新session
+            session.setAttribute("info", info);
+            //获得订单信息
+            List<Orders> orderingOrders = orderService.getMyOrdersByState(temp.getId(), 0);
+            List<Orders> orderedOrders = orderService.getMyOrdersByState(temp.getId(), 1);
+            List<Orders> checkedOrders = orderService.getMyOrdersByState(temp.getId(), 2);
+            List<Orders> cancelOrders = orderService.getMyOrdersByState(temp.getId(), 3);
+
+            view.setViewName("personOrder");
+            view.addObject("info", info);
+            view.addObject("orderingOrders", orderingOrders);
+            view.addObject("orderedOrders", orderedOrders);
+            view.addObject("checkedOrders", checkedOrders);
+            view.addObject("cancelOrders", cancelOrders);
+            view.addObject("vId", temp.getId());
+        }
+        return view;
+    }
+    @RequestMapping(value = "hotel_check")
+    public ModelAndView hotelCheck(HttpServletRequest request, HttpServletResponse response) {
+        //构造ModelAndView
+        ModelAndView view = new ModelAndView("index");
+        //限制进入
+        HttpSession session = request.getSession(false);
         if(session==null){
             try {
                 response.sendRedirect("/HotelWorld/welcome");
@@ -158,23 +193,21 @@ public class OrderController {
             }
             return view;
         }else{
-            PersonInfo temp = (PersonInfo) session.getAttribute("info");
-            PersonInfo info = person.getPersonById(temp.getId());
+            HotelInfo temp = (HotelInfo) session.getAttribute("info");
+            HotelInfo info = hotelService.getHotelById(temp.gethId());
             //刷新session
             session.setAttribute("info",info);
             //获得订单信息
-            List<Orders> orderingOrders = orderService.getMyOrdersByState(temp.getId(),0);
-            List<Orders> orderedOrders = orderService.getMyOrdersByState(temp.getId(),1);
-            List<Orders> checkedOrders = orderService.getMyOrdersByState(temp.getId(),2);
-            List<Orders> cancelOrders = orderService.getMyOrdersByState(temp.getId(),3);
+            List<Orders> orderingOrders = orderService.getHotelOrderByState(temp.gethId(),0);
+            List<Orders> orderedOrders = orderService.getHotelOrderByState(temp.gethId(),1);
+            List<Orders> checkedOrders = orderService.getHotelOrderByState(temp.gethId(),2);
 
-            view.setViewName("personOrder");
+            view.setViewName("checkOrder");
             view.addObject("info",info);
             view.addObject("orderingOrders",orderingOrders);
             view.addObject("orderedOrders",orderedOrders);
             view.addObject("checkedOrders",checkedOrders);
-            view.addObject("cancelOrders",cancelOrders);
-            view.addObject("vId",temp.getId());
+            view.addObject("hId",temp.gethId());
         }
         return view;
     }

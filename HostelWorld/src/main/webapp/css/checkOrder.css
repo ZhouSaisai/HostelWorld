@@ -1,0 +1,111 @@
+.switch-wrapper-one {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.switch-wrapper-one a {
+    color: #666666;
+    text-decoration: none;
+    display: inline-block;
+    height: 30px;
+    line-height: 20px;
+    margin-right: 35px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+.switch-wrapper-one a.active {
+    border-bottom: 2px solid #5389d2;
+    color: #5389d2;
+}
+
+
+/*预定表单*/
+ul li{
+    display: block;
+}
+/*搜索框*/
+.search-code-div{
+    float: right;
+}
+.reg-search-input{
+    width:160px;
+    margin-right:5px;
+}
+.search-btn{
+    margin: auto 10px;
+    width: 50px;
+}
+
+.check-input-row *{
+    font-size: 17px;
+}
+
+.check-input-row small{
+    font-size: 13px;
+    color: #a94442;
+}
+.check-first-ul,.check-second-ul,.check-third-ul,.check-fourth-ul ,.check-fifth-ul ,.check-sixth-ul{
+    clear:both;
+}
+    /*输入房间号，姓名*/
+.check-first-ul li,.check-second-ul li,.check-third-ul li{
+    float: left;
+    width: 24%;
+    margin: 10px 0 10px;
+}
+.check-first-ul .first-li, .check-second-ul .first-li,.check-third-ul .first-li{
+    width:48%;
+    margin-left: 30px;
+}
+.reg-check-input-short{
+    width:170px;
+}
+
+.reg-check-input{
+    width:280px;
+}
+
+.reg-check-input-nv{
+    width:260px;
+}
+.reg-check-input-nv[type=text]{
+    padding-left:15px;
+}
+
+.check-btn{
+    width: 80px;
+    float: none;
+    margin: 0 auto 0 22px;
+}
+
+.check-fourth-ul li,.check-fifth-ul li,.check-sixth-ul li{
+    float: left;
+    width: 40%;
+    margin: 10px 0 10px 30px;
+}
+
+.check-fourth-ul .short-li,.check-fifth-ul .short-li,.check-sixth-ul .short-li{
+    width:11%;
+    text-align: center;
+}
+
+.check-btn-nv{
+    width: 80px;
+    float: none;
+    margin: 0 auto;
+}
+
+.type-select{
+    border: 1px solid #d3d3d3;
+    height: 28px;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 260px;
+    outline: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 5px;
+}

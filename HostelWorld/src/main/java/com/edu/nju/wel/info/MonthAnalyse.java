@@ -31,4 +31,13 @@ public class MonthAnalyse {
     public void setNum(int num) {
         this.num = num;
     }
+
+    @Override
+    public String toString() {
+        return "MonthAnalyse{" +
+                "mon='" + mon + '\'' +
+                ", money=" + money +
+                ", num=" + num +
+                '}';
+    }
 }

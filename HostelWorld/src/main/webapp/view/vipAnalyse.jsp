@@ -50,13 +50,13 @@
             <div class="row info-row">
                 <ul>
                     <li>
-                        <div class="info-div info-hotel-num">光顾了 <span>6</span> 家客栈</div>
+                        <div class="info-div info-hotel-num">光顾了 <span>${va.hotelNum}</span> 家客栈</div>
                     </li>
                     <li>
-                        <div class="info-div info-order-num">产生了 <span>8</span> 次订单</div>
+                        <div class="info-div info-order-num">产生了 <span>${va.orderNum}</span> 次订单</div>
                     </li>
                     <li>
-                        <div class="info-div info-money-num">消费了 <span>￥1006</span> 元</div>
+                        <div class="info-div info-money-num">消费了 <span>￥${va.moneyNum}</span> 元</div>
                     </li>
                 </ul>
             </div>

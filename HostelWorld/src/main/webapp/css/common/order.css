@@ -1,3 +1,9 @@
+.order-row *{
+    font-size: 18px;
+    margin:0;
+    padding: 0;
+}
+
 .order-row{
     width:96%;
     margin:15px auto;
@@ -5,11 +11,6 @@
     border-radius: 10px;
 }
 
-.order-row *{
-    font-size: 18px;
-    margin:0;
-    padding: 0;
-}
 .order-row li{
     display: block;
     float: left;

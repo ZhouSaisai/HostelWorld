@@ -22,6 +22,14 @@ public interface OrderDao {
 
     //更新订单
     public int updateOrder(Orders orders);
-    //根据订单Id获得房间号
+    //根据订单Id获得订单信息
     public Orders getOrderByOId(int oIdInt);
+
+    //用户订单分析
+    public List<Orders> getVipOrderAnalyse(int vId);
+
+    //订单单客户下单的客栈数
+    public int getVipHotelNum(int vId);
+    //订单单客栈下单的客户数
+    public int getHotelVipNum(int hId);
 }
