@@ -83,7 +83,7 @@
                         <li class="first-li">
                             <span class="n">房间号：</span>
                             <input type="text" class="reg-input reg-check-input" id="check-room-ids">
-                            <small>(用分号隔开)</small>
+                            <small>(用逗号隔开)</small>
                         </li>
                         <li>
                             <span class="n">房间数：</span>
@@ -98,7 +98,7 @@
                         <li class="first-li">
                             <span class="n">房客名：</span>
                             <input type="text" class="reg-input reg-check-input" id="check-costumer-names">
-                            <small>(用分号隔开)</small>
+                            <small>(用逗号隔开)</small>
                         </li>
                         <li>
                             <span class="n">总价格：</span>
@@ -124,12 +124,12 @@
                         <li>
                             <span class="n">房间号：</span>
                             <input type="text" class="reg-input reg-check-input-nv" id="check-room-ids-nv">
-                            <small>(用分号隔开)</small>
+                            <small>(用逗号隔开)</small>
                         </li>
                         <li>
                             <span class="n">房客姓名：</span>
                             <input type="text" class="reg-input reg-check-input-nv" id="check-costumer-names-nv">
-                            <small>(用分号隔开)</small>
+                            <small>(用逗号隔开)</small>
                         </li>
                         <li class="short-li">
                             <span>价格</span>
@@ -139,9 +139,16 @@
                         <li>
                             <span class="n">选房型：</span>
                             <select class="type-select" id="check-room-type-nv">
-                                <c:forEach var="room" items="${rooms}">
-                                    <option value="${room.rId}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${room.name}&nbsp;&nbsp;${room.price}</option>
-                                </c:forEach>
+                                <c:choose>
+                                    <c:when test="${rooms.size()==0}">
+                                        <option value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无房型</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach var="room" items="${rooms}">
+                                            <option value="${room.rId}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${room.name}&nbsp;&nbsp;￥${room.price}</option>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                             </select>
                         </li>
                         <li>
@@ -201,7 +208,7 @@
                                     <li>${order.num}间房</li>
                                     <li>￥${order.nowPrice}</li>
                                     <li class="long-li">${order.start}~${order.end}</li>
-                                    <li class="last-li"><a class="cancel-button" onclick="comeHotel(<%=i%>)">入住</a></li>
+                                    <li class="last-li"><a class="cancel-button" onclick="comeHotel(${order.code})">入住</a></li>
                                 </ul>
                             </div>
                             <% i++; %>
@@ -233,7 +240,11 @@
                                     <li>${order.num}间房</li>
                                     <li>￥${order.nowPrice}</li>
                                     <li class="long-li">${order.start}~${order.end}</li>
-                                    <li class="last-li"><a class="cancel-button" onclick="leaveHotel(${order.oId})">退房</a></li>
+                                    <li class="last-li"><a class="cancel-button" onclick="leaveHotel(${order.oId})">离店</a></li>
+                                </ul>
+                                <ul>
+                                    <li style="width:50%;">房客：${order.names}</li>
+                                    <li style="width:50%;">房号：${order.roomIds}</li>
                                 </ul>
                             </div>
                             <% j++; %>
@@ -266,6 +277,10 @@
                                     <li>￥${order.nowPrice}</li>
                                     <li class="long-li">${order.start}~${order.end}</li>
                                     <li class="last-li">已退房</li>
+                                </ul>
+                                <ul>
+                                    <li style="width:50%;">房客：${order.names}</li>
+                                    <li style="width:50%;">房号：${order.roomIds}</li>
                                 </ul>
                             </div>
                             <% z++; %>

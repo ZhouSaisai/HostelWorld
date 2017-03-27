@@ -3,6 +3,7 @@ package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.info.CashType;
+import com.edu.nju.wel.info.HotelCashType;
 import com.edu.nju.wel.model.*;
 import com.edu.nju.wel.service.HotelPlanService;
 import com.edu.nju.wel.service.OrderService;
@@ -27,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
             return "预定失败";
         }
         //生成订单号
-        String code = "0"+IDCodeHelper.getID();
+        String code = "8"+IDCodeHelper.getID();
         order.setCode(code);
         //生成时间
         Timestamp stamp = new Timestamp(System.currentTimeMillis());
@@ -126,5 +127,77 @@ public class OrderServiceImpl implements OrderService {
 
     public String checkOrder(int hId, String code) {
         return null;
+    }
+
+
+    public Orders getOrderByCode(String code) {
+        return DAOManager.orderDao.getOrderByCode(code);
+    }
+
+    public String checkIn(String code, String names, String roomIds) {
+        Orders order = DAOManager.orderDao.getOrderByCode(code);
+        if(order==null){
+            return "入住失败！";
+        }
+        order.setState(1);
+        order.setNames(names);
+        order.setRoomIds(roomIds);
+        DAOManager.orderDao.updateOrder(order);
+        Hotel hotel = order.getRoom().getHotel();
+        //更新酒店经营情况
+        double money = order.getNowPrice();
+        hotel.setOutMoney(hotel.getOutMoney()+money);
+        DAOManager.hotelDao.updateHotel(hotel);
+        //记录流水
+        HotelCash cash = new HotelCash();
+        cash.setHotel(hotel);
+        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        cash.setTime(stamp);
+        cash.setType(HotelCashType.CARD.ordinal());
+        cash.setContent("+"+money);
+        DAOManager.hcashDao.addCash(cash);
+        return "入住成功！";
+    }
+
+    public String checkOut(int oIdInt) {
+        Orders order = DAOManager.orderDao.getOrderByOId(oIdInt);
+        if(order==null){
+            return "离店失败！";
+        }
+        order.setState(2);
+        DAOManager.orderDao.updateOrder(order);
+        return "离店成功！";
+    }
+
+    @Override
+    public String addOrderNv(int vId, int rId, Orders order) {
+        VIP vip = DAOManager.vipDao.getVIPById(vId);
+        Room room = DAOManager.roomDao.getRoom(rId);
+        if(vip==null || room==null){
+            return "入住失败";
+        }
+        DAOManager.vipDao.updateVIP(vip);
+        //房间数量变化
+        room.setOrderNum(room.getOrderNum()+order.getNum());
+        DAOManager.roomDao.updateRoom(room);
+        //加入对象
+        order.setVip(vip);
+        order.setRoom(room);
+        DAOManager.orderDao.addOrder(order);
+
+        //更新酒店经营情况
+        Hotel hotel = order.getRoom().getHotel();
+        double money = order.getNowPrice();
+        hotel.setMoney(hotel.getMoney()+money);
+        DAOManager.hotelDao.updateHotel(hotel);
+        //记录流水
+        HotelCash cash = new HotelCash();
+        cash.setHotel(hotel);
+        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        cash.setTime(stamp);
+        cash.setType(HotelCashType.MONEY.ordinal());
+        cash.setContent("+"+money);
+        DAOManager.hcashDao.addCash(cash);
+        return "入住成功";
     }
 }

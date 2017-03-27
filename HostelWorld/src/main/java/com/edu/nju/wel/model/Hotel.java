@@ -33,10 +33,10 @@ public class Hotel implements Serializable{
     @Column(columnDefinition = "INT default 0",nullable = false)
     private int level;
     //收入
-    @Column(columnDefinition = "INT default 0",nullable = false)
+    @Column(columnDefinition = "double default 0",nullable = false)
     private double money;
     //待结算
-    @Column(columnDefinition = "INT default 0",nullable = false)
+    @Column(columnDefinition = "double default 0",nullable = false)
     private double outMoney;
     //申请时间
     private Timestamp time;
@@ -46,6 +46,9 @@ public class Hotel implements Serializable{
 
     @OneToMany(targetEntity = Application.class, mappedBy = "hotel")
     private List<Application> applications;
+
+    @OneToMany(targetEntity = HotelCash.class, mappedBy = "hotel")
+    private List<HotelCash> cashes;
 
     public Hotel() {
     }
@@ -155,4 +158,11 @@ public class Hotel implements Serializable{
     }
 
 
+    public List<HotelCash> getCashes() {
+        return cashes;
+    }
+
+    public void setCashes(List<HotelCash> cashes) {
+        this.cashes = cashes;
+    }
 }

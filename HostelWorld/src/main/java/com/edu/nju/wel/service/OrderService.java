@@ -18,4 +18,12 @@ public interface OrderService {
     public String cancelOrder(int oIdInt);
 
     public String checkOrder(int hId,String code);
+
+    public Orders getOrderByCode(String code);
+
+    public String checkIn(String code, String names, String roomIds);
+
+    public String checkOut(int oIdInt);
+
+    public String addOrderNv(int i, int rIdInt, Orders order);
 }

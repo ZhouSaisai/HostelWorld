@@ -11,6 +11,7 @@ import com.edu.nju.wel.service.HotelPlanService;
 import com.edu.nju.wel.service.OrderService;
 import com.edu.nju.wel.service.PersonInfoService;
 import com.edu.nju.wel.util.helper.DateHelper;
+import com.edu.nju.wel.util.helper.IDCodeHelper;
 import com.edu.nju.wel.util.helper.PointHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -39,6 +41,7 @@ public class OrderController {
     HotelPlanService planService;
     @Autowired
     OrderService orderService;
+
 
     @RequestMapping(value = "hotel_list")
     public ModelAndView hotelList(HttpServletRequest request, HttpServletResponse response) {
@@ -201,12 +204,13 @@ public class OrderController {
             List<Orders> orderingOrders = orderService.getHotelOrderByState(temp.gethId(),0);
             List<Orders> orderedOrders = orderService.getHotelOrderByState(temp.gethId(),1);
             List<Orders> checkedOrders = orderService.getHotelOrderByState(temp.gethId(),2);
-
+            List<Room> rooms = planService.getRoomsByHId(temp.gethId());
             view.setViewName("checkOrder");
             view.addObject("info",info);
             view.addObject("orderingOrders",orderingOrders);
             view.addObject("orderedOrders",orderedOrders);
             view.addObject("checkedOrders",checkedOrders);
+            view.addObject("rooms",rooms);
             view.addObject("hId",temp.gethId());
         }
         return view;
@@ -231,6 +235,60 @@ public class OrderController {
 
         return calOrderPrice(vIdInt,pIdInt,rIdInt,start,end);
     }
+
+    @RequestMapping(value = "get_price_nv",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String getPriceNv(HttpServletRequest request, HttpServletResponse response) {
+        String rId = request.getParameter("rId");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String num = request.getParameter("num");
+
+        //转换类型
+        int rIdInt = Integer.parseInt(rId);
+        int numInt = Integer.parseInt(num);
+        Room room = planService.getRoomByRId(rIdInt);
+        if(room==null){
+            return "0.0";
+        }
+        int day = DateHelper.calDays(start,end);
+        double price = room.getPrice()*numInt*day;
+        return price+"";
+    }
+
+    @RequestMapping(value = "check_in",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String checkIn(HttpServletRequest request, HttpServletResponse response) {
+        String code = request.getParameter("code");
+        String names = request.getParameter("names");
+        String roomIds = request.getParameter("roomIds");
+        String result = orderService.checkIn(code,names,roomIds);
+        return result;
+    }
+
+    @RequestMapping(value = "check_out",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String checkOut(HttpServletRequest request, HttpServletResponse response) {
+        String oId = request.getParameter("oId");
+        int oIdInt = Integer.parseInt(oId);
+        String result = orderService.checkOut(oIdInt);
+        return result;
+    }
+
+    @RequestMapping(value = "get_order",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String getOrder(HttpServletRequest request, HttpServletResponse response) {
+        String code = request.getParameter("code");
+        Orders result = orderService.getOrderByCode(code);
+        if(result==null){
+            return "0";
+        }else{
+            return "1;"+result.getRoom().getName()+";"+result.getStart()+";"+result.getNum()
+                    +";"+result.getEnd()+";"+result.getNowPrice()+";"+result.getTime().toString().substring(0,19);
+        }
+    }
+
+
 
     @RequestMapping(value = "order_hotel",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
     @ResponseBody
@@ -260,6 +318,47 @@ public class OrderController {
         order.setOriginPrice(o_price);
         order.setNowPrice(n_price);
         String result = orderService.addOrder(vIdInt,rIdInt,order);
+        return result;
+    }
+
+    @RequestMapping(value = "order_hotel_nv",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String orderHotelNv(HttpServletRequest request, HttpServletResponse response) {
+        String rId = request.getParameter("rId");
+        String start = request.getParameter("start");
+        String end = request.getParameter("end");
+        String num = request.getParameter("num");
+        String names = request.getParameter("names");
+        String roomIds = request.getParameter("roomIds");
+
+        //转换类型
+        int rIdInt = Integer.parseInt(rId);
+        int numInt = Integer.parseInt(num);
+
+        Room room = planService.getRoomByRId(rIdInt);
+        if(room==null){
+            return "入住失败";
+        }
+        int day = DateHelper.calDays(start,end);
+        double price = room.getPrice()*numInt*day;
+        //生成订单
+        Orders order = new Orders();
+        order.setState(1);
+        order.setNum(numInt);
+        order.setStart(start);
+        order.setEnd(end);
+        order.setPlan(0);
+        order.setOriginPrice(price);
+        order.setNowPrice(price);
+        order.setNames(names);
+        order.setRoomIds(roomIds);
+        //生成订单号
+        String code = "8"+ IDCodeHelper.getID();
+        order.setCode(code);
+        //生成时间
+        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        order.setTime(stamp);
+        String result = orderService.addOrderNv(100,rIdInt,order);
         return result;
     }
 
