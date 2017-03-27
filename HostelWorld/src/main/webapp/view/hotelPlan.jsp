@@ -28,9 +28,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
+                    <li><a href="/HotelWorld/welcome">首页</a></li>
                     <c:if test="${info.state==1}">
-                        <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
+                        <li class="active"><a href="/HotelWorld/hotel_plan">发布计划</a></li>
                         <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
                         <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
                     </c:if>

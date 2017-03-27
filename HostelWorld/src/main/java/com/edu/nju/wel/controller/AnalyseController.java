@@ -82,7 +82,7 @@ public class AnalyseController {
             //刷新session
             session.setAttribute("info",info);
 
-            view.setViewName("vipAnalyse");
+            view.setViewName("hotelAnalyse");
             view.addObject("info",info);
         }
         return view;

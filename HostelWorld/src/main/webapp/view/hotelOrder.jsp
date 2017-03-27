@@ -30,8 +30,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
-                    <li><a href="/HotelWorld/hotel_list">预定客栈</a></li>
+                    <li><a href="/HotelWorld/welcome">首页</a></li>
+                    <li class="active"><a href="/HotelWorld/hotel_list">预定客栈</a></li>
                     <li><a href="/HotelWorld/my_order">我的预定</a></li>
                     <li><a href="/HotelWorld/vip_analyse">我的消费分析</a></li>
                 </ul>

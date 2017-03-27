@@ -33,7 +33,7 @@
                 <c:if test="${info.state==1}">
                     <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
                     <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
-                    <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
+                    <li class="active"><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
                 </c:if>
             </ul>
 
