@@ -72,6 +72,70 @@
                 </ul>
             </div>
         </div>
+        <div class="row input-row">
+            <div class="title">
+                <span>财务流水</span>
+            </div>
+            <c:choose>
+                <c:when test="${cashs.size()==0}">
+                    <br>
+                    <p style="text-align: center">当前没有财务流水，看看有没有发布计划！</p>
+                    <br>
+                </c:when>
+                <c:otherwise>
+                    <table class="table table-striped table-hover" id="cash-table">
+                        <tr>
+                            <th style="text-align:center;">序号</th>
+                            <th style="text-align:center;">金额</th>
+                            <th style="text-align:center;">类别</th>
+                            <th style="text-align:center;">时间</th>
+
+                        </tr>
+                        <% int i=1;%>
+                        <c:forEach items="${cashs}" var="cash" varStatus="vs">
+                            <tr>
+                                <td style="text-align:center;"><%=i%></td>
+                                <td style="text-align:center;">${cash.content}</td>
+                                <c:choose>
+                                    <c:when test="${cash.type==0}">
+                                        <td style="text-align:center;">会员卡</td>
+                                    </c:when>
+                                    <c:when test="${cash.type==1}">
+                                        <td style="text-align:center;">现金支付</td>
+                                    </c:when>
+                                </c:choose>
+                                <td style="text-align:center;">${cash.time}</td>
+                            </tr>
+                            <% i++;%>
+                        </c:forEach>
+                    </table>
+
+                    <input type="hidden" id="start_page">
+                    <input type="hidden" id="current_page" />
+                    <input type="hidden" id="show_per_page" />
+                    <input type="hidden" id="end_page">
+                    <!-------------------------------------------分页----------------------------------------------------------------->
+                    <div id="pageGro" class="cb">
+                        <div class="pagestart">首页</div>
+                        <div class="pageUp">上一页</div>
+                        <div class="pageList">
+                            <ul>
+                                <li>1</li>
+                                <li>2</li>
+                                <li>3</li>
+                                <li>4</li>
+                                <li>5</li>
+                            </ul>
+                        </div>
+                        <div class="pageDown">下一页</div>
+                        <div class="pageend">尾页</div>
+                    </div>
+                    <!-------------------------------------------END 分页----------------------------------------------------------------->
+
+                </c:otherwise>
+            </c:choose>
+
+        </div>
         <br>
         <input type="hidden" id="hId" value="${info.hId}">
         <footer class="global-footer">

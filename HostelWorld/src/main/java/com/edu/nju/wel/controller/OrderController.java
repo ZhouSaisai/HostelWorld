@@ -358,7 +358,7 @@ public class OrderController {
         //生成时间
         Timestamp stamp = new Timestamp(System.currentTimeMillis());
         order.setTime(stamp);
-        String result = orderService.addOrderNv(100,rIdInt,order);
+        String result = orderService.addOrderNv(1,rIdInt,order);
         return result;
     }
 
