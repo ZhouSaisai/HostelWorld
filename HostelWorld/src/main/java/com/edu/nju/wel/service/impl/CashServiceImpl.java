@@ -2,6 +2,7 @@ package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.model.Cash;
+import com.edu.nju.wel.model.HotelCash;
 import com.edu.nju.wel.service.CashService;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,10 @@ public class CashServiceImpl implements CashService{
 
     public List<Cash> getCashByVId(int id) {
         return DAOManager.cashDao.getCashByVId(id);
+    }
+
+    @Override
+    public List<HotelCash> getCashByHId(int hId) {
+        return DAOManager.hcashDao.getHotelCashByHId(hId);
     }
 }

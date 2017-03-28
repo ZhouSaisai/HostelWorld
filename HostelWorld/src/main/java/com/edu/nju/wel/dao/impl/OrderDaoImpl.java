@@ -152,7 +152,7 @@ public class OrderDaoImpl implements OrderDao {
         Transaction tx = session.beginTransaction();
         List list;
         //查询
-        String hql = "select distinct o.vip.vId from Orders o where o.room.hotel.hId= "+hId+" and o.state != 3 order by o.time desc";
+        String hql = "select o.vip.vId from Orders o where o.room.hotel.hId= "+hId+" and o.state != 3 and o.vip.vId != 1 order by o.time desc";
         Query query=session.createQuery(hql);
         list=query.list();
         if(list==null)
@@ -162,5 +162,40 @@ public class OrderDaoImpl implements OrderDao {
         session.close();
         HashSet<Integer> hs = new HashSet<Integer>(list);
         return hs.toArray().length;
+    }
+
+    @Override
+    public List<Orders> getHotelOrderAnalyse(int id) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<Orders> list;
+        //查询
+        String hql = "from Orders o where o.room.hotel.hId= "+id+" and o.state != 3 order by o.time asc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList<Orders>();
+        //事务
+        tx.commit();
+        session.close();
+        return list;
+    }
+
+    @Override
+    public List<Orders> getAllOrderAnalyse() {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<Orders> list;
+        //查询
+        int state=3;
+        String hql = "from Orders o where o.state != "+state+" order by o.time asc";
+        Query query=session.createQuery(hql);
+        list=query.list();
+        if(list==null)
+            list=new ArrayList<Orders>();
+        //事务
+        tx.commit();
+        session.close();
+        return list;
     }
 }

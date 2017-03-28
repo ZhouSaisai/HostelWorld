@@ -1,10 +1,9 @@
 package com.edu.nju.wel.controller;
 
-import com.edu.nju.wel.info.HotelInfo;
-import com.edu.nju.wel.info.MonthAnalyse;
-import com.edu.nju.wel.info.PersonInfo;
-import com.edu.nju.wel.info.VIPAnalyse;
+import com.edu.nju.wel.info.*;
+import com.edu.nju.wel.model.HotelCash;
 import com.edu.nju.wel.service.AnalyseService;
+import com.edu.nju.wel.service.CashService;
 import com.edu.nju.wel.service.HotelInfoService;
 import com.edu.nju.wel.service.PersonInfoService;
 import com.edu.nju.wel.util.helper.ManageAccountHelper;
@@ -32,6 +31,8 @@ public class AnalyseController {
     HotelInfoService hotelService;
     @Autowired
     AnalyseService analyseService;
+    @Autowired
+    CashService cashService;
 
     @RequestMapping(value = "vip_analyse")
     public ModelAndView vipAnalyse(HttpServletRequest request, HttpServletResponse response) {
@@ -82,9 +83,12 @@ public class AnalyseController {
             HotelInfo info = hotelService.getHotelById(temp.gethId());
             //刷新session
             session.setAttribute("info",info);
-
+            HotelAnalyse ha = analyseService.getHotelAnalyse(temp.gethId());
+            List<HotelCash> cashs = cashService.getCashByHId(temp.gethId());
             view.setViewName("hotelAnalyse");
             view.addObject("info",info);
+            view.addObject("ha",ha);
+            view.addObject("cashs",cashs);
         }
         return view;
     }
@@ -111,7 +115,9 @@ public class AnalyseController {
                     e.printStackTrace();
                 }
             }
+            ManageAnalyse ma = analyseService.getManageAnalyse();
             view.setViewName("manageAnalyse");
+            view.addObject("ma",ma);
         }
         return view;
     }
@@ -119,8 +125,18 @@ public class AnalyseController {
     @RequestMapping(value = "get_line_data",method = RequestMethod.POST)
     @ResponseBody
     public List<MonthAnalyse> getLineData(HttpServletRequest request, HttpServletResponse response) {
-        String vId = request.getParameter("vId");
-        int vid =Integer.parseInt(vId);
-        return analyseService.getVipAnalyse(vid).getMonths();
+        String Id = request.getParameter("id");
+        String t = request.getParameter("type");
+        //类型转换
+        int id = Integer.parseInt(Id);
+        int type = Integer.parseInt(t);
+        switch (type){
+            case 1:
+                return analyseService.getVipAnalyse(id).getMonths();
+            case 2:
+                return analyseService.getHotelAnalyse(id).getMonths();
+            default:
+                return analyseService.getManageAnalyse().getMonths();
+        }
     }
 }

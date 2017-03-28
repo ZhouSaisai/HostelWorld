@@ -50,13 +50,13 @@
             <div class="row info-row">
                 <ul>
                     <li>
-                        <div class="info-div info-hotel-num">光顾了 <span>${va.hotelNum}</span> 家客栈</div>
+                        <div class="info-div info-hotel-num">共有 <span>${ma.hotelNum}</span> 家客栈</div>
                     </li>
                     <li>
-                        <div class="info-div info-order-num">产生了 <span>${va.orderNum}</span> 次订单</div>
+                        <div class="info-div info-order-num">共有 <span>${ma.vipNum}</span> 位会员</div>
                     </li>
                     <li>
-                        <div class="info-div info-money-num">消费了 <span>￥${va.moneyNum}</span> 元</div>
+                        <div class="info-div info-money-num">共产生 <span>${ma.orderNum}</span> 个订单</div>
                     </li>
                 </ul>
             </div>
@@ -64,16 +64,15 @@
             <div class="row img-row">
                 <ul>
                     <li>
-                        <div id="line"></div>
+                        <div id="bar"></div>
                     </li>
                     <li>
-                        <div id="bar"></div>
+                        <div id="line"></div>
                     </li>
                 </ul>
             </div>
         </div>
         <br>
-        <input type="hidden" id="vId" value="${vId}">
         <footer class="global-footer footer-fixed-bottom">
             <div class="copyright">
                 <p style="text-align: center;">
@@ -89,7 +88,7 @@
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/echarts.min.js"></script>
-    <script src="../js/vipAnalyse.js"></script>
+    <script src="../js/manageAnalyse.js"></script>
 </body>
 </html>
 

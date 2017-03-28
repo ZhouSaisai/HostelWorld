@@ -1,15 +1,14 @@
 $(document).ready(function () {
     // 基于准备好的dom，初始化echarts实例
-    var barChart = echarts.init(document.getElementById('line'));
-    var lineChart = echarts.init(document.getElementById('bar'));
+    var lineChart = echarts.init(document.getElementById('line'));
+    var barChart = echarts.init(document.getElementById('bar'));
 
-    var vId = $('#vId').val();
     $.ajax({
         type:'post',
         url:'/HotelWorld/get_line_data',
         data:{
-            'id':vId,
-            'type':1
+            'id':0,
+            'type':3
         },
         success:function(data){
             //折线图数据处理
@@ -37,7 +36,7 @@ $(document).ready(function () {
                     }
                 },
                 title: {
-                    text: '每月消费次数一览柱状图',
+                    text: '每月订单数一览柱状图',
                 },
                 legend: {
                     left:'400',

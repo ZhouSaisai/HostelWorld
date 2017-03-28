@@ -11,7 +11,7 @@
     <link href="../css/common/navbar.css" rel="stylesheet">
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/common/pageGroup.css" rel="stylesheet">
-    <link href="../css/personInfo.css" rel="stylesheet">
+    <link href="../css/analyse.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-color navbar-static-top">
@@ -25,7 +25,6 @@
             </button>
             <a class="navbar-brand" href="/HotelWorld/welcome"><img src="../img/common/logo.png"></a>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -36,7 +35,6 @@
                     <li class="active"><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
                 </c:if>
             </ul>
-
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="/HotelWorld/hotel_zone?id=${info.hId}">客栈空间</a></li>
                 <li><a href="/HotelWorld/ask_loginOut">注销</a></li>
@@ -46,11 +44,36 @@
 </nav>
 <div class="container-fluid main-content">
     <div class="row content-row">
-        <p>这是一个分析界面</p>
+        <div class="row input-row">
+            <div class="title">
+                <span>收益情况</span>
+            </div>
+            <div class="row info-row">
+                <ul>
+                    <li>
+                        <div class="info-div info-hotel-num">被 <span>${ha.vipNum}</span> 个会员光顾了</div>
+                    </li>
+                    <li>
+                        <div class="info-div info-order-num">产生了 <span>${ha.orderNum}</span> 次订单</div>
+                    </li>
+                    <li>
+                        <div class="info-div info-money-num">收益了 <span>￥${ha.moneyNum}</span> 元</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="row img-row">
+                <ul>
+                    <li>
+                        <div id="bar"></div>
+                    </li>
+                    <li>
+                        <div id="line"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <br>
-        <br>
-        <br>
-        <br>
+        <input type="hidden" id="hId" value="${info.hId}">
         <footer class="global-footer">
             <div class="copyright">
                 <p style="text-align: center;">
@@ -66,7 +89,8 @@
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/pageGroup.js"></script>
-    <script src="../js/personInfo.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/hotelAnalyse.js"></script>
 </body>
 </html>
 

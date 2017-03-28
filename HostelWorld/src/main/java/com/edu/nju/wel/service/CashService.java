@@ -1,6 +1,7 @@
 package com.edu.nju.wel.service;
 
 import com.edu.nju.wel.model.Cash;
+import com.edu.nju.wel.model.HotelCash;
 
 import java.util.List;
 
@@ -9,4 +10,6 @@ import java.util.List;
  */
 public interface CashService {
     public List<Cash> getCashByVId(int id);
+
+    public List<HotelCash> getCashByHId(int hId);
 }

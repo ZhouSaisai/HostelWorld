@@ -1,15 +1,15 @@
 $(document).ready(function () {
     // 基于准备好的dom，初始化echarts实例
-    var barChart = echarts.init(document.getElementById('line'));
-    var lineChart = echarts.init(document.getElementById('bar'));
+    var lineChart= echarts.init(document.getElementById('line'));
+    var barChart = echarts.init(document.getElementById('bar'));
 
-    var vId = $('#vId').val();
+    var hId = $('#hId').val();
     $.ajax({
         type:'post',
         url:'/HotelWorld/get_line_data',
         data:{
-            'id':vId,
-            'type':1
+            'id':hId,
+            'type':2
         },
         success:function(data){
             //折线图数据处理
@@ -37,7 +37,7 @@ $(document).ready(function () {
                     }
                 },
                 title: {
-                    text: '每月消费次数一览柱状图',
+                    text: '每月被消费次数一览柱状图',
                 },
                 legend: {
                     left:'400',
@@ -71,7 +71,7 @@ $(document).ready(function () {
             // 指定图表的配置项和数据
             var option = {
                 title: {
-                    text: '每月合计消费趋势曲线图'
+                    text: '每月合计收益趋势曲线图'
                 },
                 legend: {
                     left:'400',

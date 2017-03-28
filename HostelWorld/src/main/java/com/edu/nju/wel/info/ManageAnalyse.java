@@ -5,22 +5,22 @@ import java.util.List;
 /**
  * Created by zs on 2017/3/24.
  */
-public class VIPAnalyse {
-    //订单总数
-    private int orderNum;
-    //光顾的客栈数
+public class ManageAnalyse {
+    //会员数
+    private int vipNum;
+    //客栈数
     private int hotelNum;
-    //消费总金额
-    private double moneyNum;
+    //订单
+    private int orderNum;
 
     private List<MonthAnalyse> months;
 
-    public int getOrderNum() {
-        return orderNum;
+    public int getVipNum() {
+        return vipNum;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
+    public void setVipNum(int vipNum) {
+        this.vipNum = vipNum;
     }
 
     public int getHotelNum() {
@@ -31,12 +31,12 @@ public class VIPAnalyse {
         this.hotelNum = hotelNum;
     }
 
-    public double getMoneyNum() {
-        return moneyNum;
+    public int getOrderNum() {
+        return orderNum;
     }
 
-    public void setMoneyNum(double moneyNum) {
-        this.moneyNum = moneyNum;
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
     }
 
     public List<MonthAnalyse> getMonths() {
@@ -49,10 +49,10 @@ public class VIPAnalyse {
 
     @Override
     public String toString() {
-        return "VIPAnalyse{" +
-                "orderNum=" + orderNum +
+        return "ManageAnalyse{" +
+                "vipNum=" + vipNum +
                 ", hotelNum=" + hotelNum +
-                ", moneyNum=" + moneyNum +
+                ", orderNum=" + orderNum +
                 ", months=" + months.toString() +
                 '}';
     }
