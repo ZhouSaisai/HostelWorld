@@ -97,10 +97,10 @@
                                 <td style="text-align:center;"><%=i%></td>
                                 <td style="text-align:center;">${cash.content}</td>
                                 <c:choose>
-                                    <c:when test="${cash.type==0}">
+                                    <c:when test="${cash.type==1}">
                                         <td style="text-align:center;">会员卡</td>
                                     </c:when>
-                                    <c:when test="${cash.type==1}">
+                                    <c:when test="${cash.type==0}">
                                         <td style="text-align:center;">现金支付</td>
                                     </c:when>
                                 </c:choose>

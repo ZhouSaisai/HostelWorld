@@ -74,10 +74,6 @@ function pointChangeSave() {
         $("#error-point-change").text("数额输入错误！");
         setTimeout("$('#error-point-change').text('');",1000);
         return false;
-    }else if(num>point){
-        $("#error-point-change").text("数额大于已有积分！");
-        setTimeout("$('#error-point-change').text('');",1000);
-        return false;
     }else if(num<=0){
         $("#error-point-change").text("数额不能小于等于0！");
         setTimeout("$('#error-point-change').text('');",1000);

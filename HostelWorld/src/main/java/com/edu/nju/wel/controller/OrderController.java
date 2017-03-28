@@ -233,7 +233,7 @@ public class OrderController {
         int numInt = Integer.parseInt(num);
         int pIdInt = Integer.parseInt(pId);
 
-        return calOrderPrice(vIdInt,pIdInt,rIdInt,start,end);
+        return calOrderPrice(vIdInt,pIdInt,rIdInt,numInt,start,end);
     }
 
     @RequestMapping(value = "get_price_nv",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
@@ -305,7 +305,7 @@ public class OrderController {
         int vIdInt = Integer.parseInt(vId);
         int numInt = Integer.parseInt(num);
         int pIdInt = Integer.parseInt(pId);
-        String[] price = calOrderPrice(vIdInt,pIdInt,rIdInt,start,end).split(";");
+        String[] price = calOrderPrice(vIdInt,pIdInt,rIdInt,numInt,start,end).split(";");
         Double n_price = Double.parseDouble(price[0]);
         Double o_price = Double.parseDouble(price[1]);
         //生成订单
@@ -370,14 +370,14 @@ public class OrderController {
         return orderService.cancelOrder(oIdInt);
     }
 
-    private String calOrderPrice(int vIdInt,int pIdInt,int rIdInt,String start,String end){
+    private String calOrderPrice(int vIdInt,int pIdInt,int rIdInt,int num,String start,String end){
         int day = DateHelper.calDays(start,end);
         if(day<0){
             return "0;0";
         }
         //获得房间信息
         Room room = planService.getRoomByRId(rIdInt);
-        int o_price = room.getPrice()*day;
+        int o_price = room.getPrice()*day*num;
         //获得用户信息
         PersonInfo personInfo = person.getPersonById(vIdInt);
         int level = personInfo.getLevel().charAt(3)-'0';
@@ -393,7 +393,7 @@ public class OrderController {
             return o_price*(1-level*0.02)+";"+o_price;
         }
         //享受计划的价格*享受天数 加 未享受的价格*剩余天数
-        int n_price = plan.getPrice()*day2+room.getPrice()*(day-day2);
+        int n_price = (plan.getPrice()*day2+room.getPrice()*(day-day2))*num;
         return n_price*(1-level*0.02)+";"+o_price;
     }
 
