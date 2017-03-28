@@ -38,11 +38,11 @@ $(function(){
         var show_per_page = parseInt($('#show_per_page_num').val());
 
         //开始
-        start_from_this = pageNum * show_per_page;
+        start_from_t = pageNum * show_per_page;
         //结束
-        end_on_this = start_from_this + show_per_page;
+        end_on_t = start_from_t + show_per_page;
         //隐藏内容ul的所有子元素，获取特定项目并显示它们
-        $(".open-hotel-row").css('display', 'none').slice(start_from_this, end_on_this).css('display', 'block');
+        $(".open-hotel-row").css('display', 'none').slice(start_from_t, end_on_t).css('display', 'block');
         if(pageCounter > 5){
             //显示页面
             pageGroup(page,pageCounter);
@@ -53,7 +53,7 @@ $(function(){
     });
 
     //点击上一页触发
-    $("#pageGro .pageUpC").click(function(){
+    $("#pageGro .pageUp").click(function(){
         var pageNum = parseInt($("#pageGro li.on").html());//获取当前页
         if (pageNum <= 1) {
             var page = pageNum;
@@ -63,12 +63,12 @@ $(function(){
         var show_per_page = parseInt($('#show_per_page_num').val());
 
         //开始
-        start_from_this = page * show_per_page - show_per_page;
+        start_from_t = page * show_per_page - show_per_page;
         //结束
-        end_on_this = start_from_this + show_per_page;
+        end_on_t = start_from_t + show_per_page;
 
         //隐藏内容ul的所有子元素，获取特定项目并显示它们
-        $(".open-hotel-row").css('display', 'none').slice(start_from_this, end_on_this).css('display', 'block');
+        $(".open-hotel-row").css('display', 'none').slice(start_from_t, end_on_t).css('display', 'block');
 
         if(pageCounter > 5){
             pageUpC(pageNum,pageCounter);
@@ -82,7 +82,7 @@ $(function(){
     });
 
     //点击下一页触发
-    $("#pageGro .pageDownC").click(function(){
+    $("#pageGro .pageDown").click(function(){
         var pageNum = parseInt($("#pageGro li.on").html());//获取当前页
         var page = pageNum;
         if (pageNum===pageCounter) {
@@ -90,13 +90,13 @@ $(function(){
         }
         var show_per_page = parseInt($('#show_per_page_num').val());
         //开始
-        start_from_this = page * show_per_page;
+        start_from_t = page * show_per_page;
 
         //结束
-        end_on_this = start_from_this + show_per_page;
+        end_on_t = start_from_t + show_per_page;
 
         //隐藏内容ul的所有子元素，获取特定项目并显示它们
-        $(".open-hotel-row").css('display', 'none').slice(start_from_this, end_on_this).css('display', 'block');
+        $(".open-hotel-row").css('display', 'none').slice(start_from_t, end_on_t).css('display', 'block');
         if(pageCounter > 5){
             pageDownC(pageNum,pageCounter);
         }else{
@@ -112,12 +112,12 @@ $(function(){
     $("body").on("click","#pageGro .pagestart",function(){
         var pageNum = $('#start_page').val();
         //开始
-        start_from_this = pageNum * show_per_page_num;
+        start_from_t = pageNum * show_per_page_num;
         //结束
-        end_on_this = start_from_this + show_per_page_num;
+        end_on_t = start_from_t + show_per_page_num;
 
         //隐藏内容ul的所有子元素，获取特定项目并显示它们
-        $(".open-hotel-row").css('display', 'none').slice(start_from_this, end_on_this).css('display', 'block');
+        $(".open-hotel-row").css('display', 'none').slice(start_from_t, end_on_t).css('display', 'block');
         if (pageCounter > 5) {
             //显示页码
             pageGroup(1,pageCounter);
@@ -137,12 +137,12 @@ $(function(){
         var page = pageNum1-1;
 
         //开始
-        start_from_this = page * show_per_page_num;
+        start_from_t = page * show_per_page_num;
         //结束
-        end_on_this = start_from_this + show_per_page_num;
+        end_on_t = start_from_t + show_per_page_num;
 
         //隐藏内容ul的所有子元素，获取特定项目并显示它们
-        $(".open-hotel-row").css('display', 'none').slice(start_from_this, end_on_this).css('display', 'block');
+        $(".open-hotel-row").css('display', 'none').slice(start_from_t, end_on_t).css('display', 'block');
 
         if (pageCounter > 5) {
             //显示页码

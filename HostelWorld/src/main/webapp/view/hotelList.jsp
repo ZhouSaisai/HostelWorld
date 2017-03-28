@@ -65,11 +65,11 @@
                         <div class="recommend-hotel-col">
                             <img class="order_hotel_img" src="../img/hotel_order_4.jpg">
                             <div class="recommend-hotel-content recommend-hotel-content-left">
-                                <p class="order_hotel_name">橘子酒店</p>
-                                <p class="order_hotel_address">南京市xxxxxxxx</p>
+                                <p class="order_hotel_name">仙林客栈</p>
+                                <p class="order_hotel_address">南京市栖霞区仙林大道164号</p>
                             </div>
                             <div class="recommend-hotel-content recommend-hotel-content-right">
-                                <span class="border-btn order-btn">预定</span>
+                                <span class="border-btn order-btn" onclick="order(25)">预定</span>
                             </div>
 
                         </div>
@@ -78,11 +78,11 @@
                         <div class="recommend-hotel-col">
                             <img class="order_hotel_img" src="../img/hotel_order_3.jpg">
                             <div class="recommend-hotel-content recommend-hotel-content-left">
-                                <p class="order_hotel_name">橘子酒店</p>
-                                <p class="order_hotel_address">南京市xxxxxxxx</p>
+                                <p class="order_hotel_name">木叶客栈</p>
+                                <p class="order_hotel_address">火之国木叶村一乐外卖旁边</p>
                             </div>
                             <div class="recommend-hotel-content recommend-hotel-content-right">
-                                <span class="border-btn order-btn">预定</span>
+                                <span class="border-btn order-btn" onclick="order(28)">预定</span>
                             </div>
                         </div>
                     </div>
@@ -90,11 +90,11 @@
                         <div class="recommend-hotel-col">
                             <img class="order_hotel_img" src="../img/hotel_order_2.jpg">
                             <div class="recommend-hotel-content recommend-hotel-content-left">
-                                <p class="order_hotel_name">橘子酒店</p>
-                                <p class="order_hotel_address">南京市xxxxxxxx</p>
+                                <p class="order_hotel_name">九棵松客栈</p>
+                                <p class="order_hotel_address">北京市九棵松体育馆旁</p>
                             </div>
                             <div class="recommend-hotel-content recommend-hotel-content-right">
-                                <span class="border-btn order-btn">预定</span>
+                                <span class="border-btn order-btn" onclick="order(34)">预定</span>
                             </div>
                         </div>
                     </div>
@@ -177,8 +177,6 @@
     </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/bootstrap.js"></script>
-<script src="../js/manageApprove.js"></script>
-<script src="../js/pageGroupHelper.js"></script>
 <script>
     function order(hId) {
         window.location.href="/HotelWorld/hotel_detail?id="+hId;

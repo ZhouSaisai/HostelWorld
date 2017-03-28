@@ -138,7 +138,7 @@ $(function(){
 	//点击尾页
 	$("body").on("click","#pageGro .pageend",function(){
 		var pageNum1 = $('#end_page').val();
-		var pagenum = pageNum1-2
+		var pagenum = pageNum1-2;
 		var page = pageNum1-1;
 
 		//开始

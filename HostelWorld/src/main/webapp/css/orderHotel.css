@@ -51,11 +51,11 @@
 }
 
 .recommend-hotel-content-left{
-    width:60%;
+    width:70%;
 }
 
 .recommend-hotel-content-right{
-    width:40%;
+    width:30%;
 }
 .order_hotel_name{
     font-size: 19px;
@@ -64,12 +64,12 @@
 }
 
 .order_hotel_address{
-    margin: 0px 25px 10px;
+    margin: 0px 10px 10px;
     color: #666666;
 }
 .order-btn{
     display: block;
-    width:80px;
+    width:60px;
     margin: 20px auto 20px;
     color: #5288d7;
     border-color: #5288d7;
