@@ -7,6 +7,7 @@ import com.edu.nju.wel.info.VIPAnalyse;
 import com.edu.nju.wel.service.AnalyseService;
 import com.edu.nju.wel.service.HotelInfoService;
 import com.edu.nju.wel.service.PersonInfoService;
+import com.edu.nju.wel.util.helper.ManageAccountHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,6 +85,33 @@ public class AnalyseController {
 
             view.setViewName("hotelAnalyse");
             view.addObject("info",info);
+        }
+        return view;
+    }
+
+    @RequestMapping(value = "manage_analyse")
+    public ModelAndView manageAnalyse(HttpServletRequest request, HttpServletResponse response) {
+        //构造ModelAndView
+        ModelAndView view = new ModelAndView("index");
+        //
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            try {
+                response.sendRedirect("/HotelWorld/welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return view;
+            }
+        }else{
+            String manager = (String)session.getAttribute("manager");
+            if(manager==null || !manager.equals(ManageAccountHelper.CODE)){
+                try {
+                    response.sendRedirect("/HotelWorld/welcome");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            view.setViewName("manageAnalyse");
         }
         return view;
     }

@@ -28,8 +28,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
                 <li><a href="/HotelWorld/manage_zone">查看申请</a></li>
-                <li><a href="#">会员结算</a></li>
-                <li><a href="#">网站统计</a></li>
+                <li><a href="/HotelWorld/manage_settlement">客栈结算</a></li>
+                <li><a href="/HotelWorld/manage_analyse">网站统计</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -50,7 +50,7 @@
         <div class="row">
             <div class="switch-buttons">
                 <a class="switch-button" href="/HotelWorld/manage_zone">查看申请</a>
-                <a class="switch-button" href="#">会员结算</a>
+                <a class="switch-button" href="/HotelWorld/manage_settlement">客栈结算</a>
             </div>
         </div>
     </div>

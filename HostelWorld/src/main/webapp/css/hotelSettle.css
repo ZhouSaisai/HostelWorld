@@ -1,0 +1,46 @@
+ul li{
+    display:block;
+}
+
+.hotel-settle-row{
+    width:90%;
+    margin:20px auto 10px;
+    border:1px solid #EBEBEB;
+    border-radius: 10px;
+}
+
+.hotel-settle-row *{
+    font-size: 18px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+/*输入房间号，姓名*/
+.hotel-settle-row li{
+    float: left;
+    width: 25%;
+    margin: 8px 0;
+    line-height: 28px;
+}
+
+.hotel-settle-row .first-li{
+    width:4%;
+    color: #5389d2;
+    font-size: 20px;
+    text-align: left;
+}
+.hotel-settle-row .long-li{
+    width:30%;
+}
+
+.hotel-settle-row .last-li{
+    width:4%;
+}
+
+.settle-btn{
+    width: 80px;
+    float: none;
+    font-size: 16px;
+    margin: 0 auto 0 22px;
+}

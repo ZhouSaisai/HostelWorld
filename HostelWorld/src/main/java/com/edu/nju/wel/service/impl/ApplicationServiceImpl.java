@@ -61,5 +61,15 @@ public class ApplicationServiceImpl implements ApplicationService {
         return "操作成功！";
     }
 
+    @Override
+    public String manageSettleMoney(int hidInt) {
+        Hotel hotel = DAOManager.hotelDao.getHotelById(hidInt);
+        double money = hotel.getOutMoney();
+        hotel.setMoney(hotel.getMoney()+money);
+        hotel.setOutMoney(0);
+        DAOManager.hotelDao.updateHotel(hotel);
+        return "操作成功";
+    }
+
 
 }

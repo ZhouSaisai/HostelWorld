@@ -164,7 +164,26 @@ public class OrderServiceImpl implements OrderService {
         if(order==null){
             return "离店失败！";
         }
+        //房间数量变化
+        String start = order.getStart();
+        String end = order.getEnd();
+        int pId =order.getPlan();
+        Room room = order.getRoom();
+        int days =0;
+
+        if(pId!=0){
+            Plan plan = DAOManager.planDao.getPlan(pId);
+            days = DateHelper.calPeriodDays(start, end, plan.getStart(), plan.getEnd());
+            if (days > 0) {
+                plan.setOrderNum(plan.getOrderNum() - order.getNum());
+                DAOManager.planDao.updatePlan(plan);
+            }
+        }
+        room.setOrderNum(room.getOrderNum()-order.getNum());
+        DAOManager.roomDao.updateRoom(room);
+
         order.setState(2);
+        order.setRoom(room);
         DAOManager.orderDao.updateOrder(order);
         return "离店成功！";
     }

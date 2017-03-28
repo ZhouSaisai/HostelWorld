@@ -23,4 +23,7 @@ public interface ApplicationService {
 
     //审批修改资料状态
     public String manageModifyApplication(int hidInt, int typeInt);
+
+    //结算客栈的余额
+    public String manageSettleMoney(int hidInt);
 }

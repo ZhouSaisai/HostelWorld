@@ -1,3 +1,4 @@
+<%@ page import="com.edu.nju.wel.info.PersonInfo" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -33,7 +34,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">个人空间</a></li>
+                <li><a href="/HotelWorld/person_zone?id=<%=((PersonInfo)session.getAttribute("info")).getId()%>">个人空间</a></li>
                 <li><a href="ask_loginOut">注销</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -49,7 +50,7 @@
         </div>
         <div class="row">
             <div class="switch-buttons">
-                <a id="single" href="/HotelWorld/hotels">立即预定</a>
+                <a id="single" href="/HotelWorld/hotel_list">立即预定</a>
             </div>
         </div>
     </div>

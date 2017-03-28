@@ -29,8 +29,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/HotelWorld/welcome">首页</a></li>
                 <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
-                <li><a href="#">订单登记</a></li>
-                <li><a href="#">客栈统计</a></li>
+                <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
+                <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -50,8 +50,8 @@
         </div>
         <div class="row">
             <div class="switch-buttons">
-                <a class="switch-button" href="#">发布计划</a>
-                <a class="switch-button" href="#">查看预定</a>
+                <a class="switch-button" href="/HotelWorld/hotel_plan">发布计划</a>
+                <a class="switch-button" href="/HotelWorld/hotel_check">查看预定</a>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@
                     <li><a href="/HotelWorld/welcome">首页</a></li>
                     <li class="active"><a href="/HotelWorld/hotel_list">预定客栈</a></li>
                     <li><a href="/HotelWorld/my_order">我的预定</a></li>
-                    <li><a href="/HotelWorld/hotel_analyse">我的消费分析</a></li>
+                    <li><a href="/HotelWorld/vip_analyse">我的消费分析</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">

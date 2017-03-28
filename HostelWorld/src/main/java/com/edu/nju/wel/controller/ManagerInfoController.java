@@ -3,6 +3,7 @@ package com.edu.nju.wel.controller;
 import com.edu.nju.wel.model.Application;
 import com.edu.nju.wel.model.Hotel;
 import com.edu.nju.wel.service.ApplicationService;
+import com.edu.nju.wel.service.HotelInfoService;
 import com.edu.nju.wel.util.helper.ManageAccountHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,8 @@ import java.util.List;
 @Controller
 public class ManagerInfoController {
 
+    @Autowired
+    HotelInfoService hotelService;
     @Autowired
     ApplicationService applicationService;
     /**
@@ -90,6 +93,46 @@ public class ManagerInfoController {
         int hidInt = Integer.parseInt(hid);
         int typeInt = Integer.parseInt(type);
         String result = applicationService.manageModifyApplication(hidInt,typeInt);
+        return result;
+    }
+
+    @RequestMapping(value = "manage_settlement")
+    public ModelAndView manageSettlement(HttpServletRequest request, HttpServletResponse response) {
+        //构造ModelAndView
+        ModelAndView view = new ModelAndView("index");
+        //
+        HttpSession session = request.getSession(false);
+        if(session==null){
+            try {
+                response.sendRedirect("/HotelWorld/welcome");
+            } catch (IOException e) {
+                e.printStackTrace();
+                return view;
+            }
+        }else{
+            String manager = (String)session.getAttribute("manager");
+            if(manager==null || !manager.equals(ManageAccountHelper.CODE)){
+                try {
+                    response.sendRedirect("/HotelWorld/welcome");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            view.setViewName("manageSettlement");
+            List<Hotel> hotels = hotelService.getHotels();
+            view.addObject("hotels",hotels);
+        }
+        return view;
+    }
+
+    @RequestMapping(value = "manage_settle_money",produces="text/html;charset=UTF-8;",method = RequestMethod.POST)
+    @ResponseBody
+    public String manageSettleMoney(HttpServletRequest request, HttpServletResponse response) {
+        //获取参数
+        String hid = request.getParameter("hId");
+        //转换类型
+        int hidInt = Integer.parseInt(hid);
+        String result = applicationService.manageSettleMoney(hidInt);
         return result;
     }
 

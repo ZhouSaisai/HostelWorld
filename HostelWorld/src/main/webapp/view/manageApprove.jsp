@@ -32,8 +32,8 @@
                 <ul class="nav navbar-nav">
                     <li><a href="/HotelWorld/welcome">首页</a></li>
                     <li class="active"><a href="#">查看申请</a></li>
-                    <li><a href="#">会员结算</a></li>
-                    <li><a href="#">网站统计</a></li>
+                    <li><a href="/HotelWorld/manage_settlement">会员结算</a></li>
+                    <li><a href="/HotelWorld/manage_analyse">网站统计</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
