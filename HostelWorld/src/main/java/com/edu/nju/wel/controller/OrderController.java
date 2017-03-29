@@ -280,7 +280,7 @@ public class OrderController {
     public String getOrder(HttpServletRequest request, HttpServletResponse response) {
         String code = request.getParameter("code");
         Orders result = orderService.getOrderByCode(code);
-        if(result==null){
+        if(result==null || result.getState()==3){
             return "0";
         }else{
             return "1;"+result.getRoom().getName()+";"+result.getStart()+";"+result.getNum()
