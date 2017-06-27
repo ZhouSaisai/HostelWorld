@@ -50,6 +50,10 @@ public class Hotel implements Serializable{
     @OneToMany(targetEntity = HotelCash.class, mappedBy = "hotel")
     private List<HotelCash> cashes;
 
+    @JoinColumn(name="aId")//指定在本实体所映射的那个表中关联的外键
+    @ManyToOne(targetEntity=Area.class)
+    private Area area;
+
     public Hotel() {
     }
 

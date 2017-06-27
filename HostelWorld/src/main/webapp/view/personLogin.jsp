@@ -30,6 +30,7 @@
                     <li><a href="#">预定客栈</a></li>
                     <li><a href="#">我的预定</a></li>
                     <li><a href="#">我的消费分析</a></li>
+                    <li><a href="#">我的消费模型</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
