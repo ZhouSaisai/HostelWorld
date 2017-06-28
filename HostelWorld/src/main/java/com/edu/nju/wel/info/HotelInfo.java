@@ -29,6 +29,9 @@ public class HotelInfo{
     private double outMoney;
     //申请时间
     private Timestamp time;
+    //ADD-地区代码
+    private int aId;
+
     public HotelInfo() {
     }
 
@@ -118,6 +121,14 @@ public class HotelInfo{
 
     public void setTime(Timestamp time) {
         this.time = time;
+    }
+
+    public int getaId() {
+        return aId;
+    }
+
+    public void setaId(int aId) {
+        this.aId = aId;
     }
 
     @Override

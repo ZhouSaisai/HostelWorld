@@ -51,6 +51,16 @@ public class Area  implements Serializable {
     public void setType(int type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return "Area{" +
+                "aId=" + aId +
+                ", name='" + name + '\'' +
+                ", pid=" + pid +
+                ", type=" + type +
+                '}';
+    }
 }
 
 

@@ -1,5 +1,6 @@
 package com.edu.nju.wel.dao;
 
+import com.edu.nju.wel.info.TimeAnalyse;
 import com.edu.nju.wel.model.Orders;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public interface OrderDao {
     //用户订单分析
     public List<Orders> getVipOrderAnalyse(int vId);
 
+    //会员订单完成率
+    public double getVidFinishRate(int vId);
+
     //订单单客户下单的客栈数
     public int getVipHotelNum(int vId);
     //订单单客栈下单的客户数
@@ -39,4 +43,6 @@ public interface OrderDao {
 
     //网站订单分析
     public List<Orders> getAllOrderAnalyse();
+
+    public List<TimeAnalyse> getVipOrderByTime(int vId, int areaId, int type);
 }

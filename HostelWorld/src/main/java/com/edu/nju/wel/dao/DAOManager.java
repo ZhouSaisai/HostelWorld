@@ -1,5 +1,6 @@
 package com.edu.nju.wel.dao;
 
+import com.edu.nju.wel.info.ADDType;
 import com.edu.nju.wel.util.helper.ApplicationContextHelper;
 import org.springframework.context.ApplicationContext;
 
@@ -17,6 +18,8 @@ public class DAOManager {
     public final static PlanDao planDao;
     public final static ApplicationDao applicationDao;
     public final static OrderDao orderDao;
+
+    public final static AreaDao areaDao;
     static {
         ApplicationContext context = ApplicationContextHelper.getApplicationContext();
         vipDao = context.getBean(VIPDao.class);
@@ -28,6 +31,7 @@ public class DAOManager {
         applicationDao = context.getBean(ApplicationDao.class);
         orderDao = context.getBean(OrderDao.class);
         hcashDao = context.getBean(HotelCashDao.class);
+        areaDao = context.getBean(AreaDao.class);
     }
 
 }

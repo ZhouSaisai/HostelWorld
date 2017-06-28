@@ -2,6 +2,7 @@ package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.info.HotelInfo;
+import com.edu.nju.wel.model.Area;
 import com.edu.nju.wel.model.Hotel;
 import com.edu.nju.wel.service.HotelLoginService;
 import com.edu.nju.wel.util.exception.NotExistException;
@@ -25,6 +26,11 @@ public class HotelLoginServiceImpl implements HotelLoginService {
         hotel.setLevel(hotelInfo.getLevel());
         hotel.setTel(hotelInfo.getTel());
         hotel.setAddress(hotelInfo.getAddress());
+        //获取地区
+        int aId = hotelInfo.getaId();
+        Area area =DAOManager.areaDao.getArea(aId);
+        hotel.setArea(area);
+
         //生成7位识别码
         String code = "h"+IDCodeHelper.getID();
 //        System.out.println(code);

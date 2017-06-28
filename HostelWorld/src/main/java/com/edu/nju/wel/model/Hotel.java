@@ -169,4 +169,12 @@ public class Hotel implements Serializable{
     public void setCashes(List<HotelCash> cashes) {
         this.cashes = cashes;
     }
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
 }

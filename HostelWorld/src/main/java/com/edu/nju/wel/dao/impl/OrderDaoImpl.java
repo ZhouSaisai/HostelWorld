@@ -1,9 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
-import com.edu.nju.wel.dao.DAOManager;
 import com.edu.nju.wel.dao.OrderDao;
-import com.edu.nju.wel.info.MonthAnalyse;
-import com.edu.nju.wel.info.VIPAnalyse;
+import com.edu.nju.wel.info.TimeAnalyse;
 import com.edu.nju.wel.model.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -130,6 +128,22 @@ public class OrderDaoImpl implements OrderDao {
         return list;
     }
 
+    @Override
+    public double getVidFinishRate(int vId) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<Double> list;
+        //查询
+        String hql = "select sum(case when o.state != 3 then 1 else 0 end)*1.0/count(*) from Orders o where o.vip.vId= "+vId;
+        Query query=session.createQuery(hql);
+        list=query.list();
+        Double a = list.get(0);
+        //事务
+        tx.commit();
+        session.close();
+        return a;
+    }
+
     public int getVipHotelNum(int vId) {
         session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
@@ -197,5 +211,50 @@ public class OrderDaoImpl implements OrderDao {
         tx.commit();
         session.close();
         return list;
+    }
+
+    @Override
+    public List<TimeAnalyse> getVipOrderByTime(int vId, int areaId, int type) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<TimeAnalyse> result = new ArrayList<>();
+        List<Object[]> list;
+        //查询
+        String hql="";
+        String place = " ";
+        if(areaId!=0){
+            place = " and o.room.hotel.area.aId like '"+areaId+"%' ";
+        }
+        switch (type){
+            case 0:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+                break;
+            case 1:
+                hql = "select DATE_FORMAT(o.time,'%Y-%u') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%u') order by DATE_FORMAT(o.time,'%Y-%u')";
+                break;
+            case 2:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m') order by DATE_FORMAT(o.time,'%Y-%m')";
+                break;
+            case 3:
+                hql = "select DATE_FORMAT(o.time,'%Y') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y') order by DATE_FORMAT(o.time,'%Y')";
+                break;
+        }
+        Query query=session.createQuery(hql);
+        list=query.list();
+
+        for(Object[] objects:list){
+            TimeAnalyse timeAnalyse = new TimeAnalyse();
+            String t_time = (String) objects[0];
+            double money =(Double) objects[1];
+            int num=((Number) objects[2]).intValue();
+            timeAnalyse.setDate(t_time);
+            timeAnalyse.setMoney(money);
+            timeAnalyse.setNum(num);
+            result.add(timeAnalyse);
+        }
+        //事务
+        tx.commit();
+        session.close();
+        return result;
     }
 }

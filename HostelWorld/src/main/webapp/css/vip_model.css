@@ -1,0 +1,118 @@
+.img-row{
+    width:92%;
+    margin:25px auto 0;
+}
+
+.img-row li{
+    width: 46%;
+    float:left;
+    display: block;
+    margin:20px 0 0;
+}
+
+.img-row li #model{
+    width: 105%;
+    height:460px;
+}
+
+.img-row li #scores{
+    font-size: 14px;
+    padding: 0 20px;
+}
+
+.img-row li #scores span {
+    font-weight: 800;
+    font-size: 18px;
+}
+
+.p_title{
+    font-size: 16px;
+}
+
+.img-row li #scores .small_score{
+    color:#1d62bb;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.pic_div{
+    width:96%;
+    height: 550px;
+    margin: 10px auto;
+}
+
+#pic_small_map{
+    height:400px;
+    margin-top: 10px;
+    padding-top:10px;
+    border-top: 1px dashed #ccc;
+}
+.pic_remind{
+    text-align: center;
+    margin: 150px;
+}
+
+.choose-wei-row{
+    width: 90%;
+    margin: 30px auto;
+}
+
+.div_btn{
+    width: 90%;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.div_btn span{
+    font-size: 16px;
+    color: #5288d7;
+}
+
+.div_btn ul{
+    width: 80%;
+}
+
+.area_choose select{
+    color: #5288d7;
+    background-color: white;
+    border:1px solid #5288d7;
+    font-size: 14px;
+    border-radius: 4px;
+    width: 200px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.div_btn ul li{
+    width: 20%;
+    float:left;
+    display: block;
+}
+
+.div_btn .time_btn.active{
+    background-color: #5389d2 !important;
+    color: white !important;
+}
+
+.div_btn .time_btn{
+    display: inline-block;
+    color: #5288d7;
+    border:1px solid #5288d7;
+    font-size: 14px;
+    border-radius: 4px;
+    width: 115px;
+    text-align: center;
+    height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    transition: color .1s;
+    margin-left: 27px;
+}
+
+.div_btn .time_btn.refresh_btn{
+    background-color: #5389d2 !important;
+    color: white !important;
+    width: 70px;
+}
