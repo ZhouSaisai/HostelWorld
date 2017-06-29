@@ -25,20 +25,25 @@ public class OrderServiceImpl implements OrderService {
         VIP vip = DAOManager.vipDao.getVIPById(vId);
         Room room = DAOManager.roomDao.getRoom(rId);
         if(vip==null || room==null){
+            System.out.println("error1");
             return "预定失败";
         }
         //生成订单号
         String code = "8"+IDCodeHelper.getID();
         order.setCode(code);
         //生成时间
-        Timestamp stamp = new Timestamp(System.currentTimeMillis());
+        Timestamp stamp = Timestamp.valueOf(order.getStart()+" 12:00:00");
+//        Timestamp stamp = new Timestamp(System.currentTimeMillis());
         order.setTime(stamp);
 
         //现金流动
         double money = order.getNowPrice();
         double nMoney = vip.getMoney()-money;
         if(nMoney<0.0001){
+            System.out.println("error2");
+
             return "余额不足";
+
         }
         vip.setMoney(nMoney);
         //更新用户

@@ -1,6 +1,9 @@
 package com.edu.nju.wel.dao;
 
+import com.edu.nju.wel.info.MonthAnalyse;
+import com.edu.nju.wel.info.PieInfo;
 import com.edu.nju.wel.info.TimeAnalyse;
+import com.edu.nju.wel.info.TypeAnalyse;
 import com.edu.nju.wel.model.Orders;
 
 import java.util.List;
@@ -45,4 +48,10 @@ public interface OrderDao {
     public List<Orders> getAllOrderAnalyse();
 
     public List<TimeAnalyse> getVipOrderByTime(int vId, int areaId, int type);
+
+    public List<MonthAnalyse> getHotelOrderByTime(int hIdInt, int type);
+
+    public List<TypeAnalyse> getHotelTypeByTime(int hIdInt, int type);
+
+    public PieInfo getHotelPie(int hIdInt);
 }

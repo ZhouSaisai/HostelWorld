@@ -86,9 +86,6 @@
             </div>
 
             <div class="row img-row">
-                <div class="pic_div" id="pic_canledar"></div>
-            </div>
-            <div class="row img-row">
                 <div class="pic_div" id="pic_canledar_big"></div>
             </div>
         </div>

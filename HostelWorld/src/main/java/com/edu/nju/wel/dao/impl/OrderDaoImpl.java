@@ -1,7 +1,10 @@
 package com.edu.nju.wel.dao.impl;
 
 import com.edu.nju.wel.dao.OrderDao;
+import com.edu.nju.wel.info.MonthAnalyse;
+import com.edu.nju.wel.info.PieInfo;
 import com.edu.nju.wel.info.TimeAnalyse;
+import com.edu.nju.wel.info.TypeAnalyse;
 import com.edu.nju.wel.model.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -241,6 +244,9 @@ public class OrderDaoImpl implements OrderDao {
         }
         Query query=session.createQuery(hql);
         list=query.list();
+        //事务
+        tx.commit();
+        session.close();
 
         for(Object[] objects:list){
             TimeAnalyse timeAnalyse = new TimeAnalyse();
@@ -251,6 +257,170 @@ public class OrderDaoImpl implements OrderDao {
             timeAnalyse.setMoney(money);
             timeAnalyse.setNum(num);
             result.add(timeAnalyse);
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<MonthAnalyse> getHotelOrderByTime(int hIdInt, int type) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<MonthAnalyse> result = new ArrayList<>();
+        List<Object[]> list;
+        //查询
+        String hql="";
+
+        switch (type){
+            case 0:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+                break;
+            case 1:
+                hql = "select DATE_FORMAT(o.time,'%Y-%u') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%u') order by DATE_FORMAT(o.time,'%Y-%u')";
+                break;
+            case 2:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%m') order by DATE_FORMAT(o.time,'%Y-%m')";
+                break;
+            case 3:
+                hql = "select DATE_FORMAT(o.time,'%Y') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y') order by DATE_FORMAT(o.time,'%Y')";
+                break;
+        }
+        Query query=session.createQuery(hql);
+        list=query.list();
+
+        //事务
+        tx.commit();
+        session.close();
+
+        for(Object[] objects:list){
+            MonthAnalyse mon = new MonthAnalyse();
+            String t_time = (String) objects[0];
+            double money =(Double) objects[1];
+            int num=((Number) objects[2]).intValue();
+            mon.setMon(t_time);
+            mon.setMoney(money);
+            mon.setNum(num);
+            result.add(mon);
+        }
+
+        return result;
+    }
+
+    @Override
+    public List<TypeAnalyse> getHotelTypeByTime(int hIdInt, int type) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<TypeAnalyse> result = new ArrayList<>();
+        List<Object[]> list;
+        //查询
+        String hql="";
+
+        switch (type){
+            case 0:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as t_date, sum(o.nowPrice) as money,count(o.oId) as num ,o.room.name as name from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%m-%d') ,o.room.name order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+                break;
+            case 1:
+                hql = "select DATE_FORMAT(o.time,'%Y-%u') as t_date, sum(o.nowPrice) as money,count(o.oId) as num ,o.room.name as name from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%u') ,o.room.name order by DATE_FORMAT(o.time,'%Y-%u')";
+                break;
+            case 2:
+                hql = "select DATE_FORMAT(o.time,'%Y-%m') as t_date, sum(o.nowPrice) as money,count(o.oId) as num ,o.room.name as name from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%m') ,o.room.name order by DATE_FORMAT(o.time,'%Y-%m')";
+                break;
+            case 3:
+                hql = "select DATE_FORMAT(o.time,'%Y') as t_date, sum(o.nowPrice) as money,count(o.oId) as num ,o.room.name as name from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y') ,o.room.name order by DATE_FORMAT(o.time,'%Y')";
+                break;
+        }
+        Query query=session.createQuery(hql);
+        list=query.list();
+        //事务
+        tx.commit();
+        session.close();
+
+        TypeAnalyse typeAnalyse = new TypeAnalyse();
+        String time = (String)list.get(0)[0];
+        for(int i=0;i<list.size();i++){
+            Object[] objects =list.get(i);
+            String t_time = (String) objects[0];
+            double money =(Double) objects[1];
+            int num=((Number) objects[2]).intValue();
+            String name = (String) objects[3];
+
+            if(!time.equals(t_time)){
+                result.add(typeAnalyse);
+                typeAnalyse = new TypeAnalyse();
+                time=t_time;
+            }
+            typeAnalyse.setDate(t_time);
+            typeAnalyse.setMoney(typeAnalyse.getMoney()+money);
+            switch (name){
+                case "单人房":
+                    typeAnalyse.setSingleM(num);
+                    break;
+                case "双人房":
+                    typeAnalyse.setDoubleM(num);
+                    break;
+                case "大套间":
+                    typeAnalyse.setBigM(num);
+                    break;
+            }
+        }
+        result.add(typeAnalyse);
+        return result;
+    }
+
+    @Override
+    public PieInfo getHotelPie(int hIdInt) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        PieInfo result = new PieInfo();
+        List<Object[]> list;
+        String hql = "select sum(o.nowPrice) as money, count(o.oId) as num,o.room.name as name from Orders o where o.vip.vId = 1 and o.room.hotel.hId= "+hIdInt+" group by o.room.name ";
+        Query query=session.createQuery(hql);
+        list=query.list();
+
+        for(int i=0;i<list.size();i++){
+            Object[] objects =list.get(i);
+            double money =(Double) objects[0];
+            int num=((Number) objects[1]).intValue();
+            String name = (String) objects[2];
+
+            switch (name){
+                case "单人房":
+                    result.setSingleUser(num);
+                    result.setSingleUserM(money);
+                    break;
+                case "双人房":
+                    result.setDoubleUser(num);
+                    result.setDoubleUserM(money);
+                    break;
+                case "大套间":
+                    result.setBigUser(num);
+                    result.setBigUserM(money);
+                    break;
+            }
+        }
+        hql = "select sum(o.nowPrice) as money, count(o.oId) as num,o.room.name as name from Orders o where o.vip.vId != 0 and o.room.hotel.hId= "+hIdInt+" group by o.room.name ";
+        query=session.createQuery(hql);
+        list=query.list();
+        for(int i=0;i<list.size();i++){
+            Object[] objects =list.get(i);
+            double money =(Double) objects[0];
+            int num=((Number) objects[1]).intValue();
+            String name = (String) objects[2];
+
+            switch (name){
+                case "单人房":
+                    result.setSingleVIP(num);
+                    result.setSingleVIPM(money);
+                    break;
+                case "双人房":
+                    result.setDoubleVIP(num);
+                    result.setDoubleVIPM(money);
+                    break;
+                case "大套间":
+                    result.setBigVIP(num);
+                    result.setBigVIPM(money);
+                    break;
+            }
         }
         //事务
         tx.commit();
