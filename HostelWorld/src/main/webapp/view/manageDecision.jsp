@@ -1,16 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>消费分析</title>
+    <title>我的消费模型</title>
     <link href="../css/bootstrap.css" rel="stylesheet">
     <link href="../css/common/navbar.css" rel="stylesheet">
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/analyse.css" rel="stylesheet">
+    <link href="../css/vip_model.css" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-color navbar-static-top">
@@ -31,8 +33,8 @@
                 <li><a href="/HotelWorld/welcome">首页</a></li>
                 <li><a href="/HotelWorld/manage_zone">查看申请</a></li>
                 <li><a href="/HotelWorld/manage_settlement">客栈结算</a></li>
-                <li class="active"><a href="/HotelWorld/manage_analyse">网站统计</a></li>
-                <li><a href="/HotelWorld/manage_decision">决策分析</a></li>
+                <li><a href="/HotelWorld/manage_analyse">网站统计</a></li>
+                <li class="active"><a href="/HotelWorld/manage_decision">决策分析</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -46,34 +48,34 @@
     <div class="row content-row">
         <div class="row input-row">
             <div class="title">
-                <span>消费情况</span>
+                <span>指标概览</span>
             </div>
             <div class="row info-row">
                 <ul>
                     <li>
-                        <div class="info-div info-hotel-num">共有 <span>${ma.hotelNum}</span> 家客栈</div>
+                        <div class="info-div info-hotel-num">总客栈数： <span>${ma.hotelNum}</span></div>
                     </li>
                     <li>
-                        <div class="info-div info-order-num">共有 <span>${ma.vipNum}</span> 位会员</div>
+                        <div class="info-div info-order-num">总会员数： <span>${ma.vipNum}</span></div>
                     </li>
                     <li>
-                        <div class="info-div info-money-num">共产生 <span>${ma.orderNum}</span> 个订单</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="row img-row">
-                <ul>
-                    <li>
-                        <div id="bar"></div>
-                    </li>
-                    <li>
-                        <div id="line"></div>
+                        <div class="info-div info-money-num">总订单额： <span>${ma.orderMoney}</span></div>
                     </li>
                 </ul>
             </div>
         </div>
-        <br>
+
+
+        <div class="row input-row">
+            <div class="title">
+                <span>地域维分析</span>
+            </div>
+            <div class="row img-row">
+                <div class="pic_div" id="pic_map"></div>
+            </div>
+        </div>
+
+        <input type="hidden" id="vId" value="${vId}">
         <footer class="global-footer footer-fixed-bottom">
             <div class="copyright">
                 <p style="text-align: center;">
@@ -89,7 +91,8 @@
     <script src="../js/jquery-3.1.1.min.js"></script>
     <script src="../js/bootstrap.js"></script>
     <script src="../js/echarts.min.js"></script>
-    <script src="../js/manageAnalyse.js"></script>
+    <script src="../json/china.js"></script>
+    <script src="../js/managerDecision.js"></script>
 </body>
 </html>
 

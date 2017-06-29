@@ -7,6 +7,7 @@ import com.edu.nju.wel.info.MonthAnalyse;
 import com.edu.nju.wel.info.VIPAnalyse;
 import com.edu.nju.wel.model.Orders;
 import com.edu.nju.wel.service.AnalyseService;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -65,6 +66,12 @@ public class AnalyseServiceImpl implements AnalyseService {
         ma.setOrderNum(orders.size());
         ma.setVipNum(vNum);
         ma.setHotelNum(hNum);
+        double money = 0.0;
+        for(Orders o : orders){
+            money+=o.getNowPrice();
+        }
+        ma.setOrderMoney(money);
+
         List<MonthAnalyse> mons = calMons(orders);
         ma.setMonths(mons);
         return ma;

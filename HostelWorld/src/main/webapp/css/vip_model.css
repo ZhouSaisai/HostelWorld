@@ -41,6 +41,13 @@
     margin: 10px auto;
 }
 
+.pic_small_div{
+    float:left;
+    width:70%;
+    height: 400px;
+    margin: 10px 20px;
+}
+
 #pic_small_map{
     height:400px;
     margin-top: 10px;

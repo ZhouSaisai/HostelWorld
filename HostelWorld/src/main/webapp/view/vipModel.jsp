@@ -53,10 +53,10 @@
             <div class="row info-row">
                 <ul>
                     <li>
-                        <div class="info-div info-hotel-num">总订单数：<span>${va.hotelNum}</span></div>
+                        <div class="info-div info-hotel-num">总客栈数：<span>${va.hotelNum}</span></div>
                     </li>
                     <li>
-                        <div class="info-div info-order-num">总订单额：<span>${va.orderNum}</span></div>
+                        <div class="info-div info-order-num">总订单数：<span>${va.orderNum}</span></div>
                     </li>
                     <li>
                         <div class="info-div info-money-num">完成订单率：<span>${rates.get(4)}%</span></div>

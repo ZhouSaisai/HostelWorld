@@ -13,6 +13,9 @@ public class ManageAnalyse {
     //订单
     private int orderNum;
 
+    //订单值
+    private double orderMoney;
+
     private List<MonthAnalyse> months;
 
     public int getVipNum() {
@@ -37,6 +40,14 @@ public class ManageAnalyse {
 
     public void setOrderNum(int orderNum) {
         this.orderNum = orderNum;
+    }
+
+    public double getOrderMoney() {
+        return orderMoney;
+    }
+
+    public void setOrderMoney(double orderMoney) {
+        this.orderMoney = orderMoney;
     }
 
     public List<MonthAnalyse> getMonths() {

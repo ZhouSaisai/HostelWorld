@@ -36,6 +36,7 @@
                         <li><a href="/HotelWorld/hotel_plan">发布计划</a></li>
                         <li><a href="/HotelWorld/hotel_check">订单登记</a></li>
                         <li><a href="/HotelWorld/hotel_analyse">客栈统计</a></li>
+                        <li><a href="/HotelWorld/hotel_decision">决策分析</a></li>
                     </c:if>
                 </ul>
 

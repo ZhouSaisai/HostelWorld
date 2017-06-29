@@ -31,7 +31,7 @@
                     <li><a href="#">发布计划</a></li>
                     <li><a href="#">订单登记</a></li>
                     <li><a href="#">客栈统计</a></li>
-
+                    <li><a href="#">决策分析</a></li>
 
                 </ul>
 
