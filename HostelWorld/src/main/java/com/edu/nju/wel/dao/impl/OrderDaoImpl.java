@@ -1,10 +1,7 @@
 package com.edu.nju.wel.dao.impl;
 
 import com.edu.nju.wel.dao.OrderDao;
-import com.edu.nju.wel.info.MonthAnalyse;
-import com.edu.nju.wel.info.PieInfo;
-import com.edu.nju.wel.info.TimeAnalyse;
-import com.edu.nju.wel.info.TypeAnalyse;
+import com.edu.nju.wel.info.*;
 import com.edu.nju.wel.model.Orders;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -375,7 +372,7 @@ public class OrderDaoImpl implements OrderDao {
         List<Object[]> list;
         String hql = "select sum(o.nowPrice) as money, count(o.oId) as num,o.room.name as name from Orders o where o.vip.vId = 1 and o.room.hotel.hId= "+hIdInt+" group by o.room.name ";
         Query query=session.createQuery(hql);
-        list=query.list();
+        list = query.list();
 
         for(int i=0;i<list.size();i++){
             Object[] objects =list.get(i);
@@ -425,6 +422,44 @@ public class OrderDaoImpl implements OrderDao {
         //事务
         tx.commit();
         session.close();
+        return result;
+    }
+
+    @Override
+    public List<AddInfo> getHotelAdd(int hIdInt) {
+        session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        List<AddInfo> result = new ArrayList<>();
+        List<Object[]> list;
+        //查询
+        String hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as t_date, sum(o.nowPrice) as money,count(o.oId) as num  from Orders o where o.room.hotel.hId= "+hIdInt+" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+        Query query=session.createQuery(hql);
+        list = query.list();
+
+        //事务
+        tx.commit();
+        session.close();
+        //起始值
+        Object[] start = list.get(0);
+        double s_money = (Double) start[1];
+        double s_num = ((Number) start[2]).doubleValue();
+        AddInfo info = new AddInfo();
+
+        for(int i=1;i<list.size();i++) {
+            Object[] object = list.get(i);
+            String time = (String) object[0];
+            double money = (Double) object[1];
+            double num = ((Number) object[2]).doubleValue();
+
+            info.setDate(time);
+            info.setValue((money-s_money)/money*100);
+            info.setNum((num-s_num)/num*100);
+            result.add(info);
+            info = new AddInfo();
+
+            s_money=money;
+            s_num=num;
+        }
         return result;
     }
 }

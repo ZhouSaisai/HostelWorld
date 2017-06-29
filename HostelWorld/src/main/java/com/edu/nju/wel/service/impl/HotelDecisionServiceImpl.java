@@ -1,6 +1,7 @@
 package com.edu.nju.wel.service.impl;
 
 import com.edu.nju.wel.dao.DAOManager;
+import com.edu.nju.wel.info.AddInfo;
 import com.edu.nju.wel.info.MonthAnalyse;
 import com.edu.nju.wel.info.PieInfo;
 import com.edu.nju.wel.info.TypeAnalyse;
@@ -29,5 +30,10 @@ public class HotelDecisionServiceImpl implements HotelDecisionService {
     @Override
     public PieInfo getHotelPieAnalyse(int hIdInt) {
         return DAOManager.orderDao.getHotelPie(hIdInt);
+    }
+
+    @Override
+    public List<AddInfo> getHotelADDAnalyse(int hIdInt) {
+        return DAOManager.orderDao.getHotelAdd(hIdInt);
     }
 }

@@ -1,7 +1,6 @@
 package com.edu.nju.wel.controller;
 
 import com.edu.nju.wel.info.*;
-import com.edu.nju.wel.model.HotelCash;
 import com.edu.nju.wel.service.AnalyseService;
 import com.edu.nju.wel.service.HotelDecisionService;
 import com.edu.nju.wel.service.HotelInfoService;
@@ -92,5 +91,14 @@ public class HotelDecisionController {
         int hIdInt = Integer.parseInt(hId);
 
         return decisionService.getHotelPieAnalyse(hIdInt);
+    }
+
+    @RequestMapping(value = "get_hotel_add_data",method = RequestMethod.POST)
+    @ResponseBody
+    public List<AddInfo> getHotelADDData(HttpServletRequest request, HttpServletResponse response){
+        String hId = request.getParameter("hId");
+        //类型转换
+        int hIdInt = Integer.parseInt(hId);
+        return decisionService.getHotelADDAnalyse(hIdInt);
     }
 }

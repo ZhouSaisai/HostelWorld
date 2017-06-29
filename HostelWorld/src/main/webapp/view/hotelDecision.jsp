@@ -86,7 +86,7 @@
             </div>
 
             <div class="row img-row">
-                <div class="pic_div" id="pic_canledar_big"></div>
+                <div class="pic_div" id="pic_calendar_big"></div>
             </div>
         </div>
 
@@ -117,13 +117,7 @@
             </div>
 
             <div class="row img-row">
-                <div class="pic_small_div" id="pic_add_line"></div>
-                <div class="pic_line_text">
-                    <p>未来一周订单预测：</p>
-                    <p>订单数：<span>13</span></p>
-                    <p>订单额：<span>3464</span></p>
-                    <p>同比： <span>1.02%</span></p>
-                </div>
+                <div class="pic_div" id="pic_add_line"></div>
             </div>
         </div>
         <br>

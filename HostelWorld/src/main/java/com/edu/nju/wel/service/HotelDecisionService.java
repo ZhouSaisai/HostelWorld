@@ -1,5 +1,6 @@
 package com.edu.nju.wel.service;
 
+import com.edu.nju.wel.info.AddInfo;
 import com.edu.nju.wel.info.MonthAnalyse;
 import com.edu.nju.wel.info.PieInfo;
 import com.edu.nju.wel.info.TypeAnalyse;
@@ -16,4 +17,6 @@ public interface HotelDecisionService {
     public List<TypeAnalyse> getHotelTypeAnalyse(int hIdInt, int type);
 
     public PieInfo getHotelPieAnalyse(int hIdInt);
+
+    public List<AddInfo> getHotelADDAnalyse(int hIdInt);
 }

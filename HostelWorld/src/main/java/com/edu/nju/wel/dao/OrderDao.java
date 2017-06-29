@@ -1,9 +1,6 @@
 package com.edu.nju.wel.dao;
 
-import com.edu.nju.wel.info.MonthAnalyse;
-import com.edu.nju.wel.info.PieInfo;
-import com.edu.nju.wel.info.TimeAnalyse;
-import com.edu.nju.wel.info.TypeAnalyse;
+import com.edu.nju.wel.info.*;
 import com.edu.nju.wel.model.Orders;
 
 import java.util.List;
@@ -54,4 +51,6 @@ public interface OrderDao {
     public List<TypeAnalyse> getHotelTypeByTime(int hIdInt, int type);
 
     public PieInfo getHotelPie(int hIdInt);
+
+    public List<AddInfo> getHotelAdd(int hIdInt);
 }
