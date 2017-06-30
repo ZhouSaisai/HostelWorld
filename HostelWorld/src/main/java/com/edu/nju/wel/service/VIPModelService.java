@@ -16,4 +16,6 @@ public interface VIPModelService {
     public List<MapAnalyse> getSmallMapAnalyse(int vId, int pId);
 
     public List<TimeAnalyse> getTimeAnalyse(int vId, String pro, String city, String area, int type);
+
+    public List<MapAnalyse> getManageMapAnalyse();
 }

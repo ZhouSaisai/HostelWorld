@@ -65,6 +65,33 @@
             </div>
         </div>
 
+        <div class="row input-row">
+            <div class="title">
+                <span>多维分析</span>
+
+            </div>
+            <div class="row choose-wei-row">
+                <div class="div_btn area_choose">
+                    <span>地域选择：</span>
+                    <select id="selProvince"><option value="">---请选择--</option></select>
+                    <select id="selCity"><option value="">---请选择--</option></select>
+                    <select id="selArea"><option value="">---请选择--</option></select>
+                </div>
+
+                <div class="div_btn time_choose">
+                    <span>时间选择:</span>
+                    <span class="time_btn active" onclick="chooseTime(0)" id="time0">按天统计</span>
+                    <span class="time_btn" onclick="chooseTime(1)" id="time1">按周统计</span>
+                    <span class="time_btn" onclick="chooseTime(2)" id="time2">按月统计</span>
+                    <span class="time_btn" onclick="chooseTime(3)" id="time3">按年统计</span>
+                    <span class="time_btn refresh_btn" onclick="refreshTimeMap()">刷新</span>
+                </div>
+            </div>
+
+            <div class="row img-row">
+                <div class="pic_div" id="pic_time"></div>
+            </div>
+        </div>
 
         <div class="row input-row">
             <div class="title">
@@ -75,7 +102,6 @@
             </div>
         </div>
 
-        <input type="hidden" id="vId" value="${vId}">
         <footer class="global-footer footer-fixed-bottom">
             <div class="copyright">
                 <p style="text-align: center;">
@@ -92,6 +118,7 @@
     <script src="../js/bootstrap.js"></script>
     <script src="../js/echarts.min.js"></script>
     <script src="../json/china.js"></script>
+    <script src="../js/district.js"></script>
     <script src="../js/managerDecision.js"></script>
 </body>
 </html>

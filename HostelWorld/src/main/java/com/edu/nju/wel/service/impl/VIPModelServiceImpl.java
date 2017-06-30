@@ -184,4 +184,64 @@ public class VIPModelServiceImpl implements VIPModelService {
 
         return DAOManager.orderDao.getVipOrderByTime(vId,areaId,type);
     }
+
+    @Override
+    public List<MapAnalyse> getManageMapAnalyse() {
+        Map<Integer,MapAnalyse> provinces = new HashMap<Integer,MapAnalyse>(){
+            {
+                put(11, new MapAnalyse("北京",11));
+                put(12, new MapAnalyse("天津",12));
+                put(13, new MapAnalyse("河北",13));
+                put(14, new MapAnalyse("山西",14));
+                put(15, new MapAnalyse("内蒙古",15));
+                put(21, new MapAnalyse("辽宁",21));
+                put(22, new MapAnalyse("吉林",22));
+                put(23, new MapAnalyse("黑龙江",23));
+                put(31, new MapAnalyse("上海",31));
+                put(32, new MapAnalyse("江苏",32));
+                put(33, new MapAnalyse("浙江",33));
+                put(34, new MapAnalyse("安徽",34));
+                put(35, new MapAnalyse("福建",35));
+                put(36, new MapAnalyse("江西",36));
+                put(37, new MapAnalyse("山东",37));
+                put(41, new MapAnalyse("河南",41));
+                put(42, new MapAnalyse("湖北",42));
+                put(43, new MapAnalyse("湖南",43));
+                put(44, new MapAnalyse("广东",44));
+                put(45, new MapAnalyse("广西",45));
+                put(46, new MapAnalyse("海南",46));
+                put(50, new MapAnalyse("重庆",50));
+                put(51, new MapAnalyse("四川",51));
+                put(52, new MapAnalyse("贵州",52));
+                put(53, new MapAnalyse("云南",53));
+                put(54, new MapAnalyse("西藏",54));
+                put(61, new MapAnalyse("陕西",61));
+                put(62, new MapAnalyse("甘肃",62));
+                put(63, new MapAnalyse("青海",63));
+                put(64, new MapAnalyse("宁夏",64));
+                put(65, new MapAnalyse("新疆",65));
+            }
+        };
+
+        List<Orders> orders = DAOManager.orderDao.getAllOrderAnalyse();
+
+        for(Orders o :orders) {
+            Room room = o.getRoom();
+            Hotel hotel = room.getHotel();
+            Area area = hotel.getArea();
+
+            int pro = area.getaId()/10000;
+
+            MapAnalyse mapAnalyse =  provinces.get(pro);
+            mapAnalyse.setNum(mapAnalyse.getNum()+1);
+
+        }
+        List<MapAnalyse> mapAnalyses = new ArrayList<>();
+        for(int key:provinces.keySet()){
+            MapAnalyse analyse = provinces.get(key);
+            analyse.setSingleM(analyse.getNum()*1.0/610000);
+            mapAnalyses.add(analyse);
+        }
+        return mapAnalyses;
+    }
 }

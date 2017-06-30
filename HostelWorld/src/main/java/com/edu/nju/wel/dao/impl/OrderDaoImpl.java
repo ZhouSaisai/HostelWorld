@@ -225,20 +225,41 @@ public class OrderDaoImpl implements OrderDao {
         if(areaId!=0){
             place = " and o.room.hotel.area.aId like '"+areaId+"%' ";
         }
-        switch (type){
-            case 0:
-                hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
-                break;
-            case 1:
-                hql = "select DATE_FORMAT(o.time,'%Y-%u') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%u') order by DATE_FORMAT(o.time,'%Y-%u')";
-                break;
-            case 2:
-                hql = "select DATE_FORMAT(o.time,'%Y-%m') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m') order by DATE_FORMAT(o.time,'%Y-%m')";
-                break;
-            case 3:
-                hql = "select DATE_FORMAT(o.time,'%Y') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y') order by DATE_FORMAT(o.time,'%Y')";
-                break;
+        if(vId==-1){
+            if(areaId!=0){
+                place = " where o.room.hotel.area.aId like '"+areaId+"%' ";
+            }
+            switch (type){
+                case 0:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o "+place +" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+                    break;
+                case 1:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%u') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o "+place +" group by DATE_FORMAT(o.time,'%Y-%u') order by DATE_FORMAT(o.time,'%Y-%u')";
+                    break;
+                case 2:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%m') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o "+place +" group by DATE_FORMAT(o.time,'%Y-%m') order by DATE_FORMAT(o.time,'%Y-%m')";
+                    break;
+                case 3:
+                    hql = "select DATE_FORMAT(o.time,'%Y') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o "+place +" group by DATE_FORMAT(o.time,'%Y') order by DATE_FORMAT(o.time,'%Y')";
+                    break;
+            }
+        }else{
+            switch (type){
+                case 0:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%m-%d') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m-%d') order by DATE_FORMAT(o.time,'%Y-%m-%d')";
+                    break;
+                case 1:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%u') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%u') order by DATE_FORMAT(o.time,'%Y-%u')";
+                    break;
+                case 2:
+                    hql = "select DATE_FORMAT(o.time,'%Y-%m') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y-%m') order by DATE_FORMAT(o.time,'%Y-%m')";
+                    break;
+                case 3:
+                    hql = "select DATE_FORMAT(o.time,'%Y') as tdate, sum(o.nowPrice) as money,count(o.oId) as num from Orders o where o.vip.vId= "+vId+place +" group by DATE_FORMAT(o.time,'%Y') order by DATE_FORMAT(o.time,'%Y')";
+                    break;
+            }
         }
+
         Query query=session.createQuery(hql);
         list=query.list();
         //事务
