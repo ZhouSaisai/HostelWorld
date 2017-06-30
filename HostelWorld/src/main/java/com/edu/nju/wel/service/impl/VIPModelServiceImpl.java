@@ -239,7 +239,7 @@ public class VIPModelServiceImpl implements VIPModelService {
         List<MapAnalyse> mapAnalyses = new ArrayList<>();
         for(int key:provinces.keySet()){
             MapAnalyse analyse = provinces.get(key);
-            analyse.setSingleM(analyse.getNum()*1.0/610000);
+            analyse.setSingleM(analyse.getNum()*1.0/30);
             mapAnalyses.add(analyse);
         }
         return mapAnalyses;
